@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+// Import the default project's font
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+// Define constants
+$global-font: 'Montserrat';
+
+// Global default style
+body {
+  font-family: $global-font, "Helvetica Neue", sans-serif;
+}
