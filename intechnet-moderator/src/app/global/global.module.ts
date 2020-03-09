@@ -8,8 +8,8 @@ import { ImageWidgetComponent } from './image-widget/image-widget.component';
 @NgModule({
   declarations: [
     HomepageComponent,
-    NavbarComponent,
     ImageWidgetComponent,
+    NavbarComponent,
   ],
   imports: [
     CommonModule,

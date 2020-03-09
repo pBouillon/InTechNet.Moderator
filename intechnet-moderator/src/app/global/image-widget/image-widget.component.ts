@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ImageWidgetData } from './image-widget-data';
 
 @Component({
   selector: 'app-image-widget',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ImageWidgetComponent implements OnInit {
 
+  /**
+   * @summary Content to display
+   */
+  @Input()
+  public data: ImageWidgetData;
+
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }

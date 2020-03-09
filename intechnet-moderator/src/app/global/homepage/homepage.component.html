@@ -1,6 +1,8 @@
 <!-- Navbar -->
 <app-navbar></app-navbar>
+<!-- /Navbar -->
 
+<!-- Title section -->
 <div class="container" id="title">
 
     <!-- Title -->
@@ -9,6 +11,7 @@
             <h1 class="title">InTechNet</h1>
         </div>
     </div>
+    <!-- /Title -->
 
     <hr/>
 
@@ -21,12 +24,18 @@
             </p>
         </div>
     </div>
+    <!-- /Text intro -->
 
 </div>
+<!-- /Title section -->
 
-<div class="container">
-    <!-- Text contents -->
-    <div class="d-flex justify-content-center flex-row pt-5">
-        <app-image-widget></app-image-widget>
-    </div>
+<!-- Presentation sections -->
+<div class="d-flex justify-content-center mt-5 ">
+
+  <app-image-widget
+    *ngFor="let section of introSections"
+    [data]="section">
+  </app-image-widget>
+
 </div>
+<!-- /Presentation sections -->

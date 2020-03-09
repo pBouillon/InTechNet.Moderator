@@ -1,1 +1,15 @@
-<p>WiP - image widget</p>
+<div class="d-flex flex-row my-2 py-2">
+
+  <!-- image -->
+  <img [src]="data.imgPath"
+    class="img-responsive about-img rounded-circle"
+    alt="Responsive image">
+  <!-- /image -->
+
+  <!-- content -->
+  <p class="about-text flex-fill p-1 text-justify ml-5 text-wrap d-flex align-items-center">
+    {{ data.content }}
+  </p>
+  <!-- /content -->
+
+</div>
