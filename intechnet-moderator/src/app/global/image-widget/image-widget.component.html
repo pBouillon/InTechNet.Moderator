@@ -1,6 +1,7 @@
-<!-- /standard view -->
 <div class="d-flex flex-row my-3 py-2 w-75 m-auto">
-
+  
+  <!-- /standard view -->
+  <ng-container *ngIf="!data.isToggled; else toggledView">
     <!-- image -->
     <img [src]="data.imgPath"
       class="img-responsive about-img rounded-circle border"
@@ -8,10 +9,25 @@
     <!-- /image -->
 
     <!-- content -->
-    <p class="about-text flex-fill p-1 text-justify ml-5 text-wrap d-flex align-items-center">
+    <p class="about-text flex-fill p-1 text-justify ml-3 text-wrap d-flex align-items-center">
+      {{ data.content }}
+    </p>
+    <!-- /content -->
+  </ng-container>
+  <!-- /standard view -->
+
+  <!-- toggled view -->
+  <ng-template #toggledView>
+    <!-- content -->
+    <p class="about-text flex-fill p-1 text-justify mr-3 text-wrap d-flex align-items-center text-right">
       {{ data.content }}
     </p>
     <!-- /content -->
 
+    <!-- image -->
+    <img [src]="data.imgPath" class="img-responsive about-img rounded-circle border" alt="Responsive image">
+    <!-- /image -->
+  </ng-template>
+  <!-- /toggled view -->
+
 </div>
-<!-- /standard view -->

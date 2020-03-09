@@ -32,7 +32,8 @@ export class HomepageComponent implements OnInit {
       new ImageWidgetData(
         'Organisez vos espaces de travail publiques ou protégés, suivez l\'avancée de vos ' +
         'participants et gérez les modules de formation assignés.',
-        '../../../assets/img/computer-closup.jpg'
+        '../../../assets/img/computer-closeup.jpg',
+        true
       )
     ];
   }

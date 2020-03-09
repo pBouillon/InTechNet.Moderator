@@ -12,6 +12,7 @@ export class ImageWidgetData {
   constructor(
     public content: string,
     public imgPath: string,
+    public isToggled: boolean = false,
   ) { }
 
 }
