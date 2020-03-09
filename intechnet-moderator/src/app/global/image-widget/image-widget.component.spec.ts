@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ImageWidgetComponent } from './image-widget.component';
+import { ImageWidgetData } from './image-widget-data';
 
 describe('ImageWidgetComponent', () => {
   let component: ImageWidgetComponent;
@@ -16,6 +17,7 @@ describe('ImageWidgetComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ImageWidgetComponent);
     component = fixture.componentInstance;
+    component.data = new ImageWidgetData('text sample', 'fake/image/path');
     fixture.detectChanges();
   });
 
