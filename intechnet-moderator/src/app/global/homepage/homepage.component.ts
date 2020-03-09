@@ -30,9 +30,9 @@ export class HomepageComponent implements OnInit {
         '../../../assets/img/working-student.jpg'
       ),
       new ImageWidgetData(
-        'À travers divers modules et activités, organisez des sessions de sensibilisation ' +
-        'et de formation autour des thèmes du numérique.',
-        '../../../assets/img/working-student.jpg'
+        'Organisez vos espaces de travail publiques ou protégés, suivez l\'avancée de vos ' +
+        'participants et gérez les modules de formation assignés.',
+        '../../../assets/img/computer-closup.jpg'
       )
     ];
   }
