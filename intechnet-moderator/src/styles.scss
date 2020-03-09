@@ -11,8 +11,20 @@ body, h1, h2, h3, h4, h5, h6, p, ol, ul {
   font-weight: normal;
 }
 
+body, app-root {
+  min-height: 100vh;
+}
+
+app-root {
+  display: block;
+}
+
 // Global default style
 body {
   font-family: $global-font, "Helvetica Neue", sans-serif;
-    text-shadow: 2px black;
+  text-shadow: 2px black;
+}
+
+a, a:hover {
+  color: inherit;
 }

@@ -4,12 +4,12 @@
   <ng-container *ngIf="!data.isToggled; else toggledView">
     <!-- image -->
     <img [src]="data.imgPath"
-      class="img-responsive about-img rounded-circle border"
+      class="img-responsive rounded-circle border"
       alt="Responsive image">
     <!-- /image -->
 
     <!-- content -->
-    <p class="about-text flex-fill p-1 text-justify ml-3 text-wrap d-flex align-items-center">
+    <p class="flex-fill p-1 text-justify ml-3 text-wrap d-flex align-items-center">
       {{ data.content }}
     </p>
     <!-- /content -->
@@ -19,13 +19,15 @@
   <!-- toggled view -->
   <ng-template #toggledView>
     <!-- content -->
-    <p class="about-text flex-fill p-1 text-justify mr-3 text-wrap d-flex align-items-center text-right">
+    <p class="flex-fill p-1 text-justify mr-3 text-wrap d-flex align-items-center text-right">
       {{ data.content }}
     </p>
     <!-- /content -->
 
     <!-- image -->
-    <img [src]="data.imgPath" class="img-responsive about-img rounded-circle border" alt="Responsive image">
+    <img [src]="data.imgPath" 
+      class="img-responsive rounded-circle border"
+      alt="Responsive image">
     <!-- /image -->
   </ng-template>
   <!-- /toggled view -->

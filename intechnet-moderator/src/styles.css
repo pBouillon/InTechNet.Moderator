@@ -13,7 +13,18 @@ ul {
   padding: 0;
   font-weight: normal;
 }
+body,
+app-root {
+  min-height: 100vh;
+}
+app-root {
+  display: block;
+}
 body {
   font-family: "Montserrat", "Helvetica Neue", sans-serif;
   text-shadow: 2px black;
+}
+a,
+a:hover {
+  color: inherit;
 }
