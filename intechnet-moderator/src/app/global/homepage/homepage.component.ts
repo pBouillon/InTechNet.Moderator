@@ -28,6 +28,11 @@ export class HomepageComponent implements OnInit {
         'À travers divers modules et activités, organisez des sessions de sensibilisation ' +
         'et de formation autour des thèmes du numérique.',
         '../../../assets/img/working-student.jpg'
+      ),
+      new ImageWidgetData(
+        'À travers divers modules et activités, organisez des sessions de sensibilisation ' +
+        'et de formation autour des thèmes du numérique.',
+        '../../../assets/img/working-student.jpg'
       )
     ];
   }
