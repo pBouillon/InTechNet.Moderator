@@ -5,8 +5,11 @@ import { RouteName } from './routing/route-names';
 
 import { HomepageComponent } from './global/homepage/homepage.component';
 import { HowItWorksComponent } from './global/how-it-works/how-it-works.component';
+import { ContactComponent } from './global/contact/contact.component';
 
 const routes: Routes = [
+  // Contact
+  { path: RouteName.CONTACT, component: ContactComponent },
   // Homepage
   { path: RouteName.HOMEPAGE, component: HomepageComponent },
   // 'How it works'

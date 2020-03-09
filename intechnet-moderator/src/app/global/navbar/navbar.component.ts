@@ -8,13 +8,21 @@ import { RouteName } from 'src/app/routing/route-names';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+
+  public contactLinkRoute = `/${RouteName.CONTACT}`;
+
+  public homepageLinkRoute = `/${RouteName.HOMEPAGE}`;
+
+  public howItWorksLinkRoute = `/${RouteName.HOW_IT_WORKS}`;
+
+  public loginLinkRoute = `/${'#'}`;
+
+  public registerLinkRoute = `/${'#'}`;
+
   constructor(
     private router: Router
   ) { }
 
   ngOnInit(): void {}
 
-  onHome() {
-    this.router.navigate([RouteName.HOMEPAGE]);
-  }
 }
