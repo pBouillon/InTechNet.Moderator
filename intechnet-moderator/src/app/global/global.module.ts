@@ -4,12 +4,14 @@ import { RouterModule } from '@angular/router';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ImageWidgetComponent } from './image-widget/image-widget.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 
 @NgModule({
   declarations: [
     HomepageComponent,
     ImageWidgetComponent,
     NavbarComponent,
+    HowItWorksComponent,
   ],
   imports: [
     CommonModule,
