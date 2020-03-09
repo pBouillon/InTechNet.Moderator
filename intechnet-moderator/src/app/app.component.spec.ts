@@ -2,6 +2,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { GlobalModule } from './global/global.module';
+import { FooterComponent } from './shared/footer/footer.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -11,7 +12,8 @@ describe('AppComponent', () => {
         GlobalModule,
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        FooterComponent,
       ],
     }).compileComponents();
   }));
