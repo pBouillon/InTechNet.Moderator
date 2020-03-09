@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { RouteName } from 'src/app/routing/route-names';
 
 @Component({
-  selector: "app-navbar",
-  templateUrl: "./navbar.component.html",
-  styleUrls: ["./navbar.component.scss"]
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
   constructor(
@@ -15,6 +15,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {}
 
   onHome() {
-    this.router.navigate([RouteName.HOMEPAGE], { fragment: '#title' });
+    this.router.navigate([RouteName.HOMEPAGE]);
   }
 }
