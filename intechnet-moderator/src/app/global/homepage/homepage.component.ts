@@ -25,7 +25,8 @@ export class HomepageComponent implements OnInit {
   private _initializeSections(): void {
     this.introSections = [
       new ImageWidgetData(
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ',
+        'À travers divers modules et activités, organisez des sessions de sensibilisation ' +
+        'et de formation autour des thèmes du numérique.',
         '../../../assets/img/working-student.jpg'
       )
     ];
