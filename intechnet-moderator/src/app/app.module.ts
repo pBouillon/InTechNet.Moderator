@@ -8,11 +8,13 @@ import { GlobalModule } from './global/global.module';
 import { FooterComponent } from './shared/footer/footer.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
