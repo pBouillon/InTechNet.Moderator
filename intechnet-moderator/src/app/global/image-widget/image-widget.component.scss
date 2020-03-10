@@ -1,0 +1,43 @@
+// SCSS media queries
+@import "../../mixins.scss";
+
+img.img-toggled {
+  @include x-sm  {
+    order: 1;
+  }
+
+  @include lg {
+    order: 2;
+  }
+}
+
+p.text-toggled {
+  @include lg {
+    text-align: right !important;
+  }
+}
+
+// Main content
+img {
+  height: 200px;
+  width: 200px;
+}
+
+p {
+  width: 500px;
+
+  @include x-sm {
+    margin-top: 1%;
+    margin-bottom: 3%;
+    font-size: smaller;
+  }
+
+  @include sm {
+    font-size: medium;
+  }
+
+  @include lg {
+    font-size: medium;
+    text-align: left !important;
+  }
+}

@@ -1,0 +1,10 @@
+// SCSS media queries
+@import "../../mixins.scss";
+
+h1 {
+  @include x-sm {
+    font-size: 35px;
+  }
+
+  font-size: x-large;
+}

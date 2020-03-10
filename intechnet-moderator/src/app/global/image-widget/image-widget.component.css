@@ -1,0 +1,13 @@
+img {
+  height: 200px;
+  width: 200px;
+}
+p {
+  width: 500px;
+}
+@media (min-width: 576px) {
+  p {
+    font-size: small;
+    color: red;
+  }
+}
