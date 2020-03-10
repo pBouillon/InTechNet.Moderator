@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { RouteName } from 'src/app/routing/route-names';
 
 @Component({
@@ -19,9 +18,7 @@ export class NavbarComponent implements OnInit {
 
   public registerLinkRoute = `/${'#'}`;
 
-  constructor(
-    private router: Router
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {}
 
