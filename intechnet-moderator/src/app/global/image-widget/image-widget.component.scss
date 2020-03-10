@@ -1,6 +1,16 @@
 // SCSS media queries
 @import "../../mixins.scss";
 
+.toggled {
+  @include x-sm  {
+    order: 1;
+  }
+
+  @include lg {
+    order: 2;
+  }
+}
+
 // Main content
 img {
   height: 200px;
