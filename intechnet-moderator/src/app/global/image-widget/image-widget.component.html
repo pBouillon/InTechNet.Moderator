@@ -9,7 +9,7 @@
     <!-- /image -->
 
     <!-- content -->
-    <p class="flex-fill p-1 text-justify mx-2 text-wrap d-flex align-items-center order-2">
+    <p class="flex-fill p-1 text-justify mx-2 text-wrap d-flex align-items-center text-center order-2">
       {{ data.content }}
     </p>
     <!-- /content -->
@@ -19,14 +19,14 @@
   <!-- toggled view -->
   <ng-template #toggledView>
     <!-- content -->
-    <p class="flex-fill p-1 text-justify mx-2 text-wrap d-flex align-items-center text-right order-2">
+    <p class="text-toggled flex-fill p-1 text-justify mx-2 text-wrap d-flex align-items-center text-center order-2">
       {{ data.content }}
     </p>
     <!-- /content -->
 
     <!-- image -->
     <img [src]="data.imgPath"
-      class="toggled img-responsive rounded-circle border order-1 m-auto"
+      class="img-toggled img-responsive rounded-circle border order-1 m-auto"
       alt="Responsive image">
     <!-- /image -->
   </ng-template>

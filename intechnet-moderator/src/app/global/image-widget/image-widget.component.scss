@@ -1,13 +1,19 @@
 // SCSS media queries
 @import "../../mixins.scss";
 
-.toggled {
+img.img-toggled {
   @include x-sm  {
     order: 1;
   }
 
   @include lg {
     order: 2;
+  }
+}
+
+p.text-toggled {
+  @include lg {
+    text-align: right !important;
   }
 }
 
@@ -24,11 +30,14 @@ p {
     margin-top: 1%;
     margin-bottom: 3%;
     font-size: smaller;
-    text-align: center !important;
   }
 
   @include sm {
-    font-size: small;
+    font-size: medium;
+  }
+
+  @include lg {
+    font-size: medium;
+    text-align: left !important;
   }
 }
-
