@@ -6,6 +6,7 @@ import { RouteName } from './routing/route-names';
 import { HomepageComponent } from './global/homepage/homepage.component';
 import { HowItWorksComponent } from './global/how-it-works/how-it-works.component';
 import { ContactComponent } from './global/contact/contact.component';
+import { PageNotFoundComponent } from './error/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   // Contact
@@ -19,7 +20,9 @@ const routes: Routes = [
     path: RouteName.ROOT,
     redirectTo: RouteName.HOMEPAGE,
     pathMatch: 'full'
-  }
+  },
+  // 404 error page
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
