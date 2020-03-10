@@ -1,0 +1,21 @@
+// SCSS media queries
+// Small devices (360px and up)
+@mixin x-sm {
+  @media (min-width: 360px) { 
+    @content
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@mixin sm {
+  @media (min-width: 576px) { 
+    @content
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@mixin md {
+  @media (min-width: 768px) { 
+    @content
+  }
+}

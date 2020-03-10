@@ -1,3 +1,7 @@
+// SCSS media queries
+@import "../../mixins.scss";
+
+// Main content
 img {
   height: 200px;
   width: 200px;
@@ -5,4 +9,16 @@ img {
 
 p {
   width: 500px;
+
+  @include x-sm {
+    margin-top: 1%;
+    margin-bottom: 3%;
+    font-size: smaller;
+    text-align: center !important;
+  }
+
+  @include sm {
+    font-size: small;
+  }
 }
+

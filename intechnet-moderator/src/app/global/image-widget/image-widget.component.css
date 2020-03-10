@@ -5,3 +5,9 @@ img {
 p {
   width: 500px;
 }
+@media (min-width: 576px) {
+  p {
+    font-size: small;
+    color: red;
+  }
+}
