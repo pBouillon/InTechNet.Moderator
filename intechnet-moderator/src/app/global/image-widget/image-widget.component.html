@@ -1,4 +1,4 @@
-<div class="d-flex flex-row flex-wrap my-3 py-2 w-75 m-auto">
+<div class="d-flex flex-row flex-wrap mb-5 py-2 w-75 m-auto">
 
   <!-- /standard view -->
   <ng-container *ngIf="!data.isToggled; else toggledView">
@@ -9,7 +9,7 @@
     <!-- /image -->
 
     <!-- content -->
-    <p class="flex-fill p-1 text-justify ml-3 text-wrap d-flex align-items-center order-2">
+    <p class="flex-fill p-1 text-justify mx-2 text-wrap d-flex align-items-center order-2">
       {{ data.content }}
     </p>
     <!-- /content -->
@@ -19,7 +19,7 @@
   <!-- toggled view -->
   <ng-template #toggledView>
     <!-- content -->
-    <p class="flex-fill p-1 text-justify mr-3 text-wrap d-flex align-items-center text-right order-2">
+    <p class="flex-fill p-1 text-justify mx-2 text-wrap d-flex align-items-center text-right order-2">
       {{ data.content }}
     </p>
     <!-- /content -->
