@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
 
   public howItWorksLinkRoute = `/${RouteName.HOW_IT_WORKS}`;
 
-  public loginLinkRoute = `/${'#'}`;
+  public loginLinkRoute = `/${RouteName.LOGIN}`;
 
   public registerLinkRoute = `/${'#'}`;
 

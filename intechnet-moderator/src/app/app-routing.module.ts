@@ -7,8 +7,15 @@ import { HomepageComponent } from './global/homepage/homepage.component';
 import { HowItWorksComponent } from './global/how-it-works/how-it-works.component';
 import { ContactComponent } from './global/contact/contact.component';
 import { PageNotFoundComponent } from './error/page-not-found/page-not-found.component';
+import { LoginComponent } from './authentication/login/login.component';
 
 const routes: Routes = [
+  // Authentication
+  // ----------
+  { path: RouteName.LOGIN, component: LoginComponent },
+
+  // Global
+  // ----------
   // Contact
   { path: RouteName.CONTACT, component: ContactComponent },
   // Homepage
