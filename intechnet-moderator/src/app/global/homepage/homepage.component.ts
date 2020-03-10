@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ImageWidgetData } from '../image-widget/image-widget-data';
+import { ImageWidgetData } from '../../_models/image-widget/image-widget-data';
 
 @Component({
   selector: 'app-homepage',
