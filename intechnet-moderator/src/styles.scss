@@ -15,10 +15,6 @@ body, app-root {
   min-height: 100vh;
 }
 
-app-root {
-  display: block;
-}
-
 // Global default style
 body {
   font-family: $global-font, "Helvetica Neue", sans-serif;
