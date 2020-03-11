@@ -5,12 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { GlobalModule } from './global/global.module';
-import { FooterComponent } from './_components/footer/footer.component';
+import { FooterComponent } from './shared/footer/footer.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { NavbarComponent } from './_components/navbar/navbar.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -20,9 +18,6 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
     AppRoutingModule,
     GlobalModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),

@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomepageComponent } from './homepage.component';
-import { NavbarComponent } from '../../_components/navbar/navbar.component';
+import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { ImageWidgetComponent } from '../image-widget/image-widget.component';
 import { RouterTestingModule } from '@angular/router/testing';
 
