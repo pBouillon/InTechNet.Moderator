@@ -5,10 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { GlobalModule } from './global/global.module';
-import { FooterComponent } from './shared/footer/footer.component';
+import { FooterComponent } from './_components/footer/footer.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { NavbarComponent } from './shared/navbar/navbar.component';
+import { NavbarComponent } from './_components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
