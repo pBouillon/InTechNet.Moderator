@@ -1,7 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { GlobalModule } from './global/global.module';
+import { GlobalModule } from './homepage/global.module';
 import { FooterComponent } from './_components/footer/footer.component';
 import { NavbarComponent } from './_components/navbar/navbar.component';
 

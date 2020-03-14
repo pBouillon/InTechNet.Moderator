@@ -3,9 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { RouteName } from './routing/route-names';
 
-import { HomepageComponent } from './global/homepage/homepage.component';
-import { HowItWorksComponent } from './global/how-it-works/how-it-works.component';
-import { ContactComponent } from './global/contact/contact.component';
+import { HomepageComponent } from './homepage/homepage/homepage.component';
+import { HowItWorksComponent } from './homepage/how-it-works/how-it-works.component';
+import { ContactComponent } from './homepage/contact/contact.component';
 import { PageNotFoundComponent } from './error/page-not-found/page-not-found.component';
 import { LoginComponent } from './authentication/login/login.component';
 

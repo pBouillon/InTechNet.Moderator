@@ -10,19 +10,28 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor(public authService: AuthService) { }
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    let currentUser = this.authenticationService.currentUserValue;
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if (currentUser && currentUser.token) {
-      request = request.clone({
-        setHeaders: {
-          Authorization: `Bearer ${currentUser.token}`
-        }
-      });
+    if (this.authService.getJwtToken()) {
+      request = this.addToken(request, this.authService.getJwtToken());
     }
 
-    return next.handle(request);
+    return next.handle(request).pipe(catchError(error => {
+      if (error instanceof HttpErrorResponse && error.status === 401) {
+        return this.handle401Error(request, next);
+      } else {
+        return throwError(error);
+      }
+    }));
+  }
+
+  private addToken(request: HttpRequest<any>, token: string) {
+    return request.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}`
+      }
+    });
   }
 }
