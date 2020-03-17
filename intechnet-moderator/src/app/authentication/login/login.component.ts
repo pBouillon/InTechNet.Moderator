@@ -56,6 +56,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  isFieldInvalid(field: string) {
+    return this.loginForm.get(field).invalid && (this.loginForm.get(field).dirty || this.loginForm.get(field).touched);
+  }
+
   OnForgottenPassword() {
     //TODO
   }
