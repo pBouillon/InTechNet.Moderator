@@ -26,13 +26,13 @@ export class JwtInterceptor implements HttpInterceptor {
    */
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return this.authenticationService.currentModerator
-      .pipe(switchMap(currentModerator => {
+      .pipe(switchMap(moderator => {
         // Check if any moderator is logged in with its token
-        if (currentModerator && currentModerator.token) {
+        if (moderator && moderator.token) {
           // Add its token in the authorization header
           request = request.clone({
             setHeaders: {
-              Authorization: `Bearer ${currentModerator.token}`,
+              Authorization: `Bearer ${moderator.token}`,
             },
           });
         }
