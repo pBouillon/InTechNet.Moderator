@@ -22,7 +22,7 @@ export class JwtInterceptor implements HttpInterceptor {
   /**
    * Intercept any request to add the JWT as a bearer authorization
    * @param request Request to intercept
-   * @param next Reforged request
+   * @param next Http handler for the intercepted request
    */
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return this.authenticationService.currentModerator

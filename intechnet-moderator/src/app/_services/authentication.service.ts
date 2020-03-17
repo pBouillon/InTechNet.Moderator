@@ -46,6 +46,13 @@ export class AuthenticationService {
   /**
    * @summary todo
    */
+  public get isModeratorLoggedIn(): boolean {
+    return this.currentModeratorValue && !!this.currentModeratorValue.token;
+  }
+
+  /**
+   * @summary todo
+   */
   login(login: string, password: string) {
     return this.http.post<any>(
       `${environment.apiUrl}/Moderator/authenticate`,
