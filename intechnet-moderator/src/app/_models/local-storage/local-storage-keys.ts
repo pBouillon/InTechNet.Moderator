@@ -3,5 +3,8 @@
  * @see LocalStorageService
  */
 export enum LocalStorageKeys {
-
+    /**
+     * @summary todo
+     */
+   currentModerator = 'currentModerator',
 }

@@ -3,34 +3,50 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { User } from '../_models/user';
+import { Moderator } from '../_models/moderator';
 import { LocalStorageService } from './local-storage.service';
+import { environment } from 'src/environments/environment';
+import { LocalStorageKeys } from '../_models/local-storage/local-storage-keys';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
+  /**
+   * @summary todo
+   */
+  private currentUserSubject: BehaviorSubject<Moderator>;
+  public currentUser: Observable<Moderator>;
 
+  /**
+   * @summary todo
+   */
   constructor(
     private http: HttpClient,
     private storageService: LocalStorageService,
   ) {
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUserSubject = new BehaviorSubject<Moderator>(
+      JSON.parse(
+        localStorage.getItem(LocalStorageKeys.currentModerator)));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  public get currentUserValue(): User {
+  /**
+   * @summary todo
+   */
+  public get currentUserValue(): Moderator {
     return this.currentUserSubject.value;
   }
 
-  moderatorLogin(login: string, password: string) {
-    return this.http.post<any>(`/api/v1/Moderator/login`, { login, password })
+  /**
+   * @summary todo
+   */
+  login(login: string, password: string) {
+    return this.http.post<any>(`${environment.apiUrl}/Moderator/login`, { login, password })
       .pipe(map(user => {
         if (user && user.token) {
-          this.storageService.store('currentUser', JSON.stringify(user));
+          this.storageService.store(LocalStorageKeys.currentModerator, JSON.stringify(user));
           this.currentUserSubject.next(user);
         }
 
@@ -38,20 +54,11 @@ export class AuthenticationService {
       }));
   }
 
-  pupilLogin(login: string, password: string) {
-    return this.http.post<any>(`/api/v1/Pupil/login`, { login, password })
-      .pipe(map(user => {
-        if (user && user.token) {
-          this.storageService.store('currentUser', JSON.stringify(user));
-          this.currentUserSubject.next(user);
-        }
-
-        return user;
-      }));
-  }
-
+  /**
+   * @summary todo
+   */
   logout() {
-    this.storageService.clear('currentUser');
+    this.storageService.clear(LocalStorageKeys.currentModerator);
     this.currentUserSubject.next(null);
   }
 
