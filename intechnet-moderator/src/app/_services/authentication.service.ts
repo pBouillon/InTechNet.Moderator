@@ -16,8 +16,12 @@ export class AuthenticationService {
   /**
    * @summary todo
    */
-  private currentUserSubject: BehaviorSubject<Moderator>;
-  public currentUser: Observable<Moderator>;
+  private currentModeratorSubject: BehaviorSubject<Moderator>;
+
+  /**
+   * @summary todo
+   */
+  public currentModerator: Observable<Moderator>;
 
   /**
    * @summary todo
@@ -26,32 +30,36 @@ export class AuthenticationService {
     private http: HttpClient,
     private storageService: LocalStorageService,
   ) {
-    this.currentUserSubject = new BehaviorSubject<Moderator>(
+    this.currentModeratorSubject = new BehaviorSubject<Moderator>(
       JSON.parse(
         localStorage.getItem(LocalStorageKeys.currentModerator)));
-    this.currentUser = this.currentUserSubject.asObservable();
+    this.currentModerator = this.currentModeratorSubject.asObservable();
   }
 
   /**
    * @summary todo
    */
-  public get currentUserValue(): Moderator {
-    return this.currentUserSubject.value;
+  public get currentModeratorValue(): Moderator {
+    return this.currentModeratorSubject.value;
   }
 
   /**
    * @summary todo
    */
   login(login: string, password: string) {
-    return this.http.post<any>(`${environment.apiUrl}/Moderator/authenticate`, { login, password })
-      .pipe(map(user => {
-        console.log(user)
-        if (user && user.token) {
-          this.storageService.store(LocalStorageKeys.currentModerator, JSON.stringify(user));
-          this.currentUserSubject.next(user);
-        }
+    return this.http.post<any>(
+      `${environment.apiUrl}/Moderator/authenticate`,
+      { login, password })
+      .pipe(
+        map(user => {
+          if (user && user.token) {
+            this.storageService.store(
+              LocalStorageKeys.currentModerator,
+              JSON.stringify(user));
+            this.currentModeratorSubject.next(user);
+          }
 
-        return user;
+          return user;
       }));
   }
 
@@ -60,7 +68,7 @@ export class AuthenticationService {
    */
   logout() {
     this.storageService.clear(LocalStorageKeys.currentModerator);
-    this.currentUserSubject.next(null);
+    this.currentModeratorSubject.next(null);
   }
 
 }
