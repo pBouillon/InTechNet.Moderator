@@ -20,7 +20,8 @@
             </li>
         </ul>
 
-        <ul class="navbar-nav mr-0">
+        <ul *ngIf="!authenticationService.isModeratorLoggedIn; else disconnectionSection"
+            class="navbar-nav mr-0">
             <li class="nav-item itn-nav-item">
                 <a class="nav-link" [routerLink]="registerLinkRoute">S'inscrire</a>
             </li>
@@ -28,6 +29,15 @@
                 <a class="nav-link" [routerLink]="loginLinkRoute">Se connecter</a>
             </li>
         </ul>
+
+        <ng-template #disconnectionSection>
+            <ul class="navbar-nav mr-0">
+                <li class="nav-item itn-nav-item">
+                    <a class="nav-link" [routerLink]="" (click)="disconnect()">Se déconnecter</a>
+                </li>
+            </ul>
+        </ng-template>
+        
     </div>
 
 </nav>

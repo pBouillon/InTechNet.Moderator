@@ -18,6 +18,7 @@ const routes: Routes = [
 
   // Board and management
   // ----------
+  // Main board
   {
     path: RouteName.BOARD,
     component: BoardComponent,
