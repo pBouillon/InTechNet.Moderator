@@ -43,8 +43,9 @@ export class AuthenticationService {
    * @summary todo
    */
   login(login: string, password: string) {
-    return this.http.post<any>(`${environment.apiUrl}/Moderator/login`, { login, password })
+    return this.http.post<any>(`${environment.apiUrl}/Moderator/authenticate`, { login, password })
       .pipe(map(user => {
+        console.log(user)
         if (user && user.token) {
           this.storageService.store(LocalStorageKeys.currentModerator, JSON.stringify(user));
           this.currentUserSubject.next(user);

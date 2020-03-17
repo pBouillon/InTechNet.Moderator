@@ -10,24 +10,24 @@
     <!-- /Title -->
 
     <!-- Form content -->
-    <form>
+    <form [formGroup]="loginForm" (ngSubmit)="OnSubmitForm()">
         <div class="form-group row justify-content-center">
             <label for="loginField" class="col-sm-2 col-form-label">Pseudo ou e-mail</label>
             <div class="col-sm-5">
-                <input type="email" class="form-control" id="loginField" placeholder="thomas.a@anderson.me" required>
+                <input type="email" class="form-control" formControlName="login" id="loginField" placeholder="thomas.a@anderson.me">
             </div>
         </div>
         <div class="form-group row justify-content-center">
             <label for="passwordField" class="col-sm-2 col-form-label">Mot de passe</label>
             <div class="col-sm-5">
-                <input type="password" class="form-control" id="passwordField" placeholder="Mot de passe" required>
+                <input type="password" class="form-control" formControlName="password" id="passwordField" placeholder="Mot de passe">
             </div>
         </div>
         <div class="form-group row justify-content-center">
             <button type="submit" class="btn btn-outline-success mr-2 offset-sm-3 col-sm-2">Mot de passe oublié</button>
-            <button type="submit" class="btn btn-success mr-2 col-sm-2">Se connecter</button>
+            <button type="submit" class="btn btn-success mr-2 col-sm-2" [disabled]="!loginForm.valid">Se connecter</button>
         </div>
-    </form>
+      </form>
     <!-- /Form content -->
 
 </div>
