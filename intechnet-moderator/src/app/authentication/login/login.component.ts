@@ -61,8 +61,13 @@ export class LoginComponent implements OnInit {
    */
   OnSubmitForm() {
     this.authenticationService
-    .login(this.f.login.value, this.f.password.value)
-    .subscribe();
+      .login(this.f.login.value, this.f.password.value)
+      .subscribe(
+        () => this.router.navigate([`/${RouteName.BOARD}`]),
+        (error) => {
+          // TODO: handle errors
+          // this.loginForm.setErrors({ server: error });
+        });
   }
 
 }
