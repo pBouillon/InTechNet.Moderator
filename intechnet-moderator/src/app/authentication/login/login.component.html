@@ -23,11 +23,15 @@
                 <input type="password" class="form-control" formControlName="password" id="passwordField" placeholder="Mot de passe">
             </div>
         </div>
-        <div class="form-group row justify-content-center">
-            <button type="submit" class="btn btn-outline-success mr-2 offset-sm-3 col-sm-2">Mot de passe oublié</button>
-            <button type="submit" class="btn btn-success mr-2 col-sm-2" [disabled]="!loginForm.valid">Se connecter</button>
+        <div class="form-group text-center">
+            <button type="submit" class="btn btn-success mr-lg-3 mr-md-1 my-2 my-lg-3 col-sm-1 col-md-6 col-lg-3" [disabled]="!loginForm.valid">Se connecter</button>
+            <button (click)="OnForgottenPassword()" class="btn btn-outline-success my-2 col-sm-1 col-md-6 col-lg-3">Mot de passe oublié</button>
         </div>
-      </form>
+
+        <div class="m-auto text-center">
+            Pas encore inscrit ? <a href="" class="text-success">Créer un compte</a>
+        </div>
+        </form>
     <!-- /Form content -->
 
 </div>

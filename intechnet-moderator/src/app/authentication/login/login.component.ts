@@ -56,6 +56,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  OnForgottenPassword() {
+    //TODO
+  }
+
   /**
    * @summary todo
    */
@@ -69,5 +73,4 @@ export class LoginComponent implements OnInit {
           // this.loginForm.setErrors({ server: error });
         });
   }
-
 }
