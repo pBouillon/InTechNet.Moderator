@@ -14,6 +14,9 @@ import { RouteName } from 'src/app/routing/route-names';
 })
 export class LoginComponent implements OnInit {
 
+  // TODO: redirect to registration page
+  public registerLink = `/${RouteName.REGISTER}`;
+
   /**
    * @summary todo
    */
@@ -57,11 +60,13 @@ export class LoginComponent implements OnInit {
   }
 
   isFieldInvalid(field: string) {
-    return this.loginForm.get(field).invalid && (this.loginForm.get(field).dirty || this.loginForm.get(field).touched);
+    return this.loginForm.get(field).invalid
+      && (this.loginForm.get(field).dirty
+        || this.loginForm.get(field).touched);
   }
 
   OnForgottenPassword() {
-    //TODO
+    // TODO
   }
 
   /**
@@ -71,10 +76,11 @@ export class LoginComponent implements OnInit {
     this.authenticationService
       .login(this.f.login.value, this.f.password.value)
       .subscribe(
-        () => this.router.navigate([`/${RouteName.BOARD}`]),
+        () => {
+          this.router.navigate([`/${RouteName.BOARD}`]);
+        },
         (error) => {
-          // TODO: handle errors
-          // this.loginForm.setErrors({ server: error });
+          this.loginForm.setErrors({ server: error });
         });
   }
 }

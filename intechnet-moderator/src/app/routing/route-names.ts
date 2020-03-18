@@ -4,6 +4,7 @@
 export enum RouteName {
     // Authentication
     LOGIN = 'login',
+    REGISTER = 'register',
 
     // Board and management
     BOARD = 'board',
