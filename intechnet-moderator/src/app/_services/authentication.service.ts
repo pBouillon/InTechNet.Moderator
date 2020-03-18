@@ -14,44 +14,53 @@ import { LocalStorageKeys } from '../_models/local-storage/local-storage-keys';
 export class AuthenticationService {
 
   /**
-   * @summary todo
+   * @summary moderator's current value
    */
   private currentModeratorSubject: BehaviorSubject<Moderator>;
 
   /**
-   * @summary todo
+   * @summary observable of the handled moderator
    */
   public currentModerator: Observable<Moderator>;
 
   /**
-   * @summary todo
+   * @summary default constructor
+   * @param http http service for HTTP requests
+   * @param storageService service for local storage queries
    */
   constructor(
     private http: HttpClient,
     private storageService: LocalStorageService,
   ) {
+    const storedModerator = localStorage.getItem(
+      LocalStorageKeys.currentModerator);
+
     this.currentModeratorSubject = new BehaviorSubject<Moderator>(
-      JSON.parse(
-        localStorage.getItem(LocalStorageKeys.currentModerator)));
+      JSON.parse(storedModerator));
+
     this.currentModerator = this.currentModeratorSubject.asObservable();
   }
 
   /**
-   * @summary todo
+   * @summary get current moderator
+   * @returns a Moderator DTO
    */
   public get currentModeratorValue(): Moderator {
     return this.currentModeratorSubject.value;
   }
 
   /**
-   * @summary todo
+   * @summary get the current moderator login state
+   * @returns true if connected; false otherwise
    */
   public get isModeratorLoggedIn(): boolean {
     return this.currentModeratorValue && !!this.currentModeratorValue.token;
   }
 
   /**
-   * @summary todo
+   * @summary given its information, log in the moderator
+   * @param login user's provided login value
+   * @param password user's provided password value
    */
   login(login: string, password: string) {
     return this.http.post<any>(
@@ -71,7 +80,7 @@ export class AuthenticationService {
   }
 
   /**
-   * @summary todo
+   * @summary log out the user
    */
   logout() {
     this.storageService.clear(LocalStorageKeys.currentModerator);

@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { RouteName } from 'src/app/routing/route-names';
 
 /**
- * @summary todo
+ * @summary login component containing login form and actions
  */
 @Component({
   selector: 'app-login',
@@ -14,11 +14,13 @@ import { RouteName } from 'src/app/routing/route-names';
 })
 export class LoginComponent implements OnInit {
 
-  // TODO: redirect to registration page
+  /**
+   * @summary link to the registration page
+   */
   public registerLink = `/${RouteName.REGISTER}`;
 
   /**
-   * @summary todo
+   * @summary login form login
    */
   loginForm: FormGroup;
 
@@ -28,7 +30,10 @@ export class LoginComponent implements OnInit {
   public get f() { return this.loginForm.controls; }
 
   /**
-   * @summary todo
+   * @summary default constructor
+   * @param authenticationService authentication service
+   * @param formBuilder form builder service
+   * @param router angular router
    */
   constructor(
     private authenticationService: AuthenticationService,
@@ -37,7 +42,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   /**
-   * @summary todo
+   * @summary default initialize function
    */
   ngOnInit(): void  {
     // If the user is already logged in, redirect it
@@ -50,7 +55,7 @@ export class LoginComponent implements OnInit {
   }
 
   /**
-   * @summary todo
+   * @summary populate the form
    */
   private createForm(): void {
     this.loginForm = this.formBuilder.group({
@@ -66,11 +71,11 @@ export class LoginComponent implements OnInit {
   }
 
   OnForgottenPassword() {
-    // TODO
+    // To be implemented
   }
 
   /**
-   * @summary todo
+   * @summary form submission's logic
    */
   OnSubmitForm() {
     this.authenticationService

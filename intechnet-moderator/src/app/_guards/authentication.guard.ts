@@ -10,9 +10,9 @@ import { RouteName } from '../routing/route-names';
 export class AuthenticationGuard implements CanActivate {
 
   /**
-   * todo
-   * @param authenticationService
-   * @param router
+   * Default constructor
+   * @param authenticationService authentication service
+   * @param router angular router
    */
   constructor(
     private authenticationService: AuthenticationService,
@@ -20,9 +20,9 @@ export class AuthenticationGuard implements CanActivate {
   ) { }
 
   /**
-   * todo
-   * @param next 
-   * @param state 
+   * Evalutate if the user is allowed to reach this route
+   * @param next route to handle
+   * @param state route state
    */
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -38,4 +38,5 @@ export class AuthenticationGuard implements CanActivate {
     this.router.navigate([`/${RouteName.LOGIN}`], { queryParams: { returnUrl: state.url } });
     return false;
   }
+
 }

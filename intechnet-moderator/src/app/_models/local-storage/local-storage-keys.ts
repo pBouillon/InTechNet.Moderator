@@ -3,8 +3,10 @@
  * @see LocalStorageService
  */
 export enum LocalStorageKeys {
+
     /**
-     * @summary todo
+     * @summary key to access moderator's data in local storage
      */
    currentModerator = 'currentModerator',
+
 }

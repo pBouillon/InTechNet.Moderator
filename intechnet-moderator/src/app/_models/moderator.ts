@@ -1,29 +1,31 @@
 /**
- * @summary todo
+ * @summary Moderator DTO representing the backend representation of this entity
  */
 export class Moderator {
+
     /**
-     * @summary todo
+     * @summary moderator's mail
      */
     email: string;
 
     /**
-     * @summary todo
+     * @summary moderator's id
      */
     id: number;
 
     /**
-     * @summary todo
+     * @summary moderator's nickname
      */
     nickname: string;
 
     /**
-     * @summary todo
+     * @summary moderator's password
      */
     password: string;
 
     /**
-     * @summary todo
+     * @summary current moderator's JWT
      */
     token: string;
+
 }
