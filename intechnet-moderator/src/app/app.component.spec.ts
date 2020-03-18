@@ -4,6 +4,9 @@ import { AppComponent } from './app.component';
 import { GlobalModule } from './homepage/global.module';
 import { FooterComponent } from './_components/footer/footer.component';
 import { NavbarComponent } from './_components/navbar/navbar.component';
+import { LoginComponent } from './authentication/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -11,11 +14,15 @@ describe('AppComponent', () => {
       imports: [
         RouterTestingModule,
         GlobalModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientTestingModule
       ],
       declarations: [
         AppComponent,
         FooterComponent,
         NavbarComponent,
+        LoginComponent
       ],
     }).compileComponents();
   }));
