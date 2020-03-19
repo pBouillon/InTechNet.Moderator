@@ -17,8 +17,8 @@ import { LoginComponent } from './authentication/login/login.component';
   declarations: [
     AppComponent,
     FooterComponent,
+    LoginComponent,
     NavbarComponent,
-    LoginComponent
   ],
   imports: [
     BrowserModule,
