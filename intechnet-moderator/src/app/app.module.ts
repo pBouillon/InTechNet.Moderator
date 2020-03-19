@@ -12,12 +12,14 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { NavbarComponent } from './_components/navbar/navbar.component';
 import { LoginComponent } from './authentication/login/login.component';
+import { RegisterComponent } from './authentication/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     LoginComponent,
+    RegisterComponent,
     NavbarComponent,
   ],
   imports: [

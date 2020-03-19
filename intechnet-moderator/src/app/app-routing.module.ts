@@ -10,11 +10,13 @@ import { PageNotFoundComponent } from './error/page-not-found/page-not-found.com
 import { LoginComponent } from './authentication/login/login.component';
 import { BoardComponent } from './board/board/board.component';
 import { AuthenticationGuard } from './_guards/authentication.guard';
+import { RegisterComponent } from './authentication/register/register.component';
 
 const routes: Routes = [
   // Authentication
   // ----------
   { path: RouteName.LOGIN, component: LoginComponent },
+  { path: RouteName.REGISTER, component: RegisterComponent },
 
   // Board and management
   // ----------

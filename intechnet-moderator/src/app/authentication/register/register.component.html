@@ -1,0 +1,104 @@
+<!-- Title section -->
+<div class="container" id="title">
+
+    <!-- Title -->
+    <div class="d-flex justify-content-center p-5">
+        <div>
+            <h1 class="title">Inscription en tant que <span class="text-success">modérateur</span></h1>
+        </div>
+    </div>
+    <!-- /Title -->
+
+    <!-- Form content -->
+    <form [formGroup]="registerForm" (ngSubmit)="OnSubmitForm()">
+
+        <!-- Identifier -->
+        <div class="form-group row justify-content-center">
+            <label for="loginField"
+                    class="col-sm-3 col-form-label"
+                    [ngClass]="{'text-danger': isFieldInvalid('login')}">
+                Pseudo
+            </label>
+            <div class="col-sm-5">
+                <input type="text" 
+                    class="form-control" 
+                    formControlName="login" 
+                    id="loginField" 
+                    placeholder="Thomas A" 
+                    [ngClass]="{'border border-danger': isFieldInvalid('login')}" 
+                    required />
+
+                <small *ngIf="isFieldInvalid('login')" class="text-danger">
+                    <span *ngIf="f.login.errors && f.login.errors.required">
+                        Nous avons besoin de votre identifiant pour vous reconnaître
+                    </span>
+                </small>
+            </div>
+        </div>
+        <!-- /Identifier -->
+
+        <!-- E-mail -->
+        <div class="form-group row justify-content-center">
+            <label for="emailField"
+                    class="col-sm-3 col-form-label"
+                    [ngClass]="{'text-danger': isFieldInvalid('login')}">
+                E-mail
+            </label>
+            <div class="col-sm-5">
+                <input type="email" 
+                    class="form-control" 
+                    formControlName="email" 
+                    id="emailField" 
+                    placeholder="thomas.a@anderson.me"
+                    [ngClass]="{'border border-danger': isFieldInvalid('login')}" 
+                    required />
+
+                <small *ngIf="isFieldInvalid('email')" class="text-danger">
+                    <span *ngIf="f.login.errors && f.login.errors.required">
+                        Nous avons besoin de votre email pour vous reconnaître
+                    </span>
+                </small>
+            </div>
+        </div>
+        <!-- /E-mail -->
+
+        <!-- Password -->
+        <div class="form-group row justify-content-center">
+            <label for="passwordField"
+                    class="col-sm-3 col-form-label"
+                    [ngClass]="{'text-danger': isFieldInvalid('password')}">
+                Mot de passe
+            </label>
+            <div class="col-sm-5">
+                <input type="password" 
+                    class="form-control" 
+                    formControlName="password" 
+                    id="passwordField" 
+                    placeholder="Mot de passe" 
+                    [ngClass]="{'border border-danger': isFieldInvalid('password')}"
+                    required />
+
+                <small *ngIf="isFieldInvalid('password')" class="text-danger">
+                    <span *ngIf="f.password.errors && f.password.errors.required">
+                        Nous avons besoin d'un mot de passe pour vous reconnaître
+                    </span>
+                </small>
+            </div>
+        </div>
+        <!-- /Password -->
+
+        <!-- Form buttons -->
+        <div class="form-group row justify-content-center">
+            <button type="submit" 
+                    class="order-lg-2 mr-lg-2 mr-md-5 mx-4 my-2 col-sm-1 col-md-5 col-lg-3 btn btn-success" 
+                    [disabled]="!registerForm.valid">
+                S'inscrire
+            </button>
+        </div>
+        <!-- /Form buttons -->
+
+    </form>
+    <!-- /Form content -->
+
+</div>
+<!-- /Title section -->

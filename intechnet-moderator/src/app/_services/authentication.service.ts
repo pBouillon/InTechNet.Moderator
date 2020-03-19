@@ -49,7 +49,7 @@ export class AuthenticationService {
   }
 
   /**
-   * @summary given its information, log in the moderator
+   * @summary given their information, log in the moderator
    * @param login user's provided login value
    * @param password user's provided password value
    */
@@ -74,6 +74,29 @@ export class AuthenticationService {
    */
   logout() {
     this.storageService.clear(LocalStorageKeys.CURRENT_MODERATOR);
+  }
+
+  /**
+   * @summary given their information, register the moderator and log them in
+   * @param login user's provided login value
+   * @param email user's provided email value
+   * @param password user's provided password value
+   */
+  register(pseudo: string, email:string, password: string) {
+    console.log("hey2");
+    return this.http.post<any>(
+      `${environment.apiUrl}/Moderator`,
+      { pseudo, email, password })
+      .pipe(
+        map(user => {
+
+          if (user && user.token) {
+            this.storageService.store(
+              LocalStorageKeys.CURRENT_MODERATOR, user);
+          }
+
+          return user;
+      }));
   }
 
 }
