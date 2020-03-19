@@ -19,13 +19,12 @@ export class Moderator {
     nickname: string;
 
     /**
-     * @summary moderator's password
-     */
-    password: string;
-
-    /**
      * @summary current moderator's JWT
      */
     token: string;
+
+    constructor(fields?: Partial<Moderator>) {
+        Object.assign(this, {...fields});
+    }
 
 }
