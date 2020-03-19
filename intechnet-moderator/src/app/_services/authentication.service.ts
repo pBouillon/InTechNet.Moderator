@@ -82,11 +82,11 @@ export class AuthenticationService {
    * @param email user's provided email value
    * @param password user's provided password value
    */
-  register(pseudo: string, email:string, password: string) {
+  register(nickname: string, email:string, password: string) {
     console.log("hey2");
     return this.http.post<any>(
       `${environment.apiUrl}/Moderator`,
-      { pseudo, email, password })
+      { nickname, email, password })
       .pipe(
         map(user => {
 

@@ -14,22 +14,22 @@
 
         <!-- Identifier -->
         <div class="form-group row justify-content-center">
-            <label for="loginField"
+            <label for="nicknameField"
                     class="col-sm-3 col-form-label"
-                    [ngClass]="{'text-danger': isFieldInvalid('login')}">
+                    [ngClass]="{'text-danger': isFieldInvalid('nickname')}">
                 Pseudo
             </label>
             <div class="col-sm-5">
                 <input type="text" 
                     class="form-control" 
-                    formControlName="login" 
-                    id="loginField" 
+                    formControlName="nickname" 
+                    id="nicknameField" 
                     placeholder="Thomas A" 
-                    [ngClass]="{'border border-danger': isFieldInvalid('login')}" 
+                    [ngClass]="{'border border-danger': isFieldInvalid('nickname')}" 
                     required />
 
-                <small *ngIf="isFieldInvalid('login')" class="text-danger">
-                    <span *ngIf="f.login.errors && f.login.errors.required">
+                <small *ngIf="isFieldInvalid('nickname')" class="text-danger">
+                    <span *ngIf="f.nickname.errors && f.nickname.errors.required">
                         Nous avons besoin de votre identifiant pour vous reconnaître
                     </span>
                 </small>
@@ -41,7 +41,7 @@
         <div class="form-group row justify-content-center">
             <label for="emailField"
                     class="col-sm-3 col-form-label"
-                    [ngClass]="{'text-danger': isFieldInvalid('login')}">
+                    [ngClass]="{'text-danger': isFieldInvalid('email')}">
                 E-mail
             </label>
             <div class="col-sm-5">
@@ -50,11 +50,11 @@
                     formControlName="email" 
                     id="emailField" 
                     placeholder="thomas.a@anderson.me"
-                    [ngClass]="{'border border-danger': isFieldInvalid('login')}" 
+                    [ngClass]="{'border border-danger': isFieldInvalid('email')}" 
                     required />
 
                 <small *ngIf="isFieldInvalid('email')" class="text-danger">
-                    <span *ngIf="f.login.errors && f.login.errors.required">
+                    <span *ngIf="f.email.errors && f.email.errors.required">
                         Nous avons besoin de votre email pour vous reconnaître
                     </span>
                 </small>

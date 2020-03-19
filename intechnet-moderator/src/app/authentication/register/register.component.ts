@@ -12,7 +12,7 @@ import { RouteName } from 'src/app/routing/route-names';
 export class RegisterComponent implements OnInit {
 
    /**
-   * @summary login form login
+   * @summary register form register
    */
   registerForm: FormGroup;
 
@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
    */
   private createForm(): void {
     this.registerForm = this.formBuilder.group({
-      login: ['', Validators.required],
+      nickname: ['', Validators.required],
       email: ['', Validators.email],
       password: ['', Validators.required]
     });
@@ -66,7 +66,7 @@ export class RegisterComponent implements OnInit {
   OnSubmitForm() {
     console.log("hey1");
     this.authenticationService
-      .register(this.f.login.value, this.f.email.value, this.f.password.value)
+      .register(this.f.nickname.value, this.f.email.value, this.f.password.value)
       .subscribe(
         () => {
           console.log("hey13");
