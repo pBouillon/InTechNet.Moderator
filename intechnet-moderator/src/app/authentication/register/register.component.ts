@@ -12,6 +12,21 @@ import { RouteName } from 'src/app/routing/route-names';
 export class RegisterComponent implements OnInit {
 
    /**
+   * @summary link to the login page
+   */
+  public showNicknameTooltip: boolean = false;
+
+  /**
+  * @summary link to the login page
+  */
+  public showPasswordTooltip: boolean = false;
+  
+  /**
+   * @summary link to the login page
+   */
+  public loginLink = `/${RouteName.LOGIN}`;
+
+   /**
    * @summary register form register
    */
   registerForm: FormGroup;
@@ -48,9 +63,10 @@ export class RegisterComponent implements OnInit {
    */
   private createForm(): void {
     this.registerForm = this.formBuilder.group({
-      nickname: ['', Validators.required],
+      nickname: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
       email: ['', Validators.email],
-      password: ['', Validators.required]
+      password: ['',  Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(64), Validators.pattern('[a-zA-Z1-9]')])],
+      passwordVerification: ['', Validators.required]
     });
   }
 
@@ -58,6 +74,44 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get(field).invalid
       && (this.registerForm.get(field).dirty
         || this.registerForm.get(field).touched);
+  }
+
+  isPasswordVerificationInvalid(){
+    return this.registerForm.get('passwordVerification').invalid
+      && (this.registerForm.get('passwordVerification').dirty
+        || this.registerForm.get('passwordVerification').touched);
+  }
+
+  isPasswordVerificationOK(){
+    return this.registerForm.get('passwordVerification').value != this.registerForm.get('password').value;
+  }
+
+  /**
+   * @summary On blur event for the nickname input
+   */
+  onBlurNickname(){
+    this.showNicknameTooltip = false;
+  }
+
+  /**
+   * @summary On focus event for the nickname input
+   */
+  onFocusNickname(){
+    this.showNicknameTooltip = true;
+  }
+
+  /**
+   * @summary On blur event for the password input
+   */
+  onBlurPassword(){
+    this.showPasswordTooltip = false;
+  }
+
+  /**
+   * @summary On focus event for the password input
+   */
+  onFocusPassword(){
+    this.showPasswordTooltip = true;
   }
 
   /**
