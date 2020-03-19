@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
    */
   ngOnInit(): void  {
     // If the user is already logged in, redirect it
-    if (this.authenticationService.currentModeratorValue) {
+    if (this.authenticationService.isModeratorLoggedIn) {
       this.router.navigate([`/${RouteName.BOARD}`]);
     }
 

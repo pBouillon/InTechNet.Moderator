@@ -11,11 +11,11 @@ describe('LoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ 
+      imports: [
         RouterTestingModule,
         HttpClientTestingModule
        ],
-      providers:[ FormBuilder],
+      providers: [ FormBuilder],
       declarations: [ LoginComponent ]
     })
     .compileComponents();

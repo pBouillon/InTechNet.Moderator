@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Moderator } from '../_models/moderator';
+import { Moderator } from '../_models/entities/moderator';
 import { LocalStorageService } from './local-storage.service';
 import { environment } from 'src/environments/environment';
 import { LocalStorageKeys } from '../_models/local-storage/local-storage-keys';
@@ -14,16 +14,6 @@ import { LocalStorageKeys } from '../_models/local-storage/local-storage-keys';
 export class AuthenticationService {
 
   /**
-   * @summary moderator's current value
-   */
-  private currentModeratorSubject: BehaviorSubject<Moderator>;
-
-  /**
-   * @summary observable of the handled moderator
-   */
-  public currentModerator: Observable<Moderator>;
-
-  /**
    * @summary default constructor
    * @param http http service for HTTP requests
    * @param storageService service for local storage queries
@@ -32,21 +22,21 @@ export class AuthenticationService {
     private http: HttpClient,
     private storageService: LocalStorageService,
   ) {
-    const storedModerator = localStorage.getItem(
-      LocalStorageKeys.currentModerator);
-
-    this.currentModeratorSubject = new BehaviorSubject<Moderator>(
-      JSON.parse(storedModerator));
-
-    this.currentModerator = this.currentModeratorSubject.asObservable();
+    console.log(typeof (JSON.parse(
+      this.storageService.get(LocalStorageKeys.CURRENT_MODERATOR))));
   }
 
   /**
    * @summary get current moderator
    * @returns a Moderator DTO
    */
-  public get currentModeratorValue(): Moderator {
-    return this.currentModeratorSubject.value;
+  public get currentModerator(): Moderator {
+    const parsedValue = JSON.parse(
+      this.storageService.get(LocalStorageKeys.CURRENT_MODERATOR));
+
+    return (parsedValue != null && parsedValue !== {})
+      ? new Moderator(parsedValue)
+      : null;
   }
 
   /**
@@ -54,7 +44,8 @@ export class AuthenticationService {
    * @returns true if connected; false otherwise
    */
   public get isModeratorLoggedIn(): boolean {
-    return this.currentModeratorValue && !!this.currentModeratorValue.token;
+    return this.currentModerator
+      && !!this.currentModerator.token;
   }
 
   /**
@@ -68,11 +59,10 @@ export class AuthenticationService {
       { login, password })
       .pipe(
         map(user => {
+
           if (user && user.token) {
             this.storageService.store(
-              LocalStorageKeys.currentModerator,
-              JSON.stringify(user));
-            this.currentModeratorSubject.next(user);
+              LocalStorageKeys.CURRENT_MODERATOR, user);
           }
 
           return user;
@@ -83,8 +73,7 @@ export class AuthenticationService {
    * @summary log out the user
    */
   logout() {
-    this.storageService.clear(LocalStorageKeys.currentModerator);
-    this.currentModeratorSubject.next(null);
+    this.storageService.clear(LocalStorageKeys.CURRENT_MODERATOR);
   }
 
 }
