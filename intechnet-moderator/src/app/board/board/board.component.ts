@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/_services/authentication.service';
+import { Moderator } from 'src/app/_models/entities/moderator';
 
 @Component({
   selector: 'app-board',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BoardComponent implements OnInit {
 
-  constructor() { }
+  public currentModerator: Moderator;
+
+  constructor(
+    private authenticationService: AuthenticationService,
+  ) { }
 
   ngOnInit(): void {
+    this.currentModerator = this.authenticationService.currentModerator;
   }
 
 }
