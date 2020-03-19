@@ -63,9 +63,24 @@ export class RegisterComponent implements OnInit {
    */
   private createForm(): void {
     this.registerForm = this.formBuilder.group({
-      nickname: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
+      nickname: ['', Validators.compose(
+          [
+            Validators.required, 
+            Validators.minLength(3), 
+            Validators.maxLength(32)
+          ]
+        )
+      ],
       email: ['', Validators.email],
-      password: ['',  Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(64), Validators.pattern('[a-zA-Z1-9]')])],
+      password: ['',  Validators.compose(
+          [
+            Validators.required,
+            Validators.minLength(8),
+            Validators.maxLength(64),
+            Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,64}$')
+          ]
+        )
+      ],
       passwordVerification: ['', Validators.required]
     });
   }
@@ -76,41 +91,43 @@ export class RegisterComponent implements OnInit {
         || this.registerForm.get(field).touched);
   }
 
-  isPasswordVerificationInvalid(){
-    return this.registerForm.get('passwordVerification').invalid
-      && (this.registerForm.get('passwordVerification').dirty
-        || this.registerForm.get('passwordVerification').touched);
+  isPasswordVerificationInvalid() {
+    const field = this.registerForm.get('passwordVerification');
+
+    return field.invalid && (field.dirty || field.touched);
   }
 
-  isPasswordVerificationOK(){
-    return this.registerForm.get('passwordVerification').value != this.registerForm.get('password').value;
+  isPasswordVerificationOK() {
+    const passwordVerificationField = this.registerForm.get('passwordVerification');
+
+    return passwordVerificationField.value !== this.registerForm.get('password').value;
   }
 
   /**
    * @summary On blur event for the nickname input
    */
-  onBlurNickname(){
+  onBlurNickname() {
     this.showNicknameTooltip = false;
   }
 
   /**
    * @summary On focus event for the nickname input
    */
-  onFocusNickname(){
+  onFocusNickname() {
     this.showNicknameTooltip = true;
   }
 
   /**
    * @summary On blur event for the password input
    */
-  onBlurPassword(){
+  onBlurPassword() {
     this.showPasswordTooltip = false;
   }
 
   /**
    * @summary On focus event for the password input
    */
-  onFocusPassword(){
+  onFocusPassword() {
     this.showPasswordTooltip = true;
   }
 
@@ -118,17 +135,13 @@ export class RegisterComponent implements OnInit {
    * @summary form submission's logic
    */
   OnSubmitForm() {
-    console.log("hey1");
     this.authenticationService
       .register(this.f.nickname.value, this.f.email.value, this.f.password.value)
       .subscribe(
         () => {
-          console.log("hey13");
           this.router.navigate([`/${RouteName.BOARD}`]);
         },
         (error) => {
-          
-          console.log("hey fuck ", error);
           this.registerForm.setErrors({ server: error });
         });
   }

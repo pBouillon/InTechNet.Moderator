@@ -3,8 +3,12 @@
 
     <!-- Title -->
     <div class="d-flex justify-content-center p-5">
-        <div>
-            <h1 class="title">Inscription en tant que <span class="text-success">modérateur</span></h1>
+        <div class="justify-content-center row">
+            <h1 class="title text-center">Inscription <span class="text-success">modérateur</span></h1>
+
+            <span class="mt-4 text-center">
+                Pour vous inscrire en tant que modérateur, <span class="text-success">créez un compte</span> en saisissant les champs suivants
+            </span>
         </div>
     </div>
     <!-- /Title -->
@@ -133,7 +137,7 @@
         <!-- Form buttons -->
         <div class="form-group row justify-content-center">
             <button type="submit" 
-                    class="order-lg-2 mr-lg-2 mr-md-5 mx-4 my-2 col-sm-1 col-md-5 col-lg-3 btn btn-success" 
+                    class="order-lg-2 mr-lg-2 mr-md-5 mx-4 mt-4 mb-2 col-sm-1 col-md-5 col-lg-3 btn btn-success" 
                     [disabled]="!registerForm.valid">
                 S'inscrire
             </button>
