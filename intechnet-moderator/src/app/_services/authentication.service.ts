@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Moderator } from '../_models/entities/moderator';
+import { Moderator } from '../_models/entities/moderator/moderator';
 import { LocalStorageService } from './local-storage.service';
 import { environment } from 'src/environments/environment';
 import { LocalStorageKeys } from '../_models/local-storage/local-storage-keys';

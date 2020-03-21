@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/_services/authentication.service';
-import { Moderator } from 'src/app/_models/entities/moderator';
+import { Moderator } from 'src/app/_models/entities/moderator/moderator';
 
 @Component({
   selector: 'app-board',
