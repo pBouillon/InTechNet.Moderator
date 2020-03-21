@@ -43,6 +43,10 @@
                         Nous avons besoin de votre identifiant pour vous reconnaître
                     </span>
                 </small>
+
+                <small *ngIf="IsNicknameTaken" class="text-danger">                    
+                    Cet identifiant est déjà utilisé
+                </small>
             </div>
         </div>
         <!-- /Identifier -->
@@ -60,13 +64,18 @@
                     formControlName="email" 
                     id="emailField" 
                     placeholder="thomas.a@anderson.me"
-                    [ngClass]="{'border border-danger': isFieldInvalid('email')}" 
+                    [ngClass]="{'border border-danger': isFieldInvalid('email')}"
+                    (blur) = "onBlurEmail()"
                     required />
                 
                 <small *ngIf="isFieldInvalid('email')" class="text-danger">
                     <span *ngIf="f.email.errors && f.email.errors.required">
                         Nous avons besoin de votre email pour vous reconnaître
                     </span>
+                </small>
+
+                <small *ngIf="IsEmailTaken" class="text-danger">                    
+                    Cet email est déjà utilisé
                 </small>
             </div>
         </div>

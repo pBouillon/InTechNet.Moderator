@@ -12,12 +12,22 @@ import { RouteName } from 'src/app/routing/route-names';
 export class RegisterComponent implements OnInit {
 
    /**
-   * @summary link to the login page
+   * @summary boolean for the nickname tooltop
    */
   public showNicknameTooltip: boolean = false;
 
   /**
-  * @summary link to the login page
+   * @summary boolean for the nickname tooltop
+   */
+  public IsEmailTaken: boolean = false;
+
+  /**
+   * @summary boolean for the nickname tooltop
+   */
+  public IsNicknameTaken: boolean = false;
+
+  /**
+  * @summary boolean for the password tooltop
   */
   public showPasswordTooltip: boolean = false;
   
@@ -104,10 +114,36 @@ export class RegisterComponent implements OnInit {
   }
 
   /**
+   * @summary On blur event for the email input
+   */
+  onBlurEmail() {
+    console.log(this.f.email.value)
+    this.authenticationService
+      .isEmailInUse(this.f.email.value)
+        .subscribe(
+          (response) => {
+            this.IsEmailTaken = response;
+          },
+          (error) => {
+            this.registerForm.setErrors({ server: error });
+          });
+  }
+
+  /**
    * @summary On blur event for the nickname input
    */
   onBlurNickname() {
     this.showNicknameTooltip = false;
+    this.authenticationService
+      .isNickNameInUse(this.f.nickname.value)
+        .subscribe(
+          (response) => {
+            console.log(response)
+            this.IsNicknameTaken = response;
+          },
+          (error) => {
+            this.registerForm.setErrors({ server: error });
+          });
   }
 
   /**

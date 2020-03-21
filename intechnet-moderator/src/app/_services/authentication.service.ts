@@ -37,12 +37,34 @@ export class AuthenticationService {
   }
 
   /**
+   * @summary Check if the email is in use
+   * @param email user's provided login value
+   * @returns a boolean
+   */
+  isEmailInUse(email: string){
+    return this.http.post<any>(
+      `${environment.apiUrl}/Moderator/emailCheck`,
+      { email });
+  }
+
+  /**
    * @summary get the current moderator login state
    * @returns true if connected; false otherwise
    */
   public get isModeratorLoggedIn(): boolean {
     return this.currentModerator
       && !!this.currentModerator.token;
+  }
+
+  /**
+   * @summary Check if the nickname is in use
+   * @param nickname user's provided login value
+   * @returns a boolean
+   */
+  isNickNameInUse(nickname: string){
+    return this.http.post<any>(
+      `${environment.apiUrl}/Moderator/nicknameCheck`,
+      { nickname });
   }
 
   /**
