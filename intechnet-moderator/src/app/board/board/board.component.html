@@ -3,7 +3,10 @@
 
     <div class="d-flex justify-content-center p-5 text-center">
         <div>
-            <h1 class="title">Tableau de bord de <span class="text-success">{{ currentModerator.nickname }}</span></h1>
+            <h1 class="title">
+                Tableau de bord de 
+                <span class="text-success">{{ currentModerator.nickname | titlecase}}</span>
+            </h1>
         </div>
     </div>
 
@@ -22,7 +25,7 @@
 
     <ng-template #noHubsView>
         <div class="container d-flex flex-column text-center">
-            <p class="text-muted">
+            <p class="text-muted mb-3">
                 Vous n'avez aucun hub pour le moment
             </p>
         </div>
