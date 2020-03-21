@@ -15,10 +15,18 @@ export class NewHubWidgetComponent implements OnInit {
     this.useFeatherIcons();
   }
 
+  /**
+   * @summary Replace the feather icons tag by svg source
+   */
   private useFeatherIcons(): void {
     feather.replace();
   }
 
-  public onNewHub(): void { }
+  /**
+   * @summary Redirect to the hub creation page
+   */
+  public onNewHub(): void {
+    // TODO on a new issue
+  }
 
 }
