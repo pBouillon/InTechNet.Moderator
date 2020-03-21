@@ -38,12 +38,12 @@ export class BoardComponent implements OnInit {
    *          current moderator
    */
   private loadModeratorHubs(): void {
+    // Initialize the collection of hubs
+    this.moderatorHubs = [];
+
     this.hubService.getHubs()
       .subscribe(
         (data: Array<LightweightHub>) => {
-          // Initialize the collection of hubs
-          this.moderatorHubs = [];
-
           // Convert each raw hub representation to the LightweightHub object
           // to populate the array
           data.map(raw =>

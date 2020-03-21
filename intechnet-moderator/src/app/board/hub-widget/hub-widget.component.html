@@ -1,14 +1,20 @@
 
-<div class="container">
+<div class="card mb-3">
 
-    <div class="d-flex flex-column">
-
-        <p>Hub name: {{ lightweightHub.name }}</p>
-        <p>Hub link: {{ lightweightHub.link }}</p>
-        <p>Hub attendees: {{ lightweightHub.attendeesCount }} / X</p>
-
+    <div class="card-header">
+        Hub #{{ lightweightHub.id }} - {{ lightweightHub.attendeesCount }} 
+        élève{{ lightweightHub.attendeesCount > 1 ? 's' : '' }}
+        inscrit{{ lightweightHub.attendeesCount > 1 ? 's' : '' }}
     </div>
 
-    <hr />
+    <div class="card-body">
+        <h5 class="card-title">{{ lightweightHub.name }}</h5>
+
+        <p class="card-text mb-3">
+            Cours de technologie de M. XXXXXX pour les 3ème A.
+        </p>
+
+        <a href="#" class="btn btn-success">Copier le lien d'invitation</a>
+    </div>
 
 </div>

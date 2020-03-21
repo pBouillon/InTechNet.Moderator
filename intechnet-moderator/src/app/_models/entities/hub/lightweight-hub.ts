@@ -21,7 +21,7 @@ export class LightweightHub {
     /**
      * @summary number of pupils attending this hub
      */
-    attendeesCount: string;
+    attendeesCount: number;
 
     constructor(fields?: Partial<LightweightHub>) {
         Object.assign(this, { ...fields });

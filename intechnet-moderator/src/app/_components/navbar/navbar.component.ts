@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+  public boardLinkRoute = `/${RouteName.BOARD}`;
+
   public contactLinkRoute = `/${RouteName.CONTACT}`;
 
   public homepageLinkRoute = `/${RouteName.HOMEPAGE}`;

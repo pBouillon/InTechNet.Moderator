@@ -12,6 +12,9 @@
         <ul *ngIf="authenticationService.isModeratorLoggedIn; else guestNavigation"
             class="navbar-nav mr-auto">
             <li class="nav-item itn-nav-item mr-3">
+                <a class="nav-link" [routerLink]="boardLinkRoute">Tableau de bord</a>
+            </li>
+            <li class="nav-item itn-nav-item mr-3">
                 <a class="nav-link" [routerLink]="contactLinkRoute">Contact</a>
             </li>
         </ul>

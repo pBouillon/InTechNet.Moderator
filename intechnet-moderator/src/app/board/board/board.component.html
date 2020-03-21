@@ -1,9 +1,9 @@
 <!-- Title section -->
 <div class="container" id="title">
 
-    <div class="d-flex justify-content-center p-5">
+    <div class="d-flex justify-content-center p-5 text-center">
         <div>
-            <h1 class="title">🚧 Board de {{ currentModerator.nickname }} 🚧</h1>
+            <h1 class="title">Tableau de bord de <span class="text-success">{{ currentModerator.nickname }}</span></h1>
         </div>
     </div>
 
@@ -11,11 +11,20 @@
 <!-- /Title section -->
 
 <!-- Hubs display -->
-<div class="container">
+<div *ngIf="moderatorHubs.length > 0; else noHubsView"
+    class="container">
 
     <app-hub-widget *ngFor="let hub of moderatorHubs"
         [lightweightHub]="hub">
     </app-hub-widget>
 
 </div>
+
+<ng-template #noHubsView>
+    <div class="container d-flex flex-column text-center">
+        <p class="text-muted">
+            Vous n'avez aucun hub pour le moment
+        </p>
+    </div>
+</ng-template>
 <!-- /Hubs display -->
