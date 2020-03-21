@@ -25,6 +25,12 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  goHome(): void {
+    this.authenticationService.isModeratorLoggedIn
+      ? this.router.navigate([`/${RouteName.BOARD}`])
+      : this.router.navigate([`/${RouteName.HOMEPAGE}`]);
+  }
+
   disconnect(): void {
     this.authenticationService.logout();
     this.router.navigate([`/${RouteName.HOMEPAGE}`]);
