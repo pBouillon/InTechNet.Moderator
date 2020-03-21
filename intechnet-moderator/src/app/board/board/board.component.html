@@ -7,9 +7,15 @@
         </div>
     </div>
 
-    <p *ngFor="let hub of moderatorHubs">
-        {{ hub.name }}
-    </p>
-
 </div>
 <!-- /Title section -->
+
+<!-- Hubs display -->
+<div class="container">
+
+    <app-hub-widget *ngFor="let hub of moderatorHubs"
+        [lightweightHub]="hub">
+    </app-hub-widget>
+
+</div>
+<!-- /Hubs display -->

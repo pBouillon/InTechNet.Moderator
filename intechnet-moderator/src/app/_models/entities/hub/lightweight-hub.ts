@@ -1,7 +1,7 @@
 /**
  * @summary Light hub DTO representing the backend representation of this entity
  */
-export class LightWeightHub {
+export class LightweightHub {
 
     /**
      * @summary hub's id
@@ -23,7 +23,7 @@ export class LightWeightHub {
      */
     attendeesCount: string;
 
-    constructor(fields?: Partial<LightWeightHub>) {
+    constructor(fields?: Partial<LightweightHub>) {
         Object.assign(this, { ...fields });
     }
 

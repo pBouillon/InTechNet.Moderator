@@ -3,8 +3,8 @@ import { AuthenticationService } from 'src/app/_services/authentication/authenti
 
 import { Moderator } from 'src/app/_models/entities/moderator/moderator';
 import { HubService } from 'src/app/_services/hub/hub.service';
-import { LightWeightHub } from 'src/app/_models/entities/hub/lightweight-hub';
 import { HttpErrorResponse } from '@angular/common/http';
+import { LightweightHub } from 'src/app/_models/entities/hub/lightweight-hub';
 
 @Component({
   selector: 'app-board',
@@ -21,7 +21,7 @@ export class BoardComponent implements OnInit {
   /**
    * @summary Collection of all hubs owned by the current moderator
    */
-  public moderatorHubs: Array<LightWeightHub>;
+  public moderatorHubs: Array<LightweightHub>;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -40,14 +40,14 @@ export class BoardComponent implements OnInit {
   private loadModeratorHubs(): void {
     this.hubService.getHubs()
       .subscribe(
-        (data: Array<LightWeightHub>) => {
+        (data: Array<LightweightHub>) => {
           // Initialize the collection of hubs
           this.moderatorHubs = [];
 
-          // Convert each raw hub representation to the LightWeightHub object
+          // Convert each raw hub representation to the LightweightHub object
           // to populate the array
           data.map(raw =>
-            this.moderatorHubs.push(new LightWeightHub(raw)));
+            this.moderatorHubs.push(new LightweightHub(raw)));
         },
         (error: HttpErrorResponse) => {
           // TODO: toastr ?

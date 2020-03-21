@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { LightWeightHub } from 'src/app/_models/entities/hub/lightweight-hub';
-import { AuthenticationService } from '../authentication/authentication.service';
+import { LightweightHub } from 'src/app/_models/entities/hub/lightweight-hub';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 
@@ -25,8 +24,8 @@ export class HubService {
    * @returns an observable of a collection of light representation of all hubs
    *          managed by the current moderator
    */
-  public getHubs(): Observable<Array<LightWeightHub>> {
-    return this.http.get<Array<LightWeightHub>>(
+  public getHubs(): Observable<Array<LightweightHub>> {
+    return this.http.get<Array<LightweightHub>>(
         `${environment.apiUrl}/Hub`);
   }
 

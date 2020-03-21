@@ -20,10 +20,7 @@ export class AuthenticationService {
   constructor(
     private http: HttpClient,
     private storageService: LocalStorageService,
-  ) {
-    console.log(typeof (JSON.parse(
-      this.storageService.get(LocalStorageKeys.CURRENT_MODERATOR))));
-  }
+  ) { }
 
   /**
    * @summary get current moderator
