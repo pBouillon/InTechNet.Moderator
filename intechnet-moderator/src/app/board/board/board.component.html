@@ -11,20 +11,27 @@
 <!-- /Title section -->
 
 <!-- Hubs display -->
-<div *ngIf="moderatorHubs.length > 0; else noHubsView"
-    class="container">
+<div class="container">
+    <div *ngIf="moderatorHubs.length > 0; else noHubsView">
 
-    <app-hub-widget *ngFor="let hub of moderatorHubs"
-        [lightweightHub]="hub">
-    </app-hub-widget>
+        <app-hub-widget *ngFor="let hub of moderatorHubs"
+            [lightweightHub]="hub">
+        </app-hub-widget>
 
-</div>
-
-<ng-template #noHubsView>
-    <div class="container d-flex flex-column text-center">
-        <p class="text-muted">
-            Vous n'avez aucun hub pour le moment
-        </p>
     </div>
-</ng-template>
+
+    <ng-template #noHubsView>
+        <div class="container d-flex flex-column text-center">
+            <p class="text-muted">
+                Vous n'avez aucun hub pour le moment
+            </p>
+        </div>
+    </ng-template>
+</div>
 <!-- /Hubs display -->
+
+<!-- Hub creation widget -->
+<div class="container">
+    <app-new-hub-widget></app-new-hub-widget>
+</div>
+<!-- Hub creation widget -->

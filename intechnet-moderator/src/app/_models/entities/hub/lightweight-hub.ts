@@ -14,6 +14,11 @@ export class LightweightHub {
     name: string;
 
     /**
+     * @summary short description presenting the hub's content
+     */
+    description: string;
+
+    /**
      * @summary hub shareable link
      */
     link: string;

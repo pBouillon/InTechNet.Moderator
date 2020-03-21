@@ -1,20 +1,45 @@
 
+<!-- Widget wrapper -->
 <div class="card mb-3">
 
+    <!-- Widget header -->
     <div class="card-header">
-        Hub #{{ lightweightHub.id }} - {{ lightweightHub.attendeesCount }} 
-        élève{{ lightweightHub.attendeesCount > 1 ? 's' : '' }}
-        inscrit{{ lightweightHub.attendeesCount > 1 ? 's' : '' }}
+        <h5>
+            {{ lightweightHub.name }}
+        </h5>
     </div>
+    <!-- /Widget header -->
 
+    <!-- Widget content -->
     <div class="card-body">
-        <h5 class="card-title">{{ lightweightHub.name }}</h5>
-
-        <p class="card-text mb-3">
-            Cours de technologie de M. XXXXXX pour les 3ème A.
+        <h6 class="card-title">
+            <span *ngIf="lightweightHub.attendeesCount == 0; else attendeesCountText">
+                Aucun élève inscrit
+            </span>
+            
+            <ng-template #attendeesCountText>
+                {{ lightweightHub.attendeesCount }}
+                élève{{ lightweightHub.attendeesCount > 1 ? 's' : '' }}
+                inscrit{{ lightweightHub.attendeesCount > 1 ? 's' : '' }}
+            </ng-template>
+        </h6>
+        
+        <p *ngIf="lightweightHub.description; else noDescriptionText"
+            class="card-text mb-6">
+            {{ lightweightHub.description }}
         </p>
 
-        <a href="#" class="btn btn-success">Copier le lien d'invitation</a>
+        <ng-template #noDescriptionText>
+            <p class="card-text mb-3 font-weight-light text-muted">
+                Aucune description fournie pour ce hub
+            </p>
+        </ng-template>
+
+        <a routerLink="" class="btn btn-success text-white">
+            Panneau de gestion
+        </a>
     </div>
+    <!-- /Widget content -->
 
 </div>
+<!-- /Widget wrapper -->
