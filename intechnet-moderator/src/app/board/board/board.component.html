@@ -2,19 +2,26 @@
 <div class="container" id="title">
 
     <div class="d-flex justify-content-center p-5 text-center">
-        <div>
-            <h1 class="title">
-                Tableau de bord de 
-                <span class="text-success">{{ currentModerator.nickname | titlecase}}</span>
-            </h1>
-        </div>
+        <h1 class="title">
+            Tableau de bord de 
+            <span class="text-success">
+                {{ currentModerator.nickname | titlecase}}
+            </span>
+        </h1>
     </div>
 
 </div>
 <!-- /Title section -->
 
-<!-- Hubs display -->
+<!-- Hubs section -->
 <div class="container">
+
+    <h3 class="mb-3">
+        Gérer <span class=text-success>mes hubs</span>
+    </h3>
+
+    <hr />
+
     <div *ngIf="moderatorHubs.length > 0; else noHubsView">
 
         <app-hub-widget *ngFor="let hub of moderatorHubs"
@@ -30,11 +37,10 @@
             </p>
         </div>
     </ng-template>
-</div>
-<!-- /Hubs display -->
 
-<!-- Hub creation widget -->
-<div class="container">
+    <!-- Hub creation widget -->
     <app-new-hub-widget></app-new-hub-widget>
+    <!-- Hub creation widget -->
+
 </div>
-<!-- Hub creation widget -->
+<!-- /Hubs section -->
