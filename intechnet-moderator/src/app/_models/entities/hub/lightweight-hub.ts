@@ -23,4 +23,8 @@ export class LightWeightHub {
      */
     attendeesCount: string;
 
+    constructor(fields?: Partial<LightWeightHub>) {
+        Object.assign(this, { ...fields });
+    }
+
 }
