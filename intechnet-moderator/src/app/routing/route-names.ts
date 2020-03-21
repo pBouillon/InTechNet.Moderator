@@ -6,12 +6,11 @@ export enum RouteName {
     LOGIN = 'login',
     REGISTER = 'register',
 
-    // Board and management
-    BOARD = 'board',
+    // Board to manage the moderator's hubs
+    BOARD = 'hubs',
 
     // Global / Homepage
     CONTACT = 'contact',
     HOMEPAGE = 'index',
-    HOW_IT_WORKS = 'fonctionnement',
     ROOT = ''
 }

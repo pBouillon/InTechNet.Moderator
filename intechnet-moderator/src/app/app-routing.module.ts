@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { RouteName } from './routing/route-names';
 
 import { HomepageComponent } from './homepage/homepage/homepage.component';
-import { HowItWorksComponent } from './homepage/how-it-works/how-it-works.component';
 import { ContactComponent } from './homepage/contact/contact.component';
 import { PageNotFoundComponent } from './error/page-not-found/page-not-found.component';
 import { LoginComponent } from './authentication/login/login.component';
@@ -31,8 +30,6 @@ const routes: Routes = [
   { path: RouteName.CONTACT, component: ContactComponent },
   // Homepage
   { path: RouteName.HOMEPAGE, component: HomepageComponent },
-  // 'How it works'
-  { path: RouteName.HOW_IT_WORKS, component: HowItWorksComponent },
   // Redirect the user to the homepage on '/'
   {
     path: RouteName.ROOT,

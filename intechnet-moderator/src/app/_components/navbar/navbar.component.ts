@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouteName } from 'src/app/routing/route-names';
-import { AuthenticationService } from 'src/app/_services/authentication.service';
+import { AuthenticationService } from 'src/app/_services/authentication/authentication.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,11 +10,11 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
+  public boardLinkRoute = `/${RouteName.BOARD}`;
+
   public contactLinkRoute = `/${RouteName.CONTACT}`;
 
   public homepageLinkRoute = `/${RouteName.HOMEPAGE}`;
-
-  public howItWorksLinkRoute = `/${RouteName.HOW_IT_WORKS}`;
 
   public loginLinkRoute = `/${RouteName.LOGIN}`;
 
@@ -26,6 +26,12 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {}
+
+  goHome(): void {
+    this.authenticationService.isModeratorLoggedIn
+      ? this.router.navigate([`/${RouteName.BOARD}`])
+      : this.router.navigate([`/${RouteName.HOMEPAGE}`]);
+  }
 
   disconnect(): void {
     this.authenticationService.logout();
