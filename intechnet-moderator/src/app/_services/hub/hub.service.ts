@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { LightweightHub } from 'src/app/_models/entities/hub/lightweight-hub';
 import { environment } from 'src/environments/environment';
@@ -31,13 +31,22 @@ export class HubService {
   }
 
   /**
+   * @summary given its id, delete the associated hub
+   * @param id id of the hub to be deleted
+   */
+  public deleteHub(id: number) {
+    return this.http.delete<any>(
+      `${environment.apiUrl}/Hub/${id}`);
+  }
+
+  /**
    * @summary get all managed hub by the current moderator
    * @returns an observable of a collection of light representation of all hubs
    *          managed by the current moderator
    */
   public getHubs(): Observable<Array<LightweightHub>> {
     return this.http.get<Array<LightweightHub>>(
-        `${environment.apiUrl}/Hub`);
+      `${environment.apiUrl}/Hub`);
   }
 
 }

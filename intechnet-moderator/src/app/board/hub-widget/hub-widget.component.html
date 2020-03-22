@@ -8,7 +8,9 @@
             {{ lightweightHub.name }}
         </h5>
 
-        <i data-feather="trash-2"></i>
+        <button type="button" class="btn btn-sm btn-outline-danger" data-toggle="modal" [data-target]="deletionModalName">
+            <i data-feather="trash-2"></i>
+        </button>
     </div>
     <!-- /Widget header -->
 
@@ -51,3 +53,27 @@
 
 </div>
 <!-- /Widget wrapper -->
+
+<!-- Modal -->
+<div class="modal fade" id="hubDeletionModal" tabindex="-1" role="dialog" [aria-labelledby]="deletionModalName"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="hubDeletionLabel">Suppression du hub</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Voulez-vous vraiment <span class="text-danger">supprimer "{{ lightweightHub.name }}"</span> ?
+                Cette opération est irréversible.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-danger" (click)="deleteHub()">Supprimer</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Modal -->
