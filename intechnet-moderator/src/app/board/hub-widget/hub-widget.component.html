@@ -1,0 +1,50 @@
+
+<!-- Widget wrapper -->
+<div class="card mb-3">
+
+    <!-- Widget header -->
+    <div class="card-header">
+        <h5>
+            {{ lightweightHub.name }}
+        </h5>
+    </div>
+    <!-- /Widget header -->
+
+    <!-- Widget content -->
+    <div class="card-body">
+        <h6 class="card-title">
+            <span *ngIf="lightweightHub.attendeesCount == 0; else attendeesCountText"
+                class="text-muted">
+                Aucun élève inscrit
+            </span>
+            
+            <ng-template #attendeesCountText>
+                {{ lightweightHub.attendeesCount }}
+                élève{{ lightweightHub.attendeesCount > 1 ? 's' : '' }}
+                inscrit{{ lightweightHub.attendeesCount > 1 ? 's' : '' }}
+            </ng-template>
+        </h6>
+        
+        <p *ngIf="lightweightHub.description; else noDescriptionText"
+            class="card-text mb-6">
+            {{ lightweightHub.description }}
+        </p>
+
+        <ng-template #noDescriptionText>
+            <p class="card-text mb-3 font-weight-light text-muted">
+                Aucune description fournie pour ce hub
+            </p>
+        </ng-template>
+
+        <button class="btn btn-outline-success mr-2">
+            Modifier
+        </button>
+
+        <button class="btn btn-success">
+            Panneau de gestion
+        </button>
+    </div>
+    <!-- /Widget content -->
+
+</div>
+<!-- /Widget wrapper -->

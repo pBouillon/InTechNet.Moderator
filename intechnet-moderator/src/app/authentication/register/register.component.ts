@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from 'src/app/_services/authentication.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { RouteName } from 'src/app/routing/route-names';
 import { ContainsUppercase } from 'src/app/_validators/containsUppercase.validator';
 import { ContainsLowercase } from 'src/app/_validators/containsLowercase.validator';
 import { ContainsDigit } from 'src/app/_validators/containsDigit.validator';
+import { AuthenticationService } from 'src/app/_services/authentication/authentication.service';
 
 @Component({
   selector: 'app-register',
@@ -15,33 +16,33 @@ import { ContainsDigit } from 'src/app/_validators/containsDigit.validator';
 export class RegisterComponent implements OnInit {
 
    /**
-   * @summary boolean for the nickname tooltop
-   */
-  public showNicknameTooltip: boolean = false;
+    * @summary boolean for the nickname
+    */
+  public showNicknameTooltip = false;
 
   /**
-   * @summary boolean for the nickname tooltop
+   * @summary boolean for the nickname
    */
-  public IsEmailTaken: boolean = false;
+  public isEmailTaken = false;
 
   /**
-   * @summary boolean for the nickname tooltop
+   * @summary boolean for the nickname
    */
-  public IsNicknameTaken: boolean = false;
+  public isNicknameTaken = false;
 
   /**
-  * @summary boolean for the password tooltop
-  */
-  public showPasswordTooltip: boolean = false;
-  
+   * @summary boolean for the password
+   */
+  public showPasswordTooltip = false;
+
   /**
    * @summary link to the login page
    */
   public loginLink = `/${RouteName.LOGIN}`;
 
    /**
-   * @summary register form register
-   */
+    * @summary register form register
+    */
   registerForm: FormGroup;
 
   /**
@@ -126,7 +127,7 @@ export class RegisterComponent implements OnInit {
     .isEmailInUse(this.f.email.value)
     .subscribe(
       (data) => {
-        this.IsEmailTaken = !data['areUnique'];
+        this.isEmailTaken = !data['areUnique'];
       },
       (error) => {
         console.log(error)
@@ -143,7 +144,7 @@ export class RegisterComponent implements OnInit {
       .isNickNameInUse(this.f.nickname.value)
         .subscribe(
           (data) => {
-            this.IsNicknameTaken = !data['areUnique'];
+            this.isNicknameTaken = !data['areUnique'];
           },
           (error) => {
             this.registerForm.setErrors({ server: error });
@@ -168,7 +169,7 @@ export class RegisterComponent implements OnInit {
    * @summary On focus event for the password input
    */
   onFocusEmail() {
-    this.IsEmailTaken = false;
+    this.isEmailTaken = false;
   }
 
   /**

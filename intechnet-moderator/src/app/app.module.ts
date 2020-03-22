@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from "@angular/common/http"
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http"
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +13,8 @@ import { environment } from '../environments/environment';
 import { NavbarComponent } from './_components/navbar/navbar.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
+import { JwtInterceptor } from './_interceptors/jwt.interceptor';
+import { BoardModule } from './board/board.module';
 
 @NgModule({
   declarations: [
@@ -26,12 +28,15 @@ import { RegisterComponent } from './authentication/register/register.component'
     BrowserModule,
     AppRoutingModule,
     GlobalModule,
+    BoardModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

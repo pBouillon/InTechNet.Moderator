@@ -3,10 +3,10 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Moderator } from '../_models/entities/moderator';
-import { LocalStorageService } from './local-storage.service';
+import { Moderator } from '../../_models/entities/moderator/moderator';
+import { LocalStorageService } from '../local-storage/local-storage.service';
 import { environment } from 'src/environments/environment';
-import { LocalStorageKeys } from '../_models/local-storage/local-storage-keys';
+import { LocalStorageKeys } from '../../_models/local-storage/local-storage-keys';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ export class AuthenticationService {
   constructor(
     private http: HttpClient,
     private storageService: LocalStorageService,
-  ) {  }
+  ) { }
 
   /**
    * @summary get current moderator
@@ -76,7 +76,7 @@ export class AuthenticationService {
   }
 
   /**
-   * @summary given their information, log in the moderator
+   * @summary given its information, log in the moderator
    * @param login user's provided login value
    * @param password user's provided password value
    */
@@ -109,7 +109,7 @@ export class AuthenticationService {
    * @param email user's provided email value
    * @param password user's provided password value
    */
-  register(nickname: string, email:string, password: string) {
+  register(nickname: string, email: string, password: string) {
     return this.http.post<any>(
       `${environment.apiUrl}/Moderator`,
       { nickname, email, password })
