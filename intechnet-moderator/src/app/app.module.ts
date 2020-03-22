@@ -17,12 +17,14 @@ import { NavbarComponent } from './_components/navbar/navbar.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { BoardModule } from './board/board.module';
+import { NewHubComponent } from './board/new-hub/new-hub.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     LoginComponent,
+    NewHubComponent,
     NavbarComponent,
   ],
   imports: [

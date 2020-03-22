@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/_services/authentication/authentication.service';
 
 import { Moderator } from 'src/app/_models/entities/moderator/moderator';
@@ -6,17 +6,18 @@ import { HubService } from 'src/app/_services/hub/hub.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LightweightHub } from 'src/app/_models/entities/hub/lightweight-hub';
 
-import * as feather from 'feather-icons';
 import { ToastrService } from 'ngx-toastr';
 import { RouteName } from 'src/app/routing/route-names';
 import { Router } from '@angular/router';
+
+import * as feather from 'feather-icons';
 
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss']
 })
-export class BoardComponent implements OnInit {
+export class BoardComponent implements AfterViewInit, OnInit {
 
   /**
    * @summary Current moderator representation
@@ -35,9 +36,11 @@ export class BoardComponent implements OnInit {
     private toastr: ToastrService,
   ) { }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.useFeatherIcons();
+  }
 
+  ngOnInit(): void {
     this.loadModeratorHubs();
     this.currentModerator = this.authenticationService.currentModerator;
   }

@@ -9,11 +9,9 @@ import { RouterModule } from '@angular/router';
   declarations: [
     BoardComponent,
     HubWidgetComponent,
-    NewHubComponent,
   ],
   imports: [
     CommonModule,
-    RouterModule
   ]
 })
 export class BoardModule { }

@@ -1,1 +1,83 @@
-<p>new-hub works!</p>
+<!-- Title section -->
+<div class="container" id="title">
+
+    <!-- Title -->
+    <div class="d-flex justify-content-center p-5">
+        <div>
+            <h1 class="title">Créer un <span class="text-success">nouveau hub</span></h1>
+        </div>
+    </div>
+    <!-- /Title -->
+</div>
+
+<div class="container">
+    <!-- Form content -->
+    <form [formGroup]="newHubForm" (ngSubmit)="OnSubmitForm()">
+
+        <!-- Hub name -->
+        <div class="form-group row justify-content-center">
+            <label for="nameField" class="col-sm-3 col-form-label"
+                [ngClass]="{'text-danger': isFieldInvalid('name')}">
+                Nom du hub *
+            </label>
+            <div class="col-sm-5">
+                <input type="text" 
+                    class="form-control" 
+                    formControlName="name" 
+                    id="nameField"
+                    placeholder="Découverte des dangers d'internet" 
+                    [ngClass]="{'border border-danger': isFieldInvalid('name')}"
+                    max="22"
+                    required />
+                <small class="text-muted">
+                    Le nom de votre module (22 caractères maximums)
+                </small>
+
+                <small *ngIf="isFieldInvalid('name')" class="text-danger">
+                    <span *ngIf="f.name.errors && f.name.errors.required">
+                        Vous devez spécifier un nom pour votre hub
+                    </span>
+                </small>
+            </div>
+        </div>
+        <!-- /Hub name -->
+
+        <!-- Description -->
+        <div class="form-group row justify-content-center">
+            <label for="descriptionField" 
+                class="col-sm-3 col-form-label">
+                Description du hub
+            </label>
+            <div class="col-sm-5">
+                <input type="text" 
+                    class="form-control" 
+                    formControlName="description" 
+                    id="descriptionField"
+                    placeholder="Hub de la classe 4ème C de M. Martin"/>
+                <small class="text-muted">
+                    Vous pouvez saisir une courte description de votre hub pour
+                    aider vos élèves à s'y retrouver !
+                </small>
+            </div>
+        </div>
+        <!-- /Description -->
+
+        <!-- Form buttons -->
+        <div class="form-group row justify-content-center">
+            <button type="submit"
+                class="order-lg-2 mr-lg-2 mr-md-5 mx-4 my-2 col-sm-1 col-md-5 col-lg-3 btn btn-success"
+                [disabled]="!newHubForm.valid">
+                Créer le hub
+            </button>
+            <button class="order-lg-1 mr-lg-2 mr-md-5 mx-4 my-2 col-sm-1 col-md-5 col-lg-3 btn btn-outline-success"
+                (click)="onBack()">
+                Annuler
+            </button>
+        </div>
+        <!-- /Form buttons -->
+
+    </form>
+    <!-- /Form content -->
+
+</div>
+<!-- /Title section -->
