@@ -7,6 +7,7 @@ import { ContainsUppercase } from 'src/app/_validators/containsUppercase.validat
 import { ContainsLowercase } from 'src/app/_validators/containsLowercase.validator';
 import { ContainsDigit } from 'src/app/_validators/containsDigit.validator';
 import { AuthenticationService } from 'src/app/_services/authentication/authentication.service';
+import { CredentialsChecks } from 'src/app/_models/entities/authentication/credentials-checks/CredentialsChecks';
 
 @Component({
   selector: 'app-register',
@@ -73,32 +74,39 @@ export class RegisterComponent implements OnInit {
   }
 
   /**
+   * @summary check if the password verification field is OK
+   */
+  arePasswordsMismatched() {
+    const passwordVerificationField = this.registerForm.get('passwordVerification');
+
+    return passwordVerificationField.value !== this.registerForm.get('password').value;
+  }
+
+  /**
    * @summary populate the form
    */
   private createForm(): void {
     this.registerForm = this.formBuilder.group({
-      nickname: ['', Validators.compose(
-        [
-          Validators.required, 
-          Validators.minLength(3), 
+      nickname: ['', [
+          Validators.required,
+          Validators.minLength(3),
           Validators.maxLength(32)
-        ]),
+        ],
       ],
       email: ['', Validators.email],
-      password: ['',  Validators.compose(
-        [
+      password: ['', [
           Validators.required,
           Validators.minLength(8),
           Validators.maxLength(64),
           ContainsDigit,
           ContainsLowercase,
-          ContainsUppercase,
-        ]),
+          ContainsUppercase
+        ],
       ],
       passwordVerification: ['', Validators.required]
     });
   }
-  
+
   /**
    * @summary check if the field given in parameter is valid
    * @param field the field to check
@@ -109,35 +117,25 @@ export class RegisterComponent implements OnInit {
     return formField.invalid
       && (formField.dirty || formField.touched);
   }
-  
+
   /**
    * @summary check is the password verification field is valid
    */
-  isPasswordVerificationInvalid() {
+  isPasswordVerificationFieldInvalid() {
     const field = this.registerForm.get('passwordVerification');
-    
     return field.invalid && (field.dirty || field.touched);
   }
-  
+
   /**
    * @summary check if the validator given is OK for the password field
-   * @param validatorToCheck the validator to check 
+   * @param validatorToCheck the validator to check
    */
   isPasswordOk(validatorToCheck: string) {
-    return !this.f.password.errors 
-      || !this.f.password.errors[validatorToCheck];
+    const passwordField = this.registerForm.get('password');
+    return passwordField.value
+      && (!this.f.password.errors || !this.f.password.errors[validatorToCheck]);
   }
-  
-  /**
-   * @summary check if the password verification field is OK
-   * @param validatorToCheck the validator to check 
-   */
-  isPasswordVerificationOk() {
-    const passwordVerificationField = this.registerForm.get('passwordVerification');
-    
-    return passwordVerificationField.value !== this.registerForm.get('password').value;
-  }
-  
+
   /**
    * @summary On blur event for the email input
    */
@@ -146,12 +144,12 @@ export class RegisterComponent implements OnInit {
     .isEmailInUse(this.f.email.value)
     .subscribe(
       (data) => {
-        this.isEmailTaken = !data['areUnique'];
+        const fetchedChecksResult = new CredentialsChecks(data);
+        this.isEmailTaken = !fetchedChecksResult.areUnique;
       },
       (error) => {
-        console.log(error)
-            this.registerForm.setErrors({ server: error });
-          });
+        this.registerForm.setErrors({ server: error });
+      });
   }
 
   /**
@@ -163,7 +161,8 @@ export class RegisterComponent implements OnInit {
       .isNickNameInUse(this.f.nickname.value)
         .subscribe(
           (data) => {
-            this.isNicknameTaken = !data['areUnique'];
+            const fetchedChecksResult = new CredentialsChecks(data);
+            this.isEmailTaken = !fetchedChecksResult.areUnique;
           },
           (error) => {
             this.registerForm.setErrors({ server: error });

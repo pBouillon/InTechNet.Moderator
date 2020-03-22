@@ -52,9 +52,10 @@ export class NewHubComponent implements OnInit {
   private createForm(): void {
     this.newHubForm = this.formBuilder.group({
       name: [
-        '',
-        Validators.required,
-        Validators.maxLength(22)
+        '', [
+          Validators.required,
+          Validators.maxLength(22)
+        ]
       ],
       description: ['', Validators.maxLength(64)]
     });
@@ -77,7 +78,7 @@ export class NewHubComponent implements OnInit {
     const hubName = this.f.name.value;
 
     this.hubService
-      .createHub(hubDescription, hubName)
+      .createHub(hubName, hubDescription)
       .subscribe(
         () => {
           this.toastr.success(

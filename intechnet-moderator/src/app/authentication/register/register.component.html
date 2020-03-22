@@ -17,8 +17,10 @@
     </div>
     <!-- /Title -->
 <!-- /Title section -->
+</div>
 
-    <!-- Form content -->
+<!-- Form content -->
+<div class="container">
     <form [formGroup]="registerForm" (ngSubmit)="OnSubmitForm()">
 
         <!-- Identifier -->
@@ -35,18 +37,23 @@
                     id="nicknameField" 
                     placeholder="Thomas A. Anderson" 
                     [ngClass]="{'border border-danger': isFieldInvalid('nickname')}"
-                    (blur) = "onBlurNickname()"
-                    (focus) = "onFocusNickname()"
-                    email
+                    (blur)="onBlurNickname()"
+                    (focus)="onFocusNickname()"
                     required />
 
-                <small *ngIf="showNicknameTooltip" id="passwordHelpBlock" class="form-text text-muted">
+                <small *ngIf="showNicknameTooltip && !isFieldInvalid('nickname')" class="form-text text-muted">
                     Cet identifiant sera le nom sous lequel vous apparaîtrez sur la plateforme
                 </small>
 
                 <small *ngIf="isFieldInvalid('nickname')" class="text-danger">
-                    <span *ngIf="f.nickname.errors && f.nickname.errors.required">
+                    <span *ngIf="f.nickname.errors.required">
                         Nous avons besoin de votre identifiant pour vous identifier
+                    </span>
+                    <span *ngIf="f.nickname.errors.minlength">
+                        Votre identifiant doit faire au moins 3 caractères
+                    </span>
+                    <span *ngIf="f.nickname.errors.maxlength">
+                        Votre identifiant doit faire moins de 32 caractères
                     </span>
                 </small>
 
@@ -73,7 +80,7 @@
                     [ngClass]="{'border border-danger': isFieldInvalid('email')}"
                     (blur)="onBlurEmail()"
                     (focus)="onFocusEmail()"
-                    required />
+                    email required />
                 
                 <small *ngIf="isFieldInvalid('email')" class="text-danger">
                     <span *ngIf="f.email.errors && f.email.errors.required">
@@ -112,14 +119,14 @@
                     (focus)="onFocusPassword()"
                     required />
                 
-                <small *ngIf="showPasswordTooltip" id="passwordHelpBlock" class="form-text text-muted">
+                <small *ngIf="showPasswordTooltip" class="form-text text-muted">
                     Votre mot de passe doit faire 
-                    <span [ngClass]="f.password.value.length > 8 ? 'text-success': 'text-danger'">au moins 8 caractères</span>,
-                    <span [ngClass]="f.password.value.length < 64 ? 'text-success': 'text-danger'"> au maximum 64 caractères</span>
+                    <span [ngClass]="isPasswordOk('minlength') ? 'text-success' : 'text-danger'">au moins 8 caractères</span>,
+                    <span [ngClass]="isPasswordOk('maxlength') ? 'text-success' : 'text-danger'"> au maximum 64 caractères</span>
                     et doit contenir au moins 
-                    <span [ngClass]="isPasswordOk('containsUppercase') ? 'text-success': 'text-danger'">une lettre majuscule</span>, 
-                    <span [ngClass]="isPasswordOk('containsLowercase') ? 'text-success': 'text-danger'">une lettre minuscule</span> et 
-                    <span [ngClass]="isPasswordOk('containsDigit') ? 'text-success': 'text-danger'">un chiffre</span>
+                    <span [ngClass]="isPasswordOk('containsUppercase') ? 'text-success' : 'text-danger'">une lettre majuscule</span>, 
+                    <span [ngClass]="isPasswordOk('containsLowercase') ? 'text-success' : 'text-danger'">une lettre minuscule</span> et 
+                    <span [ngClass]="isPasswordOk('containsDigit') ? 'text-success' : 'text-danger'">un chiffre</span>
                 </small>
             </div>
         </div>
@@ -129,7 +136,7 @@
         <div class="form-group row justify-content-center">
             <label for="passwordVerificationField"
                     class="col-sm-3 col-form-label"
-                    [ngClass]="{'text-danger': (isPasswordVerificationInvalid() || isPasswordVerificationOk())}">
+                    [ngClass]="{ 'text-danger': arePasswordsMismatched() }">
                 Confirmation du mot de passe
             </label>
             <div class="col-sm-5">
@@ -138,20 +145,14 @@
                     formControlName="passwordVerification" 
                     id="passwordVerificationField" 
                     placeholder="Confirmation" 
-                    [ngClass]="{'border border-danger': isPasswordVerificationOk()}"
+                    [ngClass]="{'border border-danger': arePasswordsMismatched()}"
                     required />
 
-                <small *ngIf="isPasswordVerificationInvalid()" class="text-danger">
-                    <span *ngIf="f.passwordVerification.errors && f.passwordVerification.errors.required">
-                        Vous devez réécrire votre mot de passe
-                    </span>
+                <small *ngIf="arePasswordsMismatched()" class="text-danger">
+                    Les mots de passe ne correspondent pas
                 </small>
-
-                <small *ngIf="isPasswordVerificationOk()" class="text-danger">
-                    <span *ngIf="f.passwordVerification.errors && f.passwordVerification.errors.required">
-                        Les mots de passe ne correspondent pas.
-                    </span>
-                </small>
+                
+                
             </div>
         </div>
         <!-- /Password verification -->
@@ -173,5 +174,5 @@
         <!-- /Registration link -->
 
     </form>
-    <!-- /Form content -->
 </div>
+<!-- /Form content -->

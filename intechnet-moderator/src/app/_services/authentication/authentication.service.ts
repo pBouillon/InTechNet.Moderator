@@ -7,6 +7,7 @@ import { Moderator } from '../../_models/entities/moderator/moderator';
 import { LocalStorageService } from '../local-storage/local-storage.service';
 import { environment } from 'src/environments/environment';
 import { LocalStorageKeys } from '../../_models/local-storage/local-storage-keys';
+import { CredentialsChecks } from 'src/app/_models/entities/authentication/credentials-checks/CredentialsChecks';
 
 @Injectable({
   providedIn: 'root'
@@ -41,10 +42,11 @@ export class AuthenticationService {
    * @param email user's provided login value
    * @returns a boolean
    */
-  isEmailInUse(email: string){
-    const parameters = new HttpParams().set('email', email)
-    
-    return this.http.get<string>(
+  isEmailInUse(email: string): Observable<CredentialsChecks> {
+    const parameters = new HttpParams()
+      .set('email', email);
+
+    return this.http.get<CredentialsChecks>(
       `${environment.apiUrl}/Moderator/identifiers-checks`,
       { params: parameters });
   }
@@ -63,14 +65,13 @@ export class AuthenticationService {
    * @param nickname user's provided login value
    * @returns a boolean
    */
-  isNickNameInUse(nickname: string){
-    let parameters = new HttpParams().set('nickname', nickname)
-    
-    return this.http.get<string>(
+  isNickNameInUse(nickname: string): Observable<CredentialsChecks> {
+    const parameters = new HttpParams()
+      .set('nickname', nickname);
+
+    return this.http.get<CredentialsChecks>(
       `${environment.apiUrl}/Moderator/identifiers-checks`,
-      { 
-        params: parameters 
-      });
+      { params: parameters });
   }
 
   /**
