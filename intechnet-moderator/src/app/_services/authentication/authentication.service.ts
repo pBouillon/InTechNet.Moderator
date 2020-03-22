@@ -67,7 +67,7 @@ export class AuthenticationService {
   }
 
   /**
-   * @summary given their information, log in the moderator
+   * @summary given its information, log in the moderator
    * @param login user's provided login value
    * @param password user's provided password value
    */
@@ -100,7 +100,7 @@ export class AuthenticationService {
    * @param email user's provided email value
    * @param password user's provided password value
    */
-  register(nickname: string, email:string, password: string) {
+  register(nickname: string, email: string, password: string) {
     return this.http.post<any>(
       `${environment.apiUrl}/Moderator`,
       { nickname, email, password })
