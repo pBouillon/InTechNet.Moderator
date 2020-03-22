@@ -51,7 +51,11 @@ export class NewHubComponent implements OnInit {
    */
   private createForm(): void {
     this.newHubForm = this.formBuilder.group({
-      name: ['', Validators.required, Validators.maxLength(22)],
+      name: [
+        '',
+        Validators.required,
+        Validators.maxLength(22)
+      ],
       description: ['', Validators.maxLength(64)]
     });
   }
