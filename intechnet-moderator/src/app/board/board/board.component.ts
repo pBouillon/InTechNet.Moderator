@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/_services/authentication/authentication.service';
 
 import { Moderator } from 'src/app/_models/entities/moderator/moderator';
@@ -6,12 +6,18 @@ import { HubService } from 'src/app/_services/hub/hub.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LightweightHub } from 'src/app/_models/entities/hub/lightweight-hub';
 
+import { ToastrService } from 'ngx-toastr';
+import { RouteName } from 'src/app/routing/route-names';
+import { Router } from '@angular/router';
+
+import * as feather from 'feather-icons';
+
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss']
 })
-export class BoardComponent implements OnInit {
+export class BoardComponent implements AfterViewInit, OnInit {
 
   /**
    * @summary Current moderator representation
@@ -26,7 +32,13 @@ export class BoardComponent implements OnInit {
   constructor(
     private authenticationService: AuthenticationService,
     private hubService: HubService,
+    private router: Router,
+    private toastr: ToastrService,
   ) { }
+
+  ngAfterViewInit(): void {
+    this.useFeatherIcons();
+  }
 
   ngOnInit(): void {
     this.loadModeratorHubs();
@@ -50,9 +62,24 @@ export class BoardComponent implements OnInit {
             this.moderatorHubs.push(new LightweightHub(raw)));
         },
         (error: HttpErrorResponse) => {
-          // TODO: toastr ?
-          console.log(error);
+          this.toastr.error(
+            'Une erreur est survenue lors de la récupération de vos hubs',
+            'Erreur de connexion');
         });
+  }
+
+  /**
+   * @summary Redirect to the hub creation page
+   */
+  public onNewHub(): void {
+    this.router.navigate([RouteName.NEW_HUB]);
+  }
+
+  /**
+   * @summary Replace the feather icons tag by svg source
+   */
+  private useFeatherIcons(): void {
+    feather.replace();
   }
 
 }

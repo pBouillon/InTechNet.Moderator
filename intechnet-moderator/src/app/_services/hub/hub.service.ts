@@ -20,6 +20,17 @@ export class HubService {
   ) { }
 
   /**
+   * @summary create a hub for the current moderator
+   * @param name name of the hub to be created
+   * @param description optional description of the hub to be created
+   */
+  public createHub(name: string, description: string) {
+    return this.http.post<any>(
+      `${environment.apiUrl}/Hub`,
+      { name, description });
+  }
+
+  /**
    * @summary get all managed hub by the current moderator
    * @returns an observable of a collection of light representation of all hubs
    *          managed by the current moderator

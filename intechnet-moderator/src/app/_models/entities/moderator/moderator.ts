@@ -1,3 +1,5 @@
+import { SubscriptionPlan } from '../subscription-plan/subscription-plan';
+
 /**
  * @summary Moderator DTO representing the backend representation of this entity
  */
@@ -22,6 +24,11 @@ export class Moderator {
      * @summary current moderator's JWT
      */
     token: string;
+
+    /**
+     * @summary current moderator's subscription plan
+     */
+    subscriptionPlanDto: SubscriptionPlan;
 
     constructor(fields?: Partial<Moderator>) {
         Object.assign(this, {...fields});
