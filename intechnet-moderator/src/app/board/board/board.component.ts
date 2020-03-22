@@ -6,6 +6,8 @@ import { HubService } from 'src/app/_services/hub/hub.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LightweightHub } from 'src/app/_models/entities/hub/lightweight-hub';
 
+import * as feather from 'feather-icons';
+
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -29,6 +31,8 @@ export class BoardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.useFeatherIcons();
+
     this.loadModeratorHubs();
     this.currentModerator = this.authenticationService.currentModerator;
   }
@@ -53,6 +57,20 @@ export class BoardComponent implements OnInit {
           // TODO: toastr ?
           console.log(error);
         });
+  }
+
+  /**
+   * @summary Redirect to the hub creation page
+   */
+  public onNewHub(): void {
+    // TODO on a new issue
+  }
+
+  /**
+   * @summary Replace the feather icons tag by svg source
+   */
+  private useFeatherIcons(): void {
+    feather.replace();
   }
 
 }
