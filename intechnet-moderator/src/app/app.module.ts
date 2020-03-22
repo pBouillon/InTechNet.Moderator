@@ -1,10 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http"
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 import { GlobalModule } from './homepage/global.module';
 import { FooterComponent } from './_components/footer/footer.component';
@@ -25,11 +28,26 @@ import { BoardModule } from './board/board.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    GlobalModule,
-    BoardModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    CommonModule,
+
+    // InTechNet imports
+    BoardModule,
+    GlobalModule,
+
+    // Toastr imports
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      maxOpened: 3,
+      preventDuplicates: true,
+      progressBar: true,
+      progressAnimation: 'decreasing',
+      resetTimeoutOnDuplicate: true,
+    }),
+
+    // PWA import
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [

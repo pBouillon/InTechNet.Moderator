@@ -16,7 +16,7 @@ export class AuthenticationGuard implements CanActivate {
    */
   constructor(
     private authenticationService: AuthenticationService,
-    private router: Router,
+    private router: Router
   ) { }
 
   /**
