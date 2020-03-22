@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from 'src/app/_services/authentication.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { RouteName } from 'src/app/routing/route-names';
+import { AuthenticationService } from 'src/app/_services/authentication/authentication.service';
 
 @Component({
   selector: 'app-register',
@@ -12,33 +13,33 @@ import { RouteName } from 'src/app/routing/route-names';
 export class RegisterComponent implements OnInit {
 
    /**
-   * @summary boolean for the nickname tooltop
-   */
-  public showNicknameTooltip: boolean = false;
+    * @summary boolean for the nickname
+    */
+  public showNicknameTooltip = false;
 
   /**
-   * @summary boolean for the nickname tooltop
+   * @summary boolean for the nickname
    */
-  public IsEmailTaken: boolean = false;
+  public isEmailTaken = false;
 
   /**
-   * @summary boolean for the nickname tooltop
+   * @summary boolean for the nickname
    */
-  public IsNicknameTaken: boolean = false;
+  public isNicknameTaken = false;
 
   /**
-  * @summary boolean for the password tooltop
-  */
-  public showPasswordTooltip: boolean = false;
-  
+   * @summary boolean for the password
+   */
+  public showPasswordTooltip = false;
+
   /**
    * @summary link to the login page
    */
   public loginLink = `/${RouteName.LOGIN}`;
 
    /**
-   * @summary register form register
-   */
+    * @summary register form register
+    */
   registerForm: FormGroup;
 
   /**
@@ -117,12 +118,11 @@ export class RegisterComponent implements OnInit {
    * @summary On blur event for the email input
    */
   onBlurEmail() {
-    console.log(this.f.email.value)
     this.authenticationService
       .isEmailInUse(this.f.email.value)
         .subscribe(
           (response) => {
-            this.IsEmailTaken = response;
+            this.isEmailTaken = response;
           },
           (error) => {
             this.registerForm.setErrors({ server: error });
@@ -138,8 +138,7 @@ export class RegisterComponent implements OnInit {
       .isNickNameInUse(this.f.nickname.value)
         .subscribe(
           (response) => {
-            console.log(response)
-            this.IsNicknameTaken = response;
+            this.isNicknameTaken = response;
           },
           (error) => {
             this.registerForm.setErrors({ server: error });

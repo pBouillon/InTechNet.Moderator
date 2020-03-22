@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { Moderator } from '../_models/entities/moderator';
-import { LocalStorageService } from './local-storage.service';
+import { Moderator } from '../../_models/entities/moderator/moderator';
+import { LocalStorageService } from '../local-storage/local-storage.service';
 import { environment } from 'src/environments/environment';
-import { LocalStorageKeys } from '../_models/local-storage/local-storage-keys';
+import { LocalStorageKeys } from '../../_models/local-storage/local-storage-keys';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +20,7 @@ export class AuthenticationService {
   constructor(
     private http: HttpClient,
     private storageService: LocalStorageService,
-  ) {  }
+  ) { }
 
   /**
    * @summary get current moderator

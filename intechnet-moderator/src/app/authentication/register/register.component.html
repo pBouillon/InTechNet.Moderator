@@ -4,10 +4,14 @@
     <!-- Title -->
     <div class="d-flex justify-content-center p-5">
         <div class="justify-content-center row">
-            <h1 class="title text-center">Inscription <span class="text-success">modérateur</span></h1>
+            <h1 class="title text-center">
+                Inscription <span class="text-success">modérateur</span>
+            </h1>
 
             <span class="mt-4 text-center">
-                Pour vous inscrire en tant que modérateur, <span class="text-success">créez un compte</span> en saisissant les champs suivants
+                Pour vous inscrire en tant que modérateur, 
+                <span class="text-success">créez un compte</span> 
+                en saisissant les champs suivants
             </span>
         </div>
     </div>
@@ -28,23 +32,23 @@
                     class="form-control" 
                     formControlName="nickname" 
                     id="nicknameField" 
-                    placeholder="Thomas A" 
+                    placeholder="Thomas A. Anderson" 
                     [ngClass]="{'border border-danger': isFieldInvalid('nickname')}"
                     (blur) = "onBlurNickname()"
                     (focus) = "onFocusNickname()"
                     required />
 
                 <small *ngIf="showNicknameTooltip" id="passwordHelpBlock" class="form-text text-muted">
-                    Cet identifiant sera le nom sous lequel vous apparaitrez sur la plateforme
+                    Cet identifiant sera le nom sous lequel vous apparaîtrez sur la plateforme
                 </small>
 
                 <small *ngIf="isFieldInvalid('nickname')" class="text-danger">
                     <span *ngIf="f.nickname.errors && f.nickname.errors.required">
-                        Nous avons besoin de votre identifiant pour vous reconnaître
+                        Nous avons besoin de votre identifiant pour vous identifier
                     </span>
                 </small>
 
-                <small *ngIf="IsNicknameTaken" class="text-danger">                    
+                <small *ngIf="isNicknameTaken" class="text-danger">                    
                     Cet identifiant est déjà utilisé
                 </small>
             </div>
@@ -70,11 +74,11 @@
                 
                 <small *ngIf="isFieldInvalid('email')" class="text-danger">
                     <span *ngIf="f.email.errors && f.email.errors.required">
-                        Nous avons besoin de votre email pour vous reconnaître
+                        Nous avons besoin de votre email pour vous identifier
                     </span>
                 </small>
 
-                <small *ngIf="IsEmailTaken" class="text-danger">                    
+                <small *ngIf="isEmailTaken" class="text-danger">                    
                     Cet email est déjà utilisé
                 </small>
             </div>
@@ -136,7 +140,7 @@
 
                 <small *ngIf="isPasswordVerificationOK()" class="text-danger">
                     <span *ngIf="f.passwordVerification.errors && f.passwordVerification.errors.required">
-                        Les mots de passe ne correspondent pas
+                        Les mots de passe ne correspondent pas.
                     </span>
                 </small>
             </div>
