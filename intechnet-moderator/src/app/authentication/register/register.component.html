@@ -120,12 +120,6 @@
                     <span [ngClass]="isPasswordOk('containsLowercase') ? 'text-success': 'text-danger'">une lettre minuscule</span> et 
                     <span [ngClass]="isPasswordOk('containsDigit') ? 'text-success': 'text-danger'">un chiffre</span>
                 </small>
-
-                <small *ngIf="isFieldInvalid('password')" class="text-danger">
-                    <span *ngIf="f.password.errors && f.password.errors.required">
-                        Nous avons besoin d'un mot de passe pour vous reconnaître
-                    </span>
-                </small>
             </div>
         </div>
         <!-- /Password -->
