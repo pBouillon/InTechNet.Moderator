@@ -42,13 +42,11 @@ export class AuthenticationService {
    * @returns a boolean
    */
   isEmailInUse(email: string){
-    let parameters = new HttpParams().set('email', email)
+    const parameters = new HttpParams().set('email', email)
     
     return this.http.get<string>(
       `${environment.apiUrl}/Moderator/identifiers-checks`,
-      { 
-        params: parameters 
-      });
+      { params: parameters });
   }
 
   /**

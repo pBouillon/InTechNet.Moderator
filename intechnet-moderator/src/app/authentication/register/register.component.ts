@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
   public showNicknameTooltip = false;
 
   /**
-   * @summary boolean for the nickname
+   * @summary boolean for the email
    */
   public isEmailTaken = false;
 
@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
   public loginLink = `/${RouteName.LOGIN}`;
 
    /**
-    * @summary register form register
+    * @summary register form
     */
   registerForm: FormGroup;
 
@@ -82,8 +82,7 @@ export class RegisterComponent implements OnInit {
           Validators.required, 
           Validators.minLength(3), 
           Validators.maxLength(32)
-        ]
-        )
+        ]),
       ],
       email: ['', Validators.email],
       password: ['',  Validators.compose(
@@ -100,6 +99,10 @@ export class RegisterComponent implements OnInit {
     });
   }
   
+  /**
+   * @summary check if the field given in parameter is valid
+   * @param field the field to check
+   */
   isFieldInvalid(field: string) {
     const formField = this.registerForm.get(field);
 
@@ -107,24 +110,28 @@ export class RegisterComponent implements OnInit {
       && (formField.dirty || formField.touched);
   }
   
+  /**
+   * @summary check is the password verification field is valid
+   */
   isPasswordVerificationInvalid() {
     const field = this.registerForm.get('passwordVerification');
     
     return field.invalid && (field.dirty || field.touched);
   }
   
-  isPasswordOk(errorToCheck: string) {
-    if(null == this.f.password.errors){
-      return true;
-    }
-
-    if(this.f.password.errors[errorToCheck]){
-      return false;
-    }
-
-    return true;
+  /**
+   * @summary check if the validator given is OK for the password field
+   * @param validatorToCheck the validator to check 
+   */
+  isPasswordOk(validatorToCheck: string) {
+    return !this.f.password.errors 
+      || !this.f.password.errors[validatorToCheck];
   }
   
+  /**
+   * @summary check if the password verification field is OK
+   * @param validatorToCheck the validator to check 
+   */
   isPasswordVerificationOk() {
     const passwordVerificationField = this.registerForm.get('passwordVerification');
     

@@ -16,6 +16,7 @@
         </div>
     </div>
     <!-- /Title -->
+<!-- /Title section -->
 
     <!-- Form content -->
     <form [formGroup]="registerForm" (ngSubmit)="OnSubmitForm()">
@@ -70,8 +71,8 @@
                     id="emailField" 
                     placeholder="thomas.a@anderson.me"
                     [ngClass]="{'border border-danger': isFieldInvalid('email')}"
-                    (blur) = "onBlurEmail()"
-                    (focus) = "onFocusEmail()"
+                    (blur)="onBlurEmail()"
+                    (focus)="onFocusEmail()"
                     required />
                 
                 <small *ngIf="isFieldInvalid('email')" class="text-danger">
@@ -82,7 +83,7 @@
                 
                 <small *ngIf="isFieldInvalid('email')" class="text-danger">
                     <span *ngIf="f.email.errors && f.email.errors.email">
-                        Votre adresse mail n'est pas valide
+                        Veuillez saisir une adresse mail valide
                     </span>
                 </small>
 
@@ -107,8 +108,8 @@
                     id="passwordField" 
                     placeholder="Mot de passe" 
                     [ngClass]="{'border border-danger': isFieldInvalid('password')}"
-                    (blur) = "onBlurPassword()"
-                    (focus) = "onFocusPassword()"
+                    (blur)="onBlurPassword()"
+                    (focus)="onFocusPassword()"
                     required />
                 
                 <small *ngIf="showPasswordTooltip" id="passwordHelpBlock" class="form-text text-muted">
@@ -160,7 +161,7 @@
             <button type="submit" 
                     class="order-lg-2 mr-lg-2 mr-md-5 mx-4 mt-4 mb-2 col-sm-1 col-md-5 col-lg-3 btn btn-success" 
                     [disabled]="!registerForm.valid">
-                S'inscrire
+                Créer mon compte
             </button>
         </div>
         <!-- /Form buttons -->
@@ -173,6 +174,4 @@
 
     </form>
     <!-- /Form content -->
-
 </div>
-<!-- /Title section -->

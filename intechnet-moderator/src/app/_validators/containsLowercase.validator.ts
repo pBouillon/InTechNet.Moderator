@@ -1,9 +1,13 @@
 import { AbstractControl } from '@angular/forms';
 
+/**
+ * @summary Check if a value in the control has lowercase character
+ * @param control provided control (a form)
+ * @returns a JSON with the key containsDigit and value true
+ */
 export function ContainsLowercase(control: AbstractControl) {
   
     const value = control.value as string;
-    console.log('lower', value)
 
     const hasLowercase = value.match('[a-z]');
 
