@@ -6,6 +6,7 @@ import { HubService } from 'src/app/_services/hub/hub.service';
 import { LightweightHub } from 'src/app/_models/entities/hub/lightweight-hub';
 import { HttpErrorResponse } from '@angular/common/http';
 import { RouteName } from 'src/app/routing/route-names';
+import { ToastrService } from 'ngx-toastr';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -22,6 +23,7 @@ export class HubLimitGuard implements CanActivate {
     private authenticationService: AuthenticationService,
     private hubService: HubService,
     private router: Router,
+    private toastr: ToastrService,
   ) { }
 
   /**
@@ -51,13 +53,13 @@ export class HubLimitGuard implements CanActivate {
           }
 
           // Otherwise, redirect him to the board page
+          this.toastr.warning(
+            'Vous avez atteint le nombre maximum de hubs permis par votre abonnement',
+            'Nombre maximum de hub atteint');
           this.router.navigate([`/${RouteName.BOARD}`]);
           return false;
         },
-        (error: HttpErrorResponse) => {
-          // TODO: toastr ?
-          console.log(error);
-        }));
+        (error: HttpErrorResponse) => { }));
   }
 
 }

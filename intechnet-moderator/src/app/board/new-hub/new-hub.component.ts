@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-new-hub',
@@ -8,16 +7,10 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NewHubComponent implements OnInit {
 
-  constructor(
-    private toastr: ToastrService,
-  ) { }
+  constructor( ) { }
 
-  ngOnInit(): void {
-    this.showSuccess();
-  }
+  ngOnInit(): void { }
 
-  showSuccess() {
-    this.toastr.success('Hello world!', 'Toastr fun!');
-  }
+  showSuccess() { }
 
 }

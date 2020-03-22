@@ -7,6 +7,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { LightweightHub } from 'src/app/_models/entities/hub/lightweight-hub';
 
 import * as feather from 'feather-icons';
+import { ToastrService } from 'ngx-toastr';
+import { RouteName } from 'src/app/routing/route-names';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-board',
@@ -28,6 +31,8 @@ export class BoardComponent implements OnInit {
   constructor(
     private authenticationService: AuthenticationService,
     private hubService: HubService,
+    private router: Router,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -54,8 +59,9 @@ export class BoardComponent implements OnInit {
             this.moderatorHubs.push(new LightweightHub(raw)));
         },
         (error: HttpErrorResponse) => {
-          // TODO: toastr ?
-          console.log(error);
+          this.toastr.error(
+            'Une erreur est survenue lors de la récupération de vos hubs',
+            'Erreur de connexion');
         });
   }
 
@@ -63,7 +69,7 @@ export class BoardComponent implements OnInit {
    * @summary Redirect to the hub creation page
    */
   public onNewHub(): void {
-    // TODO on a new issue
+    this.router.navigate([RouteName.NEW_HUB]);
   }
 
   /**

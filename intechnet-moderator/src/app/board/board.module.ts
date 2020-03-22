@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BoardComponent } from './board/board.component';
 import { HubWidgetComponent } from './hub-widget/hub-widget.component';
 import { NewHubComponent } from './new-hub/new-hub.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { NewHubComponent } from './new-hub/new-hub.component';
     NewHubComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ]
 })
 export class BoardModule { }

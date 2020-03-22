@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouteName } from 'src/app/routing/route-names';
 import { AuthenticationService } from 'src/app/_services/authentication/authentication.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-navbar',
@@ -23,6 +24,7 @@ export class NavbarComponent implements OnInit {
   constructor(
     public authenticationService: AuthenticationService,
     private router: Router,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {}
@@ -34,6 +36,9 @@ export class NavbarComponent implements OnInit {
   }
 
   disconnect(): void {
+    // Clear all toasts on disconnection
+    this.toastr.clear();
+
     this.authenticationService.logout();
     this.router.navigate([`/${RouteName.HOMEPAGE}`]);
   }
