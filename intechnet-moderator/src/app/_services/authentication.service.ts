@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -42,9 +42,13 @@ export class AuthenticationService {
    * @returns a boolean
    */
   isEmailInUse(email: string){
-    return this.http.post<any>(
-      `${environment.apiUrl}/Moderator/emailCheck`,
-      { email });
+    let parameters = new HttpParams().set('email', email)
+    
+    return this.http.get<string>(
+      `${environment.apiUrl}/Moderator/identifiers-checks`,
+      { 
+        params: parameters 
+      });
   }
 
   /**
@@ -62,9 +66,13 @@ export class AuthenticationService {
    * @returns a boolean
    */
   isNickNameInUse(nickname: string){
-    return this.http.post<any>(
-      `${environment.apiUrl}/Moderator/nicknameCheck`,
-      { nickname });
+    let parameters = new HttpParams().set('nickname', nickname)
+    
+    return this.http.get<string>(
+      `${environment.apiUrl}/Moderator/identifiers-checks`,
+      { 
+        params: parameters 
+      });
   }
 
   /**

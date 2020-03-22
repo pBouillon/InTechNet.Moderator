@@ -32,6 +32,7 @@
                     [ngClass]="{'border border-danger': isFieldInvalid('nickname')}"
                     (blur) = "onBlurNickname()"
                     (focus) = "onFocusNickname()"
+                    email
                     required />
 
                 <small *ngIf="showNicknameTooltip" id="passwordHelpBlock" class="form-text text-muted">
@@ -66,11 +67,18 @@
                     placeholder="thomas.a@anderson.me"
                     [ngClass]="{'border border-danger': isFieldInvalid('email')}"
                     (blur) = "onBlurEmail()"
+                    (focus) = "onFocusEmail()"
                     required />
                 
                 <small *ngIf="isFieldInvalid('email')" class="text-danger">
                     <span *ngIf="f.email.errors && f.email.errors.required">
                         Nous avons besoin de votre email pour vous reconnaître
+                    </span>
+                </small>
+                
+                <small *ngIf="isFieldInvalid('email')" class="text-danger">
+                    <span *ngIf="f.email.errors && f.email.errors.email">
+                        Votre adresse mail n'est pas valide
                     </span>
                 </small>
 
@@ -100,7 +108,12 @@
                     required />
                 
                 <small *ngIf="showPasswordTooltip" id="passwordHelpBlock" class="form-text text-muted">
-                    Votre mot de passe doit faire au moins 8 caractères et doit contenir au moins une lettre majuscule, une lettre minuscule et un chiffre
+                    Votre mot de passe doit faire 
+                    <span [ngClass]="f.password.value.length < 8 ? 'text-danger': 'text-success'">au moins 8 caractères</span> 
+                    et doit contenir au moins 
+                    <span [ngClass]="(f.password.errors.containsUppercase && f.password.errors) ? 'text-danger': 'text-success'">une lettre majuscule</span>, 
+                    <span [ngClass]="(f.password.errors.containsLowercase && f.password.errors) ? 'text-danger': 'text-success'">une lettre minuscule</span> et 
+                    <span [ngClass]="(f.password.errors.containsDigit && f.password.errors) ? 'text-danger': 'text-success'">un chiffre</span>
                 </small>
 
                 <small *ngIf="isFieldInvalid('password')" class="text-danger">
@@ -116,7 +129,7 @@
         <div class="form-group row justify-content-center">
             <label for="passwordVerificationField"
                     class="col-sm-3 col-form-label"
-                    [ngClass]="{'text-danger': (isPasswordVerificationInvalid() || isPasswordVerificationOK())}">
+                    [ngClass]="{'text-danger': (isPasswordVerificationInvalid() || isPasswordVerificationOk())}">
                 Confirmation du mot de passe
             </label>
             <div class="col-sm-5">
@@ -125,16 +138,16 @@
                     formControlName="passwordVerification" 
                     id="passwordVerificationField" 
                     placeholder="Confirmation" 
-                    [ngClass]="{'border border-danger': isFieldInvalid('password')}"
+                    [ngClass]="{'border border-danger': isPasswordVerificationOk()}"
                     required />
 
                 <small *ngIf="isPasswordVerificationInvalid()" class="text-danger">
                     <span *ngIf="f.passwordVerification.errors && f.passwordVerification.errors.required">
-                        Vous devez réécrire votre mot de passe.
+                        Vous devez réécrire votre mot de passe
                     </span>
                 </small>
 
-                <small *ngIf="isPasswordVerificationOK()" class="text-danger">
+                <small *ngIf="isPasswordVerificationOk()" class="text-danger">
                     <span *ngIf="f.passwordVerification.errors && f.passwordVerification.errors.required">
                         Les mots de passe ne correspondent pas
                     </span>

@@ -3,6 +3,9 @@ import { AuthenticationService } from 'src/app/_services/authentication.service'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouteName } from 'src/app/routing/route-names';
+import { ContainsUppercase } from 'src/app/_validators/containsUppercase.validator';
+import { ContainsLowercase } from 'src/app/_validators/containsLowercase.validator';
+import { ContainsDigit } from 'src/app/_validators/containsDigit.validator';
 
 @Component({
   selector: 'app-register',
@@ -74,57 +77,59 @@ export class RegisterComponent implements OnInit {
   private createForm(): void {
     this.registerForm = this.formBuilder.group({
       nickname: ['', Validators.compose(
-          [
-            Validators.required, 
-            Validators.minLength(3), 
-            Validators.maxLength(32)
-          ]
+        [
+          Validators.required, 
+          Validators.minLength(3), 
+          Validators.maxLength(32)
+        ]
         )
       ],
       email: ['', Validators.email],
       password: ['',  Validators.compose(
-          [
-            Validators.required,
-            Validators.minLength(8),
-            Validators.maxLength(64),
-            Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,64}$')
-          ]
-        )
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(64),
+          ContainsDigit,
+          ContainsLowercase,
+          ContainsUppercase,
+        ]),
       ],
       passwordVerification: ['', Validators.required]
     });
   }
-
+  
   isFieldInvalid(field: string) {
-    return this.registerForm.get(field).invalid
-      && (this.registerForm.get(field).dirty
-        || this.registerForm.get(field).touched);
-  }
+    const formField = this.registerForm.get(field);
 
+    return formField.invalid
+      && (formField.dirty || formField.touched);
+  }
+  
   isPasswordVerificationInvalid() {
     const field = this.registerForm.get('passwordVerification');
-
+    
     return field.invalid && (field.dirty || field.touched);
   }
-
-  isPasswordVerificationOK() {
+  
+  isPasswordVerificationOk() {
     const passwordVerificationField = this.registerForm.get('passwordVerification');
-
+    
     return passwordVerificationField.value !== this.registerForm.get('password').value;
   }
-
+  
   /**
    * @summary On blur event for the email input
    */
   onBlurEmail() {
-    console.log(this.f.email.value)
     this.authenticationService
-      .isEmailInUse(this.f.email.value)
-        .subscribe(
-          (response) => {
-            this.IsEmailTaken = response;
-          },
-          (error) => {
+    .isEmailInUse(this.f.email.value)
+    .subscribe(
+      (data) => {
+        this.IsEmailTaken = !data['areUnique'];
+      },
+      (error) => {
+        console.log(error)
             this.registerForm.setErrors({ server: error });
           });
   }
@@ -137,9 +142,8 @@ export class RegisterComponent implements OnInit {
     this.authenticationService
       .isNickNameInUse(this.f.nickname.value)
         .subscribe(
-          (response) => {
-            console.log(response)
-            this.IsNicknameTaken = response;
+          (data) => {
+            this.IsNicknameTaken = !data['areUnique'];
           },
           (error) => {
             this.registerForm.setErrors({ server: error });
@@ -158,6 +162,13 @@ export class RegisterComponent implements OnInit {
    */
   onBlurPassword() {
     this.showPasswordTooltip = false;
+  }
+
+  /**
+   * @summary On focus event for the password input
+   */
+  onFocusEmail() {
+    this.IsEmailTaken = false;
   }
 
   /**
