@@ -113,6 +113,18 @@ export class RegisterComponent implements OnInit {
     return field.invalid && (field.dirty || field.touched);
   }
   
+  isPasswordOk(errorToCheck: string) {
+    if(null == this.f.password.errors){
+      return true;
+    }
+
+    if(this.f.password.errors[errorToCheck]){
+      return false;
+    }
+
+    return true;
+  }
+  
   isPasswordVerificationOk() {
     const passwordVerificationField = this.registerForm.get('passwordVerification');
     

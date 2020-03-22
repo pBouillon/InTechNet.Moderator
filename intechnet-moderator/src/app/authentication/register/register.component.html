@@ -115,9 +115,9 @@
                     Votre mot de passe doit faire 
                     <span [ngClass]="f.password.value.length < 8 ? 'text-danger': 'text-success'">au moins 8 caractères</span> 
                     et doit contenir au moins 
-                    <span [ngClass]="(f.password.errors.containsUppercase && f.password.errors) ? 'text-danger': 'text-success'">une lettre majuscule</span>, 
-                    <span [ngClass]="(f.password.errors.containsLowercase && f.password.errors) ? 'text-danger': 'text-success'">une lettre minuscule</span> et 
-                    <span [ngClass]="(f.password.errors.containsDigit && f.password.errors) ? 'text-danger': 'text-success'">un chiffre</span>
+                    <span [ngClass]="isPasswordOk('containsUppercase') ? 'text-success': 'text-danger'">une lettre majuscule</span>, 
+                    <span [ngClass]="isPasswordOk('containsLowercase') ? 'text-success': 'text-danger'">une lettre minuscule</span> et 
+                    <span [ngClass]="isPasswordOk('containsDigit') ? 'text-success': 'text-danger'">un chiffre</span>
                 </small>
 
                 <small *ngIf="isFieldInvalid('password')" class="text-danger">
