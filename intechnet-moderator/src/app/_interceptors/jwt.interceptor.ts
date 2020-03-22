@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpRequest, HttpHandler, HttpEvent, HttpInterceptor} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '../_services/authentication/authentication.service';
-import { switchMap } from 'rxjs/operators';
 
 /**
  * @summary HTTP Interceptor to add the JWT bearer as authorization header

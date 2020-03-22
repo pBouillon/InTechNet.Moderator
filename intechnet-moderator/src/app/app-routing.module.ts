@@ -8,6 +8,7 @@ import { ContactComponent } from './homepage/contact/contact.component';
 import { PageNotFoundComponent } from './error/page-not-found/page-not-found.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { BoardComponent } from './board/board/board.component';
+import { RegisterComponent } from './authentication/register/register.component';
 import { AuthenticationGuard } from './_guards/authentication-guard/authentication.guard';
 import { NewHubComponent } from './board/new-hub/new-hub.component';
 import { HubLimitGuard } from './_guards/hub-limit-guard/hub-limit-guard.guard';
@@ -16,6 +17,7 @@ const routes: Routes = [
   // Authentication
   // ----------
   { path: RouteName.LOGIN, component: LoginComponent },
+  { path: RouteName.REGISTER, component: RegisterComponent },
 
   // Board and management
   // ----------

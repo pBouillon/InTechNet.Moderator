@@ -15,6 +15,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { NavbarComponent } from './_components/navbar/navbar.component';
 import { LoginComponent } from './authentication/login/login.component';
+import { RegisterComponent } from './authentication/register/register.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { BoardModule } from './board/board.module';
 import { NewHubComponent } from './board/new-hub/new-hub.component';
@@ -24,6 +25,7 @@ import { NewHubComponent } from './board/new-hub/new-hub.component';
     AppComponent,
     FooterComponent,
     LoginComponent,
+    RegisterComponent,
     NewHubComponent,
     NavbarComponent,
   ],
