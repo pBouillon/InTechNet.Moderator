@@ -3,6 +3,7 @@ import { AuthenticationService } from 'src/app/_services/authentication/authenti
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouteName } from 'src/app/routing/route-names';
+import { ToastrService } from 'ngx-toastr';
 
 /**
  * @summary login component containing login form and actions
@@ -34,11 +35,13 @@ export class LoginComponent implements OnInit {
    * @param authenticationService authentication service
    * @param formBuilder form builder service
    * @param router angular router
+   * @param toastr toastr service
    */
   constructor(
     private authenticationService: AuthenticationService,
     private formBuilder: FormBuilder,
     private router: Router,
+    private toastr: ToastrService,
   ) { }
 
   /**
@@ -86,6 +89,9 @@ export class LoginComponent implements OnInit {
         },
         (error) => {
           this.loginForm.setErrors({ server: error });
+          this.toastr.error(
+            'Une erreur est survenue lors de la connexion au serveur',
+            'Connexion impossible');
         });
   }
 }

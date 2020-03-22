@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthenticationService } from '../_services/authentication/authentication.service';
-import { RouteName } from '../routing/route-names';
+import { AuthenticationService } from '../../_services/authentication/authentication.service';
+import { RouteName } from '../../routing/route-names';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +16,11 @@ export class AuthenticationGuard implements CanActivate {
    */
   constructor(
     private authenticationService: AuthenticationService,
-    private router: Router,
+    private router: Router
   ) { }
 
   /**
-   * Evalutate if the user is allowed to reach this route
+   * Evaluate if the user is allowed to reach this route
    * @param next route to handle
    * @param state route state
    */

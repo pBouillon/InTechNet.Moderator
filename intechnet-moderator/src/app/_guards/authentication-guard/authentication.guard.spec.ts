@@ -9,7 +9,7 @@ describe('AuthenticationGuard', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ 
+      imports: [
         HttpClientTestingModule,
         RouterTestingModule
       ]

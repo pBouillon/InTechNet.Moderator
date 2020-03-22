@@ -14,7 +14,7 @@
 <!-- /Title section -->
 
 <!-- Hubs section -->
-<div class="container">
+<div class="container mb-2">
 
     <h3 class="mb-3">
         Gérer <span class=text-success>mes hubs</span>
@@ -38,9 +38,29 @@
         </div>
     </ng-template>
 
-    <!-- Hub creation widget -->
-    <app-new-hub-widget></app-new-hub-widget>
-    <!-- Hub creation widget -->
+    <!-- Hub creation -->
+    <div *ngIf="moderatorHubs.length < currentModerator.subscriptionPlanDto.maxHubPerModeratorAccount; else maxHubPerAccountReachView"
+        (click)="onNewHub()"
+        class="card card-new text-center">
+        <div class="card-body text-muted">
+            <h6>
+                <i data-feather="plus-circle"></i>
+                Créer un nouveau hub
+            </h6>
+        </div>
+    </div>
+    
+    <ng-template #maxHubPerAccountReachView>
+        <hr />
+
+        <div class="text-center mt-3">
+            <small class="text-muted">
+                Vous avez atteint le nombre maximum de hub pour votre compte <br />
+                <a href="" class="text-success">Changer d'abonnement</a>
+            </small>
+        </div>
+    </ng-template>
+    <!-- Hub creation -->
 
 </div>
 <!-- /Hubs section -->
