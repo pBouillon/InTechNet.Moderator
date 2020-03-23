@@ -30,8 +30,7 @@ export class HubWidgetComponent implements OnInit, AfterViewInit {
   hubDeletionEvent: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(
-    private hubService: HubService,
-    private router: Router,
+    private toastr: ToastrService,
   ) { }
 
   ngAfterViewInit(): void {
@@ -64,6 +63,9 @@ export class HubWidgetComponent implements OnInit, AfterViewInit {
 
     // Clean DOM by removing the component
     document.body.removeChild(tempTextBox);
+
+    // Notify the user
+    this.toastr.info('Lien de partage copié !');
   }
 
   /**
