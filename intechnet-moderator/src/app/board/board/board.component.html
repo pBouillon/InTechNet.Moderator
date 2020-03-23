@@ -25,7 +25,8 @@
     <div *ngIf="moderatorHubs.length > 0; else noHubsView">
 
         <app-hub-widget *ngFor="let hub of moderatorHubs"
-            [lightweightHub]="hub">
+            [lightweightHub]="hub"
+            (hubDeletionEvent)=deleteHubRequest($event)>
         </app-hub-widget>
 
     </div>
@@ -64,3 +65,31 @@
 
 </div>
 <!-- /Hubs section -->
+
+<!-- Modal -->
+<div *ngIf="moderatorHubs">
+    <button id="openHubDeletionModal" [hidden]="true" data-toggle="modal" data-target="#hubDeletionModal">Open Modal</button>
+
+    <div class="modal fade" id="hubDeletionModal" tabindex="-1" role="dialog" aria-labelledby="hubDeletionModal"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="hubDeletionLabel">Suppression du hub</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeHubDeletionModal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Voulez-vous vraiment <span class="text-danger">supprimer "{{ toBeDeleted.name }}"</span> ?
+                    Cette opération est irréversible.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-danger" (click)="deleteHub()">Supprimer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Modal -->
