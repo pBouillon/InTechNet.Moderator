@@ -67,6 +67,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
+/**
+ * @summary check if the field given in parameter is valid
+ * @param field the field to check
+ */
   isFieldInvalid(field: string) {
     return this.loginForm.get(field).invalid
       && (this.loginForm.get(field).dirty
