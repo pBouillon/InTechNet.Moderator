@@ -26,12 +26,12 @@ export class HubWidgetComponent implements OnInit, AfterViewInit {
   /**
    * @summary Emit the id of the hub on user's deletion request
    */
-  @Output('hubDeletionEvent')
-  idToBeDeletedEvent: EventEmitter<number> = new EventEmitter<number>();
+  @Output()
+  hubDeletionEvent: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(
     private hubService: HubService,
-    private router: Router,
+    private toastr: ToastrService,
   ) { }
 
   ngAfterViewInit(): void {
@@ -41,10 +41,33 @@ export class HubWidgetComponent implements OnInit, AfterViewInit {
   ngOnInit(): void { }
 
   /**
-   * @summary delete the current hub
+   * @summary copy the hub's shareable link to the user's clipboard
    */
-  onDeleteRequest(): void {
-    this.idToBeDeletedEvent.emit(this.lightweightHub.id);
+  onCopyShareableLink(): void {
+    // Create temporary component holding the text to be copied
+    const tempTextBox = document.createElement('textarea');
+    tempTextBox.style.position = 'fixed';
+    tempTextBox.style.left = '0';
+    tempTextBox.style.top = '0';
+    tempTextBox.style.opacity = '0';
+
+    // Put the shareable link in the text box
+    tempTextBox.value = this.hubService
+      .getShareableLinkFor(this.lightweightHub);
+
+    // Add the text box to the DOM
+    document.body.appendChild(tempTextBox);
+
+    // Focus and copy the content of the text box
+    tempTextBox.focus();
+    tempTextBox.select();
+    document.execCommand('copy');
+
+    // Clean DOM by removing the component
+    document.body.removeChild(tempTextBox);
+
+    // Notify the user
+    this.toastr.success('Lien de partage copié !');
   }
 
   /**

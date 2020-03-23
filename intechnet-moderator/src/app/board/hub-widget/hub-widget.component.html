@@ -4,12 +4,14 @@
 
     <!-- Widget header -->
     <div class="card-header d-flex justify-content-between">
-        <h5>
+        <h5 class="mt-1">
             {{ lightweightHub.name }}
         </h5>
-
-        <button type="button" class="btn btn-sm btn-outline-danger" (click)="onDeleteRequest()">
-            <i data-feather="trash-2"></i>
+    
+        <button type="button"
+            class="btn btn-sm btn-outline-success"
+            (click)="onCopyShareableLink()">
+            <i data-feather="clipboard"></i>
         </button>
     </div>
     <!-- /Widget header -->

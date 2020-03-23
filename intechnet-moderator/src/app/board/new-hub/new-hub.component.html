@@ -27,10 +27,10 @@
                     id="nameField"
                     placeholder="Les dangers d'internet" 
                     [ngClass]="{'border border-danger': isFieldInvalid('name')}"
-                    max="22"
+                    max="21"
                     required />
                 <small class="text-muted">
-                    Le nom de votre module (22 caractères maximums)
+                    Le nom de votre module (21 caractères maximums)
                 </small>
 
                 <small *ngIf="isFieldInvalid('name')" class="text-danger">

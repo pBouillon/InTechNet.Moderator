@@ -49,4 +49,12 @@ export class HubService {
       `${environment.apiUrl}/Hub`);
   }
 
+  /**
+   * @summary Get the full shareable link of a hub
+   * @param hub hub's data
+   */
+  public getShareableLinkFor(hub: LightweightHub): string {
+    return `${environment.pupilFrontUri}/hubs/join?${hub.link}`;
+  }
+
 }
