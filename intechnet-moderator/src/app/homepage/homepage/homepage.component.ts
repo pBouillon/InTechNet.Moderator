@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageWidgetData } from '../../_models/image-widget/image-widget-data';
+import { AuthenticationService } from 'src/app/_services/authentication/authentication.service';
+import { Router } from '@angular/router';
+import { RouteName } from 'src/app/routing/route-names';
 
 @Component({
   selector: 'app-homepage',
@@ -13,9 +16,17 @@ export class HomepageComponent implements OnInit {
    */
   public introSections: Array<ImageWidgetData>;
 
-  constructor() { }
+  constructor(
+    private authenticationService: AuthenticationService,
+    private router: Router,
+  ) { }
 
   ngOnInit(): void {
+    // Redirect the user if he is already logged in
+    if (this.authenticationService.isModeratorLoggedIn) {
+      this.router.navigate([RouteName.BOARD]);
+    }
+
     this._initializeSections();
   }
 
