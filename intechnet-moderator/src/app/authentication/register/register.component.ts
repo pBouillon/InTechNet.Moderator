@@ -162,7 +162,7 @@ export class RegisterComponent implements OnInit {
         .subscribe(
           (data) => {
             const fetchedChecksResult = new CredentialsChecks(data);
-            this.isEmailTaken = !fetchedChecksResult.areUnique;
+            this.isNicknameTaken = !fetchedChecksResult.areUnique;
           },
           (error) => {
             this.registerForm.setErrors({ server: error });
