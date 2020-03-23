@@ -29,6 +29,11 @@ export class BoardComponent implements AfterViewInit, OnInit {
    */
   public moderatorHubs: Array<LightweightHub>;
 
+  /**
+   * @summary Holds the data of the hub the user wants to delete
+   */
+  public toBeDeleted: LightweightHub;
+
   constructor(
     private authenticationService: AuthenticationService,
     private hubService: HubService,
@@ -46,6 +51,49 @@ export class BoardComponent implements AfterViewInit, OnInit {
   }
 
   /**
+   * @summary Perform hub deletion based on the hub `toBeDeleted` data
+   */
+  public deleteHub(): void {
+    this.hubService
+      .deleteHub(this.toBeDeleted.id)
+      .subscribe(
+        (response) => {
+          location.reload();
+          this.toastr.success(
+            'Votre hub a bien été supprimé',
+            'Hub supprimé');
+        },
+        (error: HttpErrorResponse) => {
+          this.toastr.error(
+            'Une erreur est survenue lors de la suppression du hub',
+            'Erreur lors de la suppression');
+        });
+  }
+
+  /**
+   * @summary Ask for the user to confirm the deletion of one of its hubs
+   */
+  public deleteHubRequest(event): void {
+    // Retrieve the hub id
+    const hubId = event as number;
+
+    // Fetch the associated hub
+    this.toBeDeleted = null;
+    this.moderatorHubs.forEach(hub => {
+      if (hub.id == hubId) {
+        this.toBeDeleted = hub;
+      }
+    });
+
+    // Display confirmation
+    this.toBeDeleted === null
+      ? this.toastr.error(
+        'Impossible de supprimer ce hub',
+        'Une erreur est survenue')
+      : document.getElementById('openHubDeletionModal').click();
+  }
+
+  /**
    * @summary Retrieve lightweight representation of all hubs owned by the
    *          current moderator
    */
@@ -53,6 +101,10 @@ export class BoardComponent implements AfterViewInit, OnInit {
     // Initialize the collection of hubs
     this.moderatorHubs = [];
 
+    // Initialize modal lightweight hub buffer
+    this.toBeDeleted = new LightweightHub();
+
+    // retrieve user's hubs
     this.hubService.getHubs()
       .subscribe(
         (data: Array<LightweightHub>) => {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Output, Input, AfterViewInit, EventEmitter } from '@angular/core';
 import { LightweightHub } from 'src/app/_models/entities/hub/lightweight-hub';
 
 import * as feather from 'feather-icons';
@@ -23,35 +23,28 @@ export class HubWidgetComponent implements OnInit, AfterViewInit {
   @Input()
   public lightweightHub: LightweightHub;
 
+  /**
+   * @summary Emit the id of the hub on user's deletion request
+   */
+  @Output('hubDeletionEvent')
+  idToBeDeletedEvent: EventEmitter<number> = new EventEmitter<number>();
+
   constructor(
     private hubService: HubService,
     private router: Router,
-    private toastr: ToastrService,
   ) { }
 
   ngAfterViewInit(): void {
     this.useFeatherIcons();
   }
 
-  ngOnInit(): void {
-    this.deletionModalName = `deletion-modale-${this.lightweightHub.id}`;
-  }
+  ngOnInit(): void { }
 
   /**
    * @summary delete the current hub
    */
-  deleteHub(): void {
-    this.hubService
-      .deleteHub(this.lightweightHub.id)
-      .subscribe(
-        (response) => {
-          location.reload();
-        },
-        (error: HttpErrorResponse) => {
-          this.toastr.error(
-            'Une erreur est survenue lors de la suppression du hub',
-            'Erreur lors de la suppression');
-        });
+  onDeleteRequest(): void {
+    this.idToBeDeletedEvent.emit(this.lightweightHub.id);
   }
 
   /**
