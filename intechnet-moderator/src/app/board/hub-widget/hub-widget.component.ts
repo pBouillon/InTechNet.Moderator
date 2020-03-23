@@ -67,14 +67,7 @@ export class HubWidgetComponent implements OnInit, AfterViewInit {
     document.body.removeChild(tempTextBox);
 
     // Notify the user
-    this.toastr.info('Lien de partage copié !');
-  }
-
-  /**
-   * @summary delete the current hub
-   */
-  onDeleteRequest(): void {
-    this.hubDeletionEvent.emit(this.lightweightHub.id);
+    this.toastr.success('Lien de partage copié !');
   }
 
   /**
