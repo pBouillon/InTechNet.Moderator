@@ -6,6 +6,7 @@ export const environment = {
   apiUrl: 'http://localhost:8080/api/v1',
   mailAddress: 'intechnet@yopmail.com',
   production: false,
+  pupilFrontUri: 'http://localhost:4201',
 };
 
 /*

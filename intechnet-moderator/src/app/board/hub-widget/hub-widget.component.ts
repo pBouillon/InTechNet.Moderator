@@ -30,6 +30,7 @@ export class HubWidgetComponent implements OnInit, AfterViewInit {
   hubDeletionEvent: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(
+    private hubService: HubService,
     private toastr: ToastrService,
   ) { }
 
@@ -51,7 +52,8 @@ export class HubWidgetComponent implements OnInit, AfterViewInit {
     tempTextBox.style.opacity = '0';
 
     // Put the shareable link in the text box
-    tempTextBox.value = this.lightweightHub.link;
+    tempTextBox.value = this.hubService
+      .getShareableLinkFor(this.lightweightHub);
 
     // Add the text box to the DOM
     document.body.appendChild(tempTextBox);
