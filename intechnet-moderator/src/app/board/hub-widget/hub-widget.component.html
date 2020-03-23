@@ -10,19 +10,18 @@
 
 
         <div class="d-flex">
-            <button class="btn btn-sm btn-outline-secondary mr-2" 
-                (click)="onCopyShareableLink()"
-                data-placement="bottom"
-                data-toggle="tooltip" 
-                title="Copier le lien d'invitation">
+            <button class="btn btn-sm btn-outline-info mr-2" 
+                (click)="onCopyShareableLink()">
                 <i data-feather="clipboard"></i>
             </button>
 
+            <button class="btn btn-sm btn-outline-info mr-2"
+            (click)="onCopyShareableLink()">
+                <i data-feather="edit"></i>
+            </button>
+
             <button class="btn btn-sm btn-outline-danger"
-                (click)="onDeleteRequest()"
-                data-placement="bottom"
-                data-toggle="tooltip" 
-                title="Supprimer le hub">
+                (click)="onDeleteRequest()">
                 <i data-feather="trash-2"></i>
             </button>
         </div>
