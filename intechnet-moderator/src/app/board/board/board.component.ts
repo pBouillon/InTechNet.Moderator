@@ -58,10 +58,19 @@ export class BoardComponent implements AfterViewInit, OnInit {
       .deleteHub(this.toBeDeleted.id)
       .subscribe(
         (response) => {
-          location.reload();
+          // Update user's view
+          var hubElementIndex = this.moderatorHubs.indexOf(this.toBeDeleted);
+          if (hubElementIndex != -1) {
+              this.moderatorHubs.splice(hubElementIndex, 1);
+          }
+
+          // Display confirmation message
           this.toastr.success(
             'Votre hub a bien été supprimé',
             'Hub supprimé');
+
+          // Close modal
+          document.getElementById('closeHubDeletionModal').click();
         },
         (error: HttpErrorResponse) => {
           this.toastr.error(
