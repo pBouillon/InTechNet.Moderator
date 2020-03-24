@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { LightweightHub } from 'src/app/_models/entities/hub/lightweight-hub';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { Hub } from 'src/app/_models/entities/hub/hub';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +48,16 @@ export class HubService {
   public getHubs(): Observable<Array<LightweightHub>> {
     return this.http.get<Array<LightweightHub>>(
       `${environment.apiUrl}/Hub`);
+  }
+
+  /**
+   * @summary given its id, retrieve all data of a hub
+   * @param id id of the hub to retrieve
+   * @returns an observable holding all the data of the requested hub
+   */
+  public getHub(id: number): Observable<Hub> {
+    return this.http.get<Hub>(
+      `${environment.apiUrl}/Hub/${id}`);
   }
 
   /**

@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { HubService } from 'src/app/_services/hub/hub.service';
+import { Hub } from 'src/app/_models/entities/hub/hub';
+import { ToastrService } from 'ngx-toastr';
+import { RouteName } from 'src/app/routing/route-names';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-hub-details',
@@ -9,18 +14,23 @@ import { ActivatedRoute } from '@angular/router';
 export class HubDetailsComponent implements OnInit {
 
   /**
-   * @summary id of the hub
+   * @summary data of the current hub
    */
-  private hubId: number;
+  private hub: Hub;
 
   constructor(
+    private hubService: HubService,
     private route: ActivatedRoute,
+    private router: Router,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
+    this.hub = new Hub();
     // Retrieve the ID of the current route
     this.route.paramMap.subscribe(_ => {
-      this.hubId = +_.get('id');
+      this.hub.id = +_.get('id');
+      this.retrieveHubData();
     });
 
     // Retrieve the current hub's data
@@ -33,7 +43,19 @@ export class HubDetailsComponent implements OnInit {
    *          init
    */
   private retrieveHubData(): void {
-    // TODO
+    this.hubService.getHub(this.hub.id)
+      .subscribe(
+        (hubData: Hub) => {
+          this.hub = hubData;
+        },
+        (error: HttpErrorResponse) => {
+          this.router.navigate([RouteName.BOARD]);
+          this.toastr.error(
+            'Impossible de récupérer les données du hub',
+            'Erreur de connexion au serveur'
+          );
+        },
+      );
   }
 
 }
