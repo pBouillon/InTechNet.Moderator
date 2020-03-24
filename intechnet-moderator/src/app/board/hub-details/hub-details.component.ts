@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HubService } from 'src/app/_services/hub/hub.service';
 import { Hub } from 'src/app/_models/entities/hub/hub';
@@ -6,17 +6,19 @@ import { ToastrService } from 'ngx-toastr';
 import { RouteName } from 'src/app/routing/route-names';
 import { HttpErrorResponse } from '@angular/common/http';
 
+import * as feather from 'feather-icons';
+
 @Component({
   selector: 'app-hub-details',
   templateUrl: './hub-details.component.html',
   styleUrls: ['./hub-details.component.scss']
 })
-export class HubDetailsComponent implements OnInit {
+export class HubDetailsComponent implements OnInit, AfterViewInit {
 
   /**
    * @summary data of the current hub
    */
-  private hub: Hub;
+  public hub: Hub;
 
   constructor(
     private hubService: HubService,
@@ -24,6 +26,10 @@ export class HubDetailsComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
   ) { }
+
+  ngAfterViewInit(): void {
+    this.useFeatherIcons();
+  }
 
   ngOnInit(): void {
     this.hub = new Hub();
@@ -56,6 +62,13 @@ export class HubDetailsComponent implements OnInit {
           );
         },
       );
+  }
+
+  /**
+   * @summary Replace the feather icons tag by svg source
+   */
+  private useFeatherIcons(): void {
+    feather.replace();
   }
 
 }

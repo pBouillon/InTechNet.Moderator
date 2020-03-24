@@ -1,1 +1,66 @@
-<p>hub-details works!</p>
+<!-- Title section -->
+<div class="container" id="title">
+
+    <!-- Title -->
+    <div class="d-flex justify-content-center p-5">
+        <div>
+            <h1 class="title">
+                Détails du hub "<span class="text-success">{{ hub.name }}</span>"
+            </h1>
+        </div>
+    </div>
+    <!-- /Title -->
+    
+</div>
+<!-- /Title section -->
+
+<!-- Hub details -->
+<div class="container">
+
+    <ul class="nav nav-tabs mb-3" id="hubDetails" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="attendees-tab" data-toggle="tab" href="#attendees" role="tab" aria-controls="attendees"
+                aria-selected="true"><i data-feather="users" class="mr-2"></i>Élèves</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="modules-tab" data-toggle="tab" href="#modules" role="tab" aria-controls="modules"
+                aria-selected="false"><i data-feather="cpu" class="mr-2"></i>Modules</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="parameters-tab" data-toggle="tab" href="#parameters" role="tab" aria-controls="parameters"
+                aria-selected="false"><i data-feather="settings" class="mr-2"></i>Paramètres</a>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="hubDetailsContent">
+        <div class="tab-pane fade show active" id="attendees" role="tabpanel" aria-labelledby="home-tab">
+            <ul class="list-group">
+                <li class="list-group-item">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Morbi leo risus</li>
+                <li class="list-group-item">Porta ac consectetur ac</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+        </div>
+        <div class="tab-pane fade" id="modules" role="tabpanel" aria-labelledby="modules-tab">
+            <div class="card-deck">
+                <div *ngFor="let _ of [0, 1, 2]" class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                        <p class="card-text">
+                            Some quick example text to build on the card title and make up the bulk of the card's
+                            content.
+                        </p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="parameters" role="tabpanel" aria-labelledby="parameters-tab">
+            
+        </div>
+    </div>
+
+</div>
+<!-- Hub details -->
