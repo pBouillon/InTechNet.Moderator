@@ -33,7 +33,7 @@ export class HubDetailsComponent implements OnInit {
    *          init
    */
   private retrieveHubData(): void {
-
+    // TODO
   }
 
 }
