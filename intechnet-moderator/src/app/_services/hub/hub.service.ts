@@ -27,7 +27,7 @@ export class HubService {
    */
   public createHub(name: string, description: string) {
     return this.http.post<any>(
-      `${environment.apiUrl}/Hub`,
+      `${environment.apiUrl}/Hubs`,
       { name, description });
   }
 
@@ -37,7 +37,7 @@ export class HubService {
    */
   public deleteHub(id: number) {
     return this.http.delete<any>(
-      `${environment.apiUrl}/Hub/${id}`);
+      `${environment.apiUrl}/Hubs/${id}`);
   }
 
   /**
@@ -47,7 +47,7 @@ export class HubService {
    */
   public getHubs(): Observable<Array<LightweightHub>> {
     return this.http.get<Array<LightweightHub>>(
-      `${environment.apiUrl}/Hub`);
+      `${environment.apiUrl}/Hubs`);
   }
 
   /**
@@ -57,7 +57,7 @@ export class HubService {
    */
   public getHub(id: number): Observable<Hub> {
     return this.http.get<Hub>(
-      `${environment.apiUrl}/Hub/${id}`);
+      `${environment.apiUrl}/Hubs/${id}`);
   }
 
   /**
@@ -65,7 +65,7 @@ export class HubService {
    * @param hub hub's data
    */
   public getShareableLinkFor(hub: LightweightHub): string {
-    return `${environment.pupilFrontUri}/hubs/join?${hub.link}`;
+    return `${environment.pupilFrontUri}/Hubs/join?${hub.link}`;
   }
 
 }
