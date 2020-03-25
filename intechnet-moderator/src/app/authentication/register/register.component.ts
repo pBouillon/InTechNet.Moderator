@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+import { ToastrService } from 'ngx-toastr';
+
 import { RouteName } from 'src/app/routing/route-names';
 import { ContainsUppercase } from 'src/app/_validators/containsUppercase.validator';
 import { ContainsLowercase } from 'src/app/_validators/containsLowercase.validator';
@@ -61,6 +63,7 @@ export class RegisterComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private formBuilder: FormBuilder,
     private router: Router,
+    private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -208,6 +211,9 @@ export class RegisterComponent implements OnInit {
           this.router.navigate([`/${RouteName.BOARD}`]);
         },
         (error) => {
+          this.toastr.error(
+            'Une erreur est survenue lors de votre inscription',
+            'Erreur de connexion au serveur');
           this.registerForm.setErrors({ server: error });
         });
   }

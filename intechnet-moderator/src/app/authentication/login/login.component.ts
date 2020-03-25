@@ -92,10 +92,10 @@ export class LoginComponent implements OnInit {
           this.router.navigate([`/${RouteName.BOARD}`]);
         },
         (error) => {
-          this.loginForm.setErrors({ server: error });
           this.toastr.error(
             'Une erreur est survenue lors de la connexion au serveur',
-            'Connexion impossible');
+            'Erreur de connexion au serveur');
+          this.loginForm.setErrors({ server: error });
         });
   }
 }
