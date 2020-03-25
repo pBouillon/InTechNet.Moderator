@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input, AfterViewInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { LightweightHub } from 'src/app/_models/entities/hub/lightweight-hub';
 
 import * as feather from 'feather-icons';
@@ -14,19 +14,11 @@ import { RouteName } from 'src/app/routing/route-names';
 })
 export class HubWidgetComponent implements OnInit, AfterViewInit {
 
-  deletionModalName: string;
-
   /**
    * @summary Content to display
    */
   @Input()
   public lightweightHub: LightweightHub;
-
-  /**
-   * @summary Emit the id of the hub on user's deletion request
-   */
-  @Output()
-  hubDeletionEvent: EventEmitter<number> = new EventEmitter<number>();
 
   constructor(
     private hubService: HubService,

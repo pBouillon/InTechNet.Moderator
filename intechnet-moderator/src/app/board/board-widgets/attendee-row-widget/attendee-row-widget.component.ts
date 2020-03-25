@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { Pupil } from 'src/app/_models/entities/pupil/pupil';
 
 import * as feather from 'feather-icons';
@@ -22,6 +22,12 @@ export class AttendeeRowWidgetComponent implements OnInit, AfterViewInit {
   @Input()
   public isDarker: boolean;
 
+  /**
+   * @summary Emit the id of user to be kicked
+   */
+  @Output()
+  pupilKickRequestEvent: EventEmitter<number> = new EventEmitter<number>();
+
   constructor() { }
 
   ngAfterViewInit(): void {
@@ -29,6 +35,13 @@ export class AttendeeRowWidgetComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void { }
+
+  /**
+   * @summary on kick request, emit the current pupil's id
+   */
+  public onKickRequest(): void {
+    this.pupilKickRequestEvent.emit(this.pupil.id);
+  }
 
   /**
    * @summary Replace the feather icons tag by svg source

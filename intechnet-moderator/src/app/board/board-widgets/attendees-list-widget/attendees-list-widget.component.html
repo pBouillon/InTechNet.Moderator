@@ -4,7 +4,8 @@
         <!-- Pupil row -->
         <app-attendee-row-widget 
             [pupil]="pupil"
-            [isDarker]="counter % 2">
+            [isDarker]="counter % 2"
+            (pupilKickRequestEvent)="onKickRequest($event)">
         </app-attendee-row-widget>
         <!-- /Pupil row -->
     </li>
@@ -18,3 +19,33 @@
     </div>
 </ng-template>
 <!-- /No attendees view -->
+
+<!-- Attendee kick modal -->
+
+<!-- Attendee kick modal -->
+<button id="openAttendeeKickModal" [hidden]="true" type="button" class="btn btn-primary" data-toggle="modal" data-target="#kickAttendeeModal">
+</button>
+
+<div class="modal fade" id="kickAttendeeModal" tabindex="-1" role="dialog" aria-labelledby="kickAttendeeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="kickAttendeeModalLabel">Expulsion de l'élève</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <span class="text-danger">Voulez-vous vraiment expulser {{ toBeKicked.nickname }} ?</span><br />
+                Vous pourrez l'inviter de nouveau grâce au lien de partage.
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="closeAttendeeKickModal" class="btn btn-outline-secondary"
+                    data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-danger" (click)="onKick()">Expulser</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Attendee kick modal -->
