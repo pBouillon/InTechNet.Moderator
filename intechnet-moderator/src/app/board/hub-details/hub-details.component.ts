@@ -44,6 +44,13 @@ export class HubDetailsComponent implements OnInit, AfterViewInit {
   }
 
   /**
+   * @summary redirect the user to the previous page 
+   */
+  public onBack(): void {
+    this.router.navigate([RouteName.BOARD]);
+  }
+
+  /**
    * @summary Retrieve the details of the current hub
    *          from it's id provided in the route on
    *          init
