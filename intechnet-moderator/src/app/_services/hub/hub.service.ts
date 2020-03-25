@@ -65,7 +65,7 @@ export class HubService {
    * @param hub hub's data
    */
   public getShareableLinkFor(hub: LightweightHub): string {
-    return `${environment.pupilFrontUri}/Hubs/join?${hub.link}`;
+    return `${environment.pupilFrontUri}/Hubs/join?link=${hub.link}`;
   }
 
 }
