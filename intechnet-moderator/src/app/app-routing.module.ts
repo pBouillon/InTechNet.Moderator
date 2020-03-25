@@ -12,6 +12,7 @@ import { RegisterComponent } from './authentication/register/register.component'
 import { AuthenticationGuard } from './_guards/authentication-guard/authentication.guard';
 import { NewHubComponent } from './board/new-hub/new-hub.component';
 import { HubLimitGuard } from './_guards/hub-limit-guard/hub-limit-guard.guard';
+import { HubDetailsComponent } from './board/hub-details/hub-details.component';
 
 const routes: Routes = [
   // Authentication
@@ -25,6 +26,11 @@ const routes: Routes = [
   {
     path: RouteName.BOARD,
     component: BoardComponent,
+    canActivate: [ AuthenticationGuard ]
+  },
+  {
+    path: RouteName.HUB_DETAILS,
+    component: HubDetailsComponent,
     canActivate: [ AuthenticationGuard ]
   },
   // New hub

@@ -31,6 +31,7 @@ export class HubWidgetComponent implements OnInit, AfterViewInit {
 
   constructor(
     private hubService: HubService,
+    private router: Router,
     private toastr: ToastrService,
   ) { }
 
@@ -68,6 +69,18 @@ export class HubWidgetComponent implements OnInit, AfterViewInit {
 
     // Notify the user
     this.toastr.success('Lien de partage copié !');
+  }
+
+  /**
+   * @summary redirect the user to the hub details panel
+   */
+  onHubDetails(): void {
+    const hubDetailsLink = RouteName.HUB_DETAILS
+      .replace(
+        ':id',
+        this.lightweightHub.id.toString());
+
+    this.router.navigate([hubDetailsLink]);
   }
 
   /**

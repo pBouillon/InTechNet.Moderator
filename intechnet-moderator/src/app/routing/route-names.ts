@@ -7,7 +7,8 @@ export enum RouteName {
     REGISTER = 'register',
 
     // Board to manage the moderator's hubs
-    BOARD = 'hubs',
+    BOARD = 'board',
+    HUB_DETAILS = 'hubs/details/:id',
     NEW_HUB = 'hubs/new',
 
     // Global / Homepage

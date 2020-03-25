@@ -91,7 +91,7 @@ export class NewHubComponent implements OnInit {
           this.newHubForm.setErrors({ server: error });
           this.toastr.error(
             'Une erreur de connexion est survenue, impossible de créer le hub',
-            'Erreur de connexion avec le serveur'
+            'Erreur de connexion au serveur'
           );
         },
       );

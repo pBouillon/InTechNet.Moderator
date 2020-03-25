@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { LightweightHub } from 'src/app/_models/entities/hub/lightweight-hub';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { Hub } from 'src/app/_models/entities/hub/hub';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class HubService {
    */
   public createHub(name: string, description: string) {
     return this.http.post<any>(
-      `${environment.apiUrl}/Hub`,
+      `${environment.apiUrl}/Hubs`,
       { name, description });
   }
 
@@ -36,7 +37,7 @@ export class HubService {
    */
   public deleteHub(id: number) {
     return this.http.delete<any>(
-      `${environment.apiUrl}/Hub/${id}`);
+      `${environment.apiUrl}/Hubs/${id}`);
   }
 
   /**
@@ -46,7 +47,17 @@ export class HubService {
    */
   public getHubs(): Observable<Array<LightweightHub>> {
     return this.http.get<Array<LightweightHub>>(
-      `${environment.apiUrl}/Hub`);
+      `${environment.apiUrl}/Hubs`);
+  }
+
+  /**
+   * @summary given its id, retrieve all data of a hub
+   * @param id id of the hub to retrieve
+   * @returns an observable holding all the data of the requested hub
+   */
+  public getHub(id: number): Observable<Hub> {
+    return this.http.get<Hub>(
+      `${environment.apiUrl}/Hubs/${id}`);
   }
 
   /**
@@ -54,7 +65,7 @@ export class HubService {
    * @param hub hub's data
    */
   public getShareableLinkFor(hub: LightweightHub): string {
-    return `${environment.pupilFrontUri}/hubs/join?${hub.link}`;
+    return `${environment.pupilFrontUri}/Hubs/join?link=${hub.link}`;
   }
 
 }

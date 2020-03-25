@@ -59,8 +59,8 @@ export class BoardComponent implements AfterViewInit, OnInit {
       .subscribe(
         (response) => {
           // Update user's view
-          var hubElementIndex = this.moderatorHubs.indexOf(this.toBeDeleted);
-          if (hubElementIndex != -1) {
+          const hubElementIndex = this.moderatorHubs.indexOf(this.toBeDeleted);
+          if (hubElementIndex !== -1) {
               this.moderatorHubs.splice(hubElementIndex, 1);
           }
 
@@ -89,7 +89,7 @@ export class BoardComponent implements AfterViewInit, OnInit {
     // Fetch the associated hub
     this.toBeDeleted = null;
     this.moderatorHubs.forEach(hub => {
-      if (hub.id == hubId) {
+      if (hub.id === hubId) {
         this.toBeDeleted = hub;
       }
     });

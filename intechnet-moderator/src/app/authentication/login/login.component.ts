@@ -4,6 +4,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RouteName } from 'src/app/routing/route-names';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
 
 /**
  * @summary login component containing login form and actions
@@ -14,6 +15,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+
+  /**
+   * @summary pupil login page
+   */
+  public loginLink: string;
 
   /**
    * @summary link to the registration page
@@ -48,6 +54,8 @@ export class LoginComponent implements OnInit {
    * @summary default initialize function
    */
   ngOnInit(): void  {
+    this.loginLink = `${environment.pupilFrontUri}/${RouteName.LOGIN}`;
+
     // If the user is already logged in, redirect it
     if (this.authenticationService.isModeratorLoggedIn) {
       this.router.navigate([`/${RouteName.BOARD}`]);
@@ -92,10 +100,10 @@ export class LoginComponent implements OnInit {
           this.router.navigate([`/${RouteName.BOARD}`]);
         },
         (error) => {
-          this.loginForm.setErrors({ server: error });
           this.toastr.error(
             'Une erreur est survenue lors de la connexion au serveur',
-            'Connexion impossible');
+            'Erreur de connexion au serveur');
+          this.loginForm.setErrors({ server: error });
         });
   }
 }

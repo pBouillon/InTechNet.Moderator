@@ -47,7 +47,7 @@ export class AuthenticationService {
       .set('email', email);
 
     return this.http.get<CredentialsChecks>(
-      `${environment.apiUrl}/Moderator/identifiers-checks`,
+      `${environment.apiUrl}/Moderators/identifiers-checks`,
       { params: parameters });
   }
 
@@ -70,7 +70,7 @@ export class AuthenticationService {
       .set('nickname', nickname);
 
     return this.http.get<CredentialsChecks>(
-      `${environment.apiUrl}/Moderator/identifiers-checks`,
+      `${environment.apiUrl}/Moderators/identifiers-checks`,
       { params: parameters });
   }
 
@@ -81,7 +81,7 @@ export class AuthenticationService {
    */
   login(login: string, password: string) {
     return this.http.post<any>(
-      `${environment.apiUrl}/Moderator/authenticate`,
+      `${environment.apiUrl}/Moderators/authenticate`,
       { login, password })
       .pipe(
         map(user => {
@@ -110,7 +110,7 @@ export class AuthenticationService {
    */
   register(nickname: string, email: string, password: string) {
     return this.http.post<any>(
-      `${environment.apiUrl}/Moderator`,
+      `${environment.apiUrl}/Moderators`,
       { nickname, email, password })
       .pipe(
         map(user => {
