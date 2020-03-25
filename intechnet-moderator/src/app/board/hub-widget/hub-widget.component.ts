@@ -5,7 +5,6 @@ import * as feather from 'feather-icons';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { HubService } from 'src/app/_services/hub/hub.service';
-import { HttpErrorResponse } from '@angular/common/http';
 import { RouteName } from 'src/app/routing/route-names';
 
 @Component({

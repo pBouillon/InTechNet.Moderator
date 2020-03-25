@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Pupil } from 'src/app/_models/entities/pupil/pupil';
 
 @Component({
   selector: 'app-attendees-list-widget',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AttendeesListWidgetComponent implements OnInit {
 
+  /**
+   * @summary An array of all pupils attending this hub
+   */
+  @Input()
+  public attendees: Array<Pupil>;
+
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }

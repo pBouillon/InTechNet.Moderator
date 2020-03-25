@@ -32,19 +32,18 @@ export class HubDetailsComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.hub = new Hub();
     // Retrieve the ID of the current route
     this.route.paramMap.subscribe(_ => {
+      this.hub = new Hub();
       this.hub.id = +_.get('id');
+
+      // Retrieve the current hub's data
       this.retrieveHubData();
     });
-
-    // Retrieve the current hub's data
-    this.retrieveHubData();
   }
 
   /**
-   * @summary redirect the user to the previous page 
+   * @summary redirect the user to the previous page
    */
   public onBack(): void {
     this.router.navigate([RouteName.BOARD]);

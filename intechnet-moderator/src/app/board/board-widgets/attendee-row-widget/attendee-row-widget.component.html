@@ -1,0 +1,16 @@
+<div class="container d-flex justify-content-between align-content-center px-1 py-2"
+    [ngClass]="{'bg-darker': isDarker}">
+    
+    <!-- Pupil's name -->
+    <h5 class="flex-grow pt-2">{{ pupil.nickname | titlecase }}</h5>
+    <!-- /Pupil's name -->
+
+    <!-- Associated controls -->
+    <div>
+        <button class="btn btn-sm btn-outline-danger mr-1">
+            <i data-feather="user-x"></i>
+        </button>
+    </div>
+    <!-- Associated controls -->
+
+</div>

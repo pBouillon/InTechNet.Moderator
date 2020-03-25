@@ -1,7 +1,20 @@
-<ul class="list-group">
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Dapibus ac facilisis in</li>
-    <li class="list-group-item">Morbi leo risus</li>
-    <li class="list-group-item">Porta ac consectetur ac</li>
-    <li class="list-group-item">Vestibulum at eros</li>
+<!-- Attendees list -->
+<ul *ngIf="attendees && attendees.length > 0; else noAttendeesView" class="list-group">
+    <li *ngFor="let pupil of attendees; let counter = index" class="list-group-item p-0">
+        <!-- Pupil row -->
+        <app-attendee-row-widget 
+            [pupil]="pupil"
+            [isDarker]="counter % 2">
+        </app-attendee-row-widget>
+        <!-- /Pupil row -->
+    </li>
 </ul>
+<!-- /Attendees list  -->
+
+<!-- No attendees view -->
+<ng-template #noAttendeesView>
+    <div class="text-center text-muted pt-3">
+        Aucun élève n'est inscrit à ce hub
+    </div>
+</ng-template>
+<!-- /No attendees view -->
