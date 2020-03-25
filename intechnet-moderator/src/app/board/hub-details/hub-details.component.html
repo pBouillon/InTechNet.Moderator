@@ -20,32 +20,65 @@
 <!-- Hub details -->
 <div class="container">
 
+    <!-- Details navbar -->
     <ul class="nav nav-tabs mb-3" id="hubDetails" role="tablist">
+
+        <!-- Attendees -->
         <li class="nav-item">
             <a class="nav-link active px-1 px-md-2" id="attendees-tab" data-toggle="tab" href="#attendees" role="tab" aria-controls="attendees"
-                aria-selected="true"><i data-feather="users" class="mr-1 mr-md-2"></i>Élèves</a>
+                aria-selected="true">
+                <i data-feather="users" class="mr-1 mr-md-2"></i>
+                Élèves
+            </a>
         </li>
+        <!-- /Attendees -->
+
+        <!-- Modules -->
         <li class="nav-item">
             <a class="nav-link px-1 px-md-2" id="modules-tab" data-toggle="tab" href="#modules" role="tab" aria-controls="modules"
-                aria-selected="false"><i data-feather="cpu" class="mr-1 mr-md-2"></i>Modules</a>
+                aria-selected="false">
+                <i data-feather="cpu" class="mr-1 mr-md-2"></i>
+                Modules
+            </a>
         </li>
+        <!-- /Modules -->
+
+        <!-- Options -->
         <li class="nav-item">
             <a class="nav-link px-1 px-md-2" id="parameters-tab" data-toggle="tab" href="#parameters" role="tab" aria-controls="parameters"
-                aria-selected="false"><i data-feather="settings" class="mr-1 mr-md-2"></i>Options</a>
+                aria-selected="false">
+                <i data-feather="settings" class="mr-1 mr-md-2"></i>
+                Options
+            </a>
         </li>
-    </ul>
+        <!-- /Options -->
 
+    </ul>
+    <!-- /Details navbar -->
+
+    <!-- Details contents -->
     <div class="tab-content" id="hubDetailsContent">
+
+        <!-- Attendees -->
         <div class="tab-pane fade show active" id="attendees" role="tabpanel" aria-labelledby="home-tab">
             <app-attendees-list-widget></app-attendees-list-widget>
         </div>
+        <!-- /Attendees -->
+        
+        <!-- Modules -->
         <div class="tab-pane fade" id="modules" role="tabpanel" aria-labelledby="modules-tab">
             <app-modules-list-widget></app-modules-list-widget>
         </div>
+        <!-- /Modules -->
+        
+        <!-- Options -->
         <div class="tab-pane fade" id="parameters" role="tabpanel" aria-labelledby="parameters-tab">
             <app-hub-settings-widget></app-hub-settings-widget>
         </div>
+        <!-- /Options -->
+
     </div>
+    <!-- /Details contents -->
 
 </div>
 <!-- Hub details -->
