@@ -10,6 +10,7 @@ import { ContainsLowercase } from 'src/app/_validators/containsLowercase.validat
 import { ContainsDigit } from 'src/app/_validators/containsDigit.validator';
 import { AuthenticationService } from 'src/app/_services/authentication/authentication.service';
 import { CredentialsChecks } from 'src/app/_models/entities/authentication/credentials-checks/CredentialsChecks';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-register',
@@ -17,6 +18,11 @@ import { CredentialsChecks } from 'src/app/_models/entities/authentication/crede
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+
+  /**
+   * @summary pupil registration page
+   */
+  public registerLink: string;
 
    /**
     * @summary boolean for the nickname
@@ -67,6 +73,8 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.registerLink = `${environment.pupilFrontUri}/${RouteName.REGISTER}`;
+
     // If the user is already logged in, redirect it
     if (this.authenticationService.isModeratorLoggedIn) {
       this.router.navigate([`/${RouteName.BOARD}`]);
