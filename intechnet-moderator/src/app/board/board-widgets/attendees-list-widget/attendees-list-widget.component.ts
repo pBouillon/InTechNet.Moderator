@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Pupil } from 'src/app/_models/entities/pupil/pupil';
 import { ToastrService } from 'ngx-toastr';
+import { HubService } from 'src/app/_services/hub/hub.service';
 
 @Component({
   selector: 'app-attendees-list-widget',
@@ -16,16 +17,42 @@ export class AttendeesListWidgetComponent implements OnInit {
   public attendees: Array<Pupil>;
 
   /**
+   * @summary Id of the current hub in which the pupils are
+   */
+  @Input()
+  public idHub: number;
+
+  /**
    * @summary buffer for the user to be kicked
    */
   public toBeKicked: Pupil;
 
   constructor(
+    private hubService: HubService,
     private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {
     this.toBeKicked = new Pupil();
+  }
+
+  /**
+   * @summary Remove the pupil in the front side
+   */
+  private removePupil(): void {
+    // Retrieve the user kicked
+    const toBeKickedIndex = this.attendees.indexOf(this.toBeKicked);
+    if (toBeKickedIndex !== -1) {
+      this.attendees.splice(toBeKickedIndex, 1);
+    }
+
+    // Confirm kick to the current user
+    this.toastr.success(
+      `${this.toBeKicked.nickname} a bien été expulsé`,
+      'Élève expulsé');
+
+    // Close the modal
+    document.getElementById('closeAttendeeKickModal').click();
   }
 
   /**
@@ -55,22 +82,16 @@ export class AttendeesListWidgetComponent implements OnInit {
    * @summary kick the user `toBeKicked`
    */
   onKick(): void {
-    // TODO: kick logic and service call
-    this.toastr.error('To be implemented');
-
-    // Retrieve the user kicked
-    const toBeKickedIndex = this.attendees.indexOf(this.toBeKicked);
-    if (toBeKickedIndex !== -1) {
-      this.attendees.splice(toBeKickedIndex, 1);
-    }
-
-    // Confirm kick to the current user
-    this.toastr.success(
-      `L'élève ${this.toBeKicked.nickname} a bien été expulsé`,
-      'Élève expulsé');
-
-    // Close the modal
-    document.getElementById('closeAttendeeKickModal').click();
+    this.hubService.removePupil(this.idHub, this.toBeKicked.id)
+      .subscribe(
+        () => {
+            this.removePupil();
+        },
+        (error) => {
+          this.toastr.error(
+            'Une erreur est survenue lors de l\'expulsion de l\'élève',
+            'Erreur de connexion au serveur');
+        });
   }
 
 }
