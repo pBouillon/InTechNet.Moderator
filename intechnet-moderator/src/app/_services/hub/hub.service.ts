@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
 import { LightweightHub } from 'src/app/_models/entities/hub/lightweight-hub';
 import { environment } from 'src/environments/environment';
@@ -26,9 +26,18 @@ export class HubService {
    * @param description optional description of the hub to be created
    */
   public createHub(name: string, description: string) {
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: {
+        name,
+        description
+      },
+    };
+
     return this.http.post<any>(
-      `${environment.apiUrl}/Hubs`,
-      { name, description });
+      `${environment.apiUrl}/Hubs`, options);
   }
 
   /**
@@ -66,6 +75,29 @@ export class HubService {
    */
   public getShareableLinkFor(hub: LightweightHub): string {
     return `${environment.pupilFrontUri}/Hubs/join?link=${hub.link}`;
+  }
+
+  /**
+   * @summary Remove a pupil from a hub
+   * @param idHub id of the hub to update
+   * @param idPupil id of the pupil to be removed
+   */
+  public removePupil(idHub: number, idPupil: number) {
+    const notSpecified = 0;
+
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+      body: {
+        id: notSpecified,
+        idPupil,
+        idHub
+      },
+    };
+
+    return this.http.delete<any>(
+      `${environment.apiUrl}/Moderators/me/Hubs/${idHub}/Pupils/${idPupil}`, options);
   }
 
 }

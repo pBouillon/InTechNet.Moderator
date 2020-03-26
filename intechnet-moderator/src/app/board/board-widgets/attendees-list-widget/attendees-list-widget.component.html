@@ -1,7 +1,51 @@
-<ul class="list-group">
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Dapibus ac facilisis in</li>
-    <li class="list-group-item">Morbi leo risus</li>
-    <li class="list-group-item">Porta ac consectetur ac</li>
-    <li class="list-group-item">Vestibulum at eros</li>
+<!-- Attendees list -->
+<ul *ngIf="attendees && attendees.length > 0; else noAttendeesView" class="list-group">
+    <li *ngFor="let pupil of attendees; let counter = index" class="list-group-item p-0">
+        <!-- Pupil row -->
+        <app-attendee-row-widget 
+            [pupil]="pupil"
+            [isDarker]="counter % 2"
+            (pupilKickRequestEvent)="onKickRequest($event)">
+        </app-attendee-row-widget>
+        <!-- /Pupil row -->
+    </li>
 </ul>
+<!-- /Attendees list  -->
+
+<!-- No attendees view -->
+<ng-template #noAttendeesView>
+    <div class="text-center text-muted pt-3">
+        Aucun élève n'est inscrit à ce hub
+    </div>
+</ng-template>
+<!-- /No attendees view -->
+
+<!-- Attendee kick modal -->
+
+<!-- Attendee kick modal -->
+<button id="openAttendeeKickModal" [hidden]="true" type="button" class="btn btn-primary" data-toggle="modal" data-target="#kickAttendeeModal">
+</button>
+
+<div class="modal fade" id="kickAttendeeModal" tabindex="-1" role="dialog" aria-labelledby="kickAttendeeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="kickAttendeeModalLabel">Expulsion de l'élève</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <span class="text-danger">Voulez-vous vraiment expulser {{ toBeKicked.nickname }} ?</span><br />
+                Vous pourrez l'inviter de nouveau grâce au lien de partage.
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="closeAttendeeKickModal" class="btn btn-outline-secondary"
+                    data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-danger" (click)="onKick()">Expulser</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Attendee kick modal -->

@@ -33,7 +33,7 @@ export class Hub {
     /**
      * @summary pupils attending this hub
      */
-    pupilsAttending: Array<Pupil>;
+    attendees: Array<Pupil>;
 
     constructor(fields?: Partial<Hub>) {
         Object.assign(this, { ...fields });
