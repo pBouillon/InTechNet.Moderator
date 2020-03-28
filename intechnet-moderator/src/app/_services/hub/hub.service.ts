@@ -71,10 +71,10 @@ export class HubService {
 
   /**
    * @summary Get the full shareable link of a hub
-   * @param hub hub's data
+   * @param link link to be used in the shareable link
    */
-  public getShareableLinkFor(hub: LightweightHub): string {
-    return `${environment.pupilFrontUri}/Hubs/join?link=${hub.link}`;
+  public getShareableLinkFor(link: string): string {
+    return `${environment.pupilFrontUri}/Hubs/join?link=${link}`;
   }
 
   /**

@@ -27,10 +27,7 @@ describe('HubService', () => {
     const hubLink = 'abcdef';
     const pupilUrl = environment.pupilFrontUri;
 
-    const hub = new LightweightHub();
-    hub.link = hubLink;
-
-    const result = service.getShareableLinkFor(hub);
+    const result = service.getShareableLinkFor(hubLink);
 
     expect(result).toBe(`${pupilUrl}/Hubs/join?link=${hubLink}`);
   });
