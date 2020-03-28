@@ -11,6 +11,9 @@ export enum RouteName {
     HUB_DETAILS = 'hubs/details/:id',
     NEW_HUB = 'hubs/new',
 
+    // Personal
+    PROFILE = 'profile',
+
     // Global / Homepage
     CONTACT = 'contact',
     HOMEPAGE = 'index',
