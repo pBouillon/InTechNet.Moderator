@@ -45,7 +45,7 @@ export class HubWidgetComponent implements OnInit, AfterViewInit {
 
     // Put the shareable link in the text box
     tempTextBox.value = this.hubService
-      .getShareableLinkFor(this.lightweightHub);
+      .getShareableLinkFor(this.lightweightHub.link);
 
     // Add the text box to the DOM
     document.body.appendChild(tempTextBox);

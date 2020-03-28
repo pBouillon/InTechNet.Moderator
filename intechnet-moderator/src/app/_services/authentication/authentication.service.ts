@@ -80,18 +80,9 @@ export class AuthenticationService {
    * @param password user's provided password value
    */
   login(login: string, password: string) {
-    const options = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-      body: {
-        login,
-        password
-      },
-    };
-
     return this.http.post<any>(
-      `${environment.apiUrl}/Moderators/authenticate`, options)
+      `${environment.apiUrl}/Moderators/authenticate`,
+      { login, password })
       .pipe(
         map(user => {
 
@@ -118,19 +109,9 @@ export class AuthenticationService {
    * @param password user's provided password value
    */
   register(nickname: string, email: string, password: string) {
-    const options = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-      body: {
-        nickname,
-        email,
-        password
-      },
-    };
-
     return this.http.post<any>(
-      `${environment.apiUrl}/Moderators`, options)
+      `${environment.apiUrl}/Moderators`,
+      { nickname, email, password })
       .pipe(
         map(user => {
 

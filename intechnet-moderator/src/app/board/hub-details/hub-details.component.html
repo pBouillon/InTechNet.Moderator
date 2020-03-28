@@ -65,8 +65,7 @@
 
         <!-- Attendees -->
         <div class="tab-pane fade show active" id="attendees" role="tabpanel" aria-labelledby="home-tab">
-            <app-attendees-list-widget [attendees]="this.hub.attendees" [idHub]="this.hub.id">
-            </app-attendees-list-widget>
+            <app-attendees-list-widget [hub]="this.hub"></app-attendees-list-widget>
         </div>
         <!-- /Attendees -->
         
@@ -78,7 +77,7 @@
         
         <!-- Options -->
         <div class="tab-pane fade" id="parameters" role="tabpanel" aria-labelledby="parameters-tab">
-            <app-hub-settings-widget></app-hub-settings-widget>
+            <app-hub-settings-widget [hub]="this.hub"></app-hub-settings-widget>
         </div>
         <!-- /Options -->
 

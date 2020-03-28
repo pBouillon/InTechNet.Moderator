@@ -2,6 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Pupil } from 'src/app/_models/entities/pupil/pupil';
 import { ToastrService } from 'ngx-toastr';
 import { HubService } from 'src/app/_services/hub/hub.service';
+import { Hub } from 'src/app/_models/entities/hub/hub';
+import { LightweightHub } from 'src/app/_models/entities/hub/lightweight-hub';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-attendees-list-widget',
@@ -11,16 +14,10 @@ import { HubService } from 'src/app/_services/hub/hub.service';
 export class AttendeesListWidgetComponent implements OnInit {
 
   /**
-   * @summary An array of all pupils attending this hub
+   * @summary Current hub
    */
   @Input()
-  public attendees: Array<Pupil>;
-
-  /**
-   * @summary Id of the current hub in which the pupils are
-   */
-  @Input()
-  public idHub: number;
+  public hub: Hub;
 
   /**
    * @summary buffer for the user to be kicked
@@ -41,9 +38,9 @@ export class AttendeesListWidgetComponent implements OnInit {
    */
   private removePupil(): void {
     // Retrieve the user kicked
-    const toBeKickedIndex = this.attendees.indexOf(this.toBeKicked);
+    const toBeKickedIndex = this.hub.attendees.indexOf(this.toBeKicked);
     if (toBeKickedIndex !== -1) {
-      this.attendees.splice(toBeKickedIndex, 1);
+      this.hub.attendees.splice(toBeKickedIndex, 1);
     }
 
     // Confirm kick to the current user
@@ -56,6 +53,36 @@ export class AttendeesListWidgetComponent implements OnInit {
   }
 
   /**
+   * @summary copy the hub's shareable link to the user's clipboard
+   */
+  onCopyShareableLink(): void {
+    // Create temporary component holding the text to be copied
+    const tempTextBox = document.createElement('textarea');
+    tempTextBox.style.position = 'fixed';
+    tempTextBox.style.left = '0';
+    tempTextBox.style.top = '0';
+    tempTextBox.style.opacity = '0';
+
+    // Put the shareable link in the text box
+    tempTextBox.value = this.hubService
+      .getShareableLinkFor(this.hub.link);
+
+    // Add the text box to the DOM
+    document.body.appendChild(tempTextBox);
+
+    // Focus and copy the content of the text box
+    tempTextBox.focus();
+    tempTextBox.select();
+    document.execCommand('copy');
+
+    // Clean DOM by removing the component
+    document.body.removeChild(tempTextBox);
+
+    // Notify the user
+    this.toastr.success('Lien de partage copié !');
+  }
+
+  /**
    * @summary display confirmation modal before kicking the user
    */
   public onKickRequest(event): void {
@@ -64,7 +91,7 @@ export class AttendeesListWidgetComponent implements OnInit {
 
     // Fetch the associated attendee
     this.toBeKicked = null;
-    this.attendees.forEach(attendee => {
+    this.hub.attendees.forEach(attendee => {
       if (attendee.id === attendeeId) {
         this.toBeKicked = attendee;
       }
@@ -82,12 +109,12 @@ export class AttendeesListWidgetComponent implements OnInit {
    * @summary kick the user `toBeKicked`
    */
   onKick(): void {
-    this.hubService.removePupil(this.idHub, this.toBeKicked.id)
+    this.hubService.removePupil(this.hub.id, this.toBeKicked.id)
       .subscribe(
         () => {
             this.removePupil();
         },
-        (error) => {
+        (error: HttpErrorResponse) => {
           this.toastr.error(
             'Une erreur est survenue lors de l\'expulsion de l\'élève',
             'Erreur de connexion au serveur');

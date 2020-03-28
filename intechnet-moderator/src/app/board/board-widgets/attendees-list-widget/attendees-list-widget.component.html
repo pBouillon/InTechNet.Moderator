@@ -1,6 +1,6 @@
 <!-- Attendees list -->
-<ul *ngIf="attendees && attendees.length > 0; else noAttendeesView" class="list-group">
-    <li *ngFor="let pupil of attendees; let counter = index" class="list-group-item p-0">
+<ul *ngIf="hub.attendees && hub.attendees.length > 0; else noAttendeesView" class="list-group">
+    <li *ngFor="let pupil of hub.attendees; let counter = index" class="list-group-item p-0">
         <!-- Pupil row -->
         <app-attendee-row-widget 
             [pupil]="pupil"
@@ -15,12 +15,16 @@
 <!-- No attendees view -->
 <ng-template #noAttendeesView>
     <div class="text-center text-muted pt-3">
-        Aucun élève n'est inscrit à ce hub
+        <p>Aucun élève n'est inscrit à ce hub</p>
+        
+        <button class="btn btn-outline-success mt-3"
+                (click)="onCopyShareableLink()">
+            <i data-feather="clipboard" class="mr-1 mr-md-2"></i>
+            Copier le lien partageable
+        </button>
     </div>
 </ng-template>
 <!-- /No attendees view -->
-
-<!-- Attendee kick modal -->
 
 <!-- Attendee kick modal -->
 <button id="openAttendeeKickModal" [hidden]="true" type="button" class="btn btn-primary" data-toggle="modal" data-target="#kickAttendeeModal">

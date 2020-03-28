@@ -1,1 +1,82 @@
-<p>hub-settings-widget works!</p>
+<!-- Shareable link -->
+<div class="container">
+    <h4 class="mb-3">
+        Obtenir le <span class=text-success>lien de partage</span>
+    </h4>
+
+    <p class="text-justify">
+        Envoyez ce lien à vos élèves pour les inviter à votre hub. N'importe
+        quel élève muni de ce lien pourra rejoindre votre hub.
+    </p>
+
+    <button class="btn btn-outline-success mt-3"
+            (click)="onCopyShareableLink()">
+        <i data-feather="clipboard" class="mr-1"></i>
+        Copier le lien partageable
+    </button>
+</div>
+
+<hr />
+<!-- /Shareable link -->
+
+<!-- Options -->
+<div class="container">
+    <h4 class="mb-3">
+        <span class=text-success>Options</span> du hub
+    </h4>
+
+    <h3 class="text-warning border border-warning p-1 text-center font-weight-bold">Work in Progress</h3>
+
+</div>
+
+<hr />
+<!-- /Options -->
+
+<!-- Danger zone -->
+<div class="container mb-5">
+    <h4 class="mb-3">
+        Paramètres <span class=text-danger>critiques</span>
+    </h4>
+
+    <p class="text-justify">
+        Si vous supprimez ce hub, <span class=text-danger>toutes les informations
+        associées seront supprimées</span>. Les élèves inscrits ne le seront plus
+        et vous ne pourrez plus y accéder.
+    </p>
+
+    <button id="openHubDeletionModal" 
+            class="btn btn-danger mt-3" 
+            type="button" 
+            data-toggle="modal"
+            data-target="#hubDeletionModal">
+        <i data-feather="trash-2" class="mr-1"></i> Supprimer le hub
+    </button>
+
+</div>
+<!-- /Danger zone -->
+
+<!-- Hub deletion modal -->
+
+<div class="modal fade" id="hubDeletionModal" tabindex="-1" role="dialog" aria-labelledby="hubDeletionModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="hubDeletionModalLabel">Suppression du hub</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Êtes vous certains de vouloir <span class="text-danger">supprimer votre hub ?</span>
+                Cette opération est <span class="text-danger">irreversible</span>.
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="closeHubDeletionModal" class="btn btn-outline-secondary"
+                    data-dismiss="modal">Annuler</button>
+                <button type="button" class="btn btn-danger" (click)="onDeleteHub()">Supprimer</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Hub deletion modal -->
