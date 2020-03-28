@@ -44,19 +44,18 @@
         et vous ne pourrez plus y accéder.
     </p>
 
-    <button class="btn btn-danger mt-3"
-            (click)="onDeleteHubRequest()">
-        <i data-feather="trash-2" class="mr-1"></i>
-        Supprimer le hub
+    <button id="openHubDeletionModal" 
+            class="btn btn-danger mt-3" 
+            type="button" 
+            data-toggle="modal"
+            data-target="#hubDeletionModal">
+        <i data-feather="trash-2" class="mr-1"></i> Supprimer le hub
     </button>
 
 </div>
 <!-- /Danger zone -->
 
 <!-- Hub deletion modal -->
-<button id="openHubDeletionModal" [hidden]="true" type="button" data-toggle="modal"
-    data-target="#hubDeletionModal">
-</button>
 
 <div class="modal fade" id="hubDeletionModal" tabindex="-1" role="dialog" aria-labelledby="hubDeletionModalLabel"
     aria-hidden="true">
