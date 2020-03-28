@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { LightweightHub } from 'src/app/_models/entities/hub/lightweight-hub';
 import { environment } from 'src/environments/environment';
@@ -26,18 +26,8 @@ export class HubService {
    * @param description optional description of the hub to be created
    */
   public createHub(name: string, description: string) {
-    const options = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-      body: {
-        name,
-        description
-      },
-    };
-
     return this.http.post<any>(
-      `${environment.apiUrl}/Hubs`, options);
+      `${environment.apiUrl}/Hubs`, { name, description });
   }
 
   /**
