@@ -74,25 +74,30 @@
     </p>
 
     <div class="card-deck mb-3 text-center">
-    
-        <div class="card card-lg mb-4 shadow-lg">
+
+        <div *ngFor="let subscriptionPlan of subscriptionPlans" class="card card-lg mb-4 shadow-lg">
             <div class="card-header">
-                <h4 class="my-0 font-weight-normal">Standard</h4>
+                <h4 class="my-0 font-weight-normal">{{ subscriptionPlan.subscriptionPlanName | titlecase }}</h4>
             </div>
             <div class="card-body">
-                <h1 class="card-title pricing-card-title">0€ <small class="text-muted">/ mois</small></h1>
+                <h1 class="card-title pricing-card-title">{{ subscriptionPlan.subscriptionPlanPrice }}€ <small class="text-muted">/ mois</small></h1>
                 <ul class="list-unstyled mt-3 mb-4">
-                    <li>Jusqu'à <span class="text-success">3 hubs</span></li>
-                    <li><span class="text-success">30 utilisateurs</span> par hubs</li>
+                    <li>Jusqu'à <span class="text-success">{{ subscriptionPlan.maxHubPerModeratorAccount }} hubs</span></li>
+                    <li><span class="text-success">{{ subscriptionPlan.maxAttendeesPerHub }} utilisateurs</span> par hubs</li>
                     <li><span class="text-success">3 modules simultanés</span> par hubs</li>
                     <li>Support informatique</li>
                 </ul>
-                <button type="button" class="btn btn-lg btn-block btn-outline-success" disabled>Sélectionné</button>
+                <button type="button" 
+                        class="btn btn-lg btn-block btn-outline-success" 
+                        [disabled]="currentSubscriptionPlan.idSubscriptionPlan === subscriptionPlan.idSubscriptionPlan">
+                    Sélectionné
+                </button>
             </div>
         </div>
+        
     </div>
 
-    <div class="card-deck mb-3 text-center">
+    <!-- <div class="card-deck mb-3 text-center">
 
         <div class="card card-lg mb-4 shadow-lg">
             <div class="card-header">
@@ -149,7 +154,7 @@
                 </button>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <hr class="my-5" />
 
@@ -263,6 +268,6 @@
 
         </div>
     </div>
-</!-->
+</div>
 <!-- /Account deletion modal -->
 
