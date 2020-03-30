@@ -6,6 +6,9 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Hub } from 'src/app/_models/entities/hub/hub';
 
+/**
+ * @summary Service for hub operations
+ */
 @Injectable({
   providedIn: 'root'
 })
