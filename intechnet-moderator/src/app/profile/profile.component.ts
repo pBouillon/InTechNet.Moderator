@@ -27,6 +27,14 @@ export class ProfileComponent implements OnInit, AfterViewInit {
    */
   public subscriptionPlans: Array<SubscriptionPlan>;
 
+  /**
+   * @summary default constructor
+   * @param authenticationService authentication service
+   * @param moderatorService moderator service
+   * @param router angular router
+   * @param subscriptionPlanService subscription plan service
+   * @param toastr toastr service
+   */
   constructor(
     private authenticationService: AuthenticationService,
     private moderatorService: ModeratorService,

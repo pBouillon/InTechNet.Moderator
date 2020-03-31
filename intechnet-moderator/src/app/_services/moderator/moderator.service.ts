@@ -11,7 +11,6 @@ export class ModeratorService {
   /**
    * @summary default constructor
    * @param http http service for HTTP requests
-   * @param authentication authentication service to fetch the current user
    */
   constructor(
     private http: HttpClient
