@@ -1,10 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SubscriptionPlanService } from './subscription-plan.service';
+import { ModeratorService } from './moderator.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-describe('SubscriptionPlanService', () => {
-  let service: SubscriptionPlanService;
+describe('ModeratorService', () => {
+  let service: ModeratorService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -12,7 +12,7 @@ describe('SubscriptionPlanService', () => {
         HttpClientTestingModule,
       ]
     });
-    service = TestBed.inject(SubscriptionPlanService);
+    service = TestBed.inject(ModeratorService);
   });
 
   it('should be created', () => {

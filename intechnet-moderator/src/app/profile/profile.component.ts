@@ -8,6 +8,7 @@ import { SubscriptionPlanService } from '../_services/subscription-plan/subscrip
 import { SubscriptionPlan } from '../_models/entities/subscription-plan/subscription-plan';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Moderator } from '../_models/entities/moderator/moderator';
+import { ModeratorService } from '../_services/moderator/moderator.service';
 
 @Component({
   selector: 'app-profile',
@@ -28,6 +29,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
 
   constructor(
     private authenticationService: AuthenticationService,
+    private moderatorService: ModeratorService,
     private router: Router,
     private subscriptionPlanService: SubscriptionPlanService,
     private toastr: ToastrService
@@ -59,6 +61,15 @@ export class ProfileComponent implements OnInit, AfterViewInit {
         });
   }
 
+  /**
+   * @summary Compare two values two `SubscriptionPlan` to sort pricing from the
+   *          most affordable to the most expensive
+   * @param a First `SubscriptionPlan` to compare
+   * @param b Second `SubscriptionPlan` to compare
+   * @returns A positive value if a is more expensive than b;
+   *          0 if equals;
+   *          A negative value if b is more expensive than a
+   */
   public compareSubscriptionPlans(a: SubscriptionPlan, b: SubscriptionPlan): number {
     return a.subscriptionPlanPrice - b.subscriptionPlanPrice;
   }
@@ -78,19 +89,26 @@ export class ProfileComponent implements OnInit, AfterViewInit {
    * @summary Delete the current account of the logged moderator
    */
   public onAccountDeletion(): void {
-    // Delete the profile on the server side
-    this.toastr.warning('Aucun appel à l\'API effectué', 'WiP');
+    this.moderatorService.deleteCurrentAccount()
+      .subscribe(
+        () => {
+          // logout the current user
+          this.authenticationService.logout();
 
-    // logout the current user
-    this.authenticationService.logout();
+          // Confirm the account deletion
+          this.toastr.success(
+            'Votre compte a été supprimé avec succès',
+            'Compte supprimé');
 
-    // Confirm the account deletion
-    this.toastr.success(
-      'Votre compte a été supprimé avec succès',
-      'Compte supprimé');
+          // Redirect to homepage
+          this.router.navigate(['/']);
+        },
+        (error: HttpErrorResponse) => {
+          this.toastr.error(
+            'Une erreur est survenue lors de la communication avec le serveur',
+            'Erreur de connexion');
+        });
 
-    // Redirect to homepage
-    this.router.navigate(['/']);
     document.getElementById('closeAccountDeletionModal').click();
   }
 
