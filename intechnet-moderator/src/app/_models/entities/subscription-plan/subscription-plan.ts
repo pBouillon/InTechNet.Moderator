@@ -20,6 +20,11 @@ export class SubscriptionPlan {
     maxHubPerModeratorAccount: number;
 
     /**
+     * @summary maximum modules allowed to be active at the same time per hub
+     */
+    maxModulePerHub: number;
+
+    /**
      * @summary maximum allowed attendees per hub for the current moderator for
      *          its subscription plan
      */
