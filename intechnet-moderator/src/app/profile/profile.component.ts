@@ -7,6 +7,7 @@ import { AuthenticationService } from '../_services/authentication/authenticatio
 import { SubscriptionPlanService } from '../_services/subscription-plan/subscription-plan.service';
 import { SubscriptionPlan } from '../_models/entities/subscription-plan/subscription-plan';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Moderator } from '../_models/entities/moderator/moderator';
 
 @Component({
   selector: 'app-profile',
@@ -16,14 +17,14 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class ProfileComponent implements OnInit, AfterViewInit {
 
   /**
+   * @summary Current moderator
+   */
+  public currentModerator: Moderator;
+
+  /**
    * @summary Collection of all available subscription plans
    */
   public subscriptionPlans: Array<SubscriptionPlan>;
-
-  /**
-   * @summary Subscription plan of the current moderator
-   */
-  public currentSubscriptionPlan: SubscriptionPlan;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -38,7 +39,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     // Fetch the current subscription plan
-    this.currentSubscriptionPlan = this.authenticationService.currentModerator.subscriptionPlanDto;
+    this.currentModerator = this.authenticationService.currentModerator;
 
     // Load all available subscription plans
     this.subscriptionPlans = [];
@@ -47,12 +48,30 @@ export class ProfileComponent implements OnInit, AfterViewInit {
       .subscribe(
         (data: Array<SubscriptionPlan>) => {
           data.map(raw => this.subscriptionPlans.push(raw));
+
+          // Sort the array of subscription plans based on their prices
+          this.subscriptionPlans.sort(this.compareSubscriptionPlans);
         },
         (error: HttpErrorResponse) => {
           this.toastr.error(
             'Une erreur est survenue lors de la communication avec le serveur',
             'Erreur de connexion');
         });
+  }
+
+  public compareSubscriptionPlans(a: SubscriptionPlan, b: SubscriptionPlan): number {
+    return a.subscriptionPlanPrice - b.subscriptionPlanPrice;
+  }
+
+  /**
+   * @summary Evaluate if the provided subscription plan is the same as the one of the
+   *          current moderator
+   * @param subscriptionPlan subscription plan to be checked against the current one
+   * @return true if both plans are the same; false otherwise
+   */
+  public isCurrentSubscriptionPlan(subscriptionPlan: SubscriptionPlan): boolean {
+    return this.currentModerator.subscriptionPlanDto
+      .idSubscriptionPlan === subscriptionPlan.idSubscriptionPlan;
   }
 
   /**

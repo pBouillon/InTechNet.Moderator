@@ -15,7 +15,7 @@
 <!-- Account summary -->
 <div class="container mb-2">
 
-    <h3 class="mb-3">
+    <h3 class="mb-5">
         <i data-feather="hash" class="mr-1"></i>
         Votre <span class=text-success>compte</span>
     </h3>
@@ -31,7 +31,7 @@
             <div class="col-sm-5">
                 <input type="text"
                     class="form-control"
-                    placeholder="Thomas A. Anderson"
+                    [placeholder]="currentModerator.nickname"
                     disabled
                     required />
             </div>
@@ -46,7 +46,7 @@
             <div class="col-sm-5">
                 <input type="text"
                     class="form-control"
-                    placeholder="thomas.a@anderson.me" 
+                    [placeholder]="currentModerator.email" 
                     disabled
                     required />
             </div>
@@ -75,7 +75,9 @@
 
     <div class="card-deck mb-3 text-center">
 
-        <div *ngFor="let subscriptionPlan of subscriptionPlans" class="card card-lg mb-4 shadow-lg">
+        <div *ngFor="let subscriptionPlan of subscriptionPlans" 
+                class="card mb-4"
+                [ngClass]="isCurrentSubscriptionPlan(subscriptionPlan) ? 'shadow-lg border-success' : 'shadow'">
             <div class="card-header">
                 <h4 class="my-0 font-weight-normal">{{ subscriptionPlan.subscriptionPlanName | titlecase }}</h4>
             </div>
@@ -88,9 +90,14 @@
                     <li>Support informatique</li>
                 </ul>
                 <button type="button" 
-                        class="btn btn-lg btn-block btn-outline-success" 
-                        [disabled]="currentSubscriptionPlan.idSubscriptionPlan === subscriptionPlan.idSubscriptionPlan">
-                    Sélectionné
+                        class="btn btn-lg btn-block"
+                        [ngClass]="isCurrentSubscriptionPlan(subscriptionPlan) ? 'btn-outline-success' : 'btn-success'" 
+                        disabled>
+                    {{
+                        isCurrentSubscriptionPlan(subscriptionPlan)
+                            ? 'Sélectionné' 
+                            : 'Prochainement disponible'
+                    }}
                 </button>
             </div>
         </div>
