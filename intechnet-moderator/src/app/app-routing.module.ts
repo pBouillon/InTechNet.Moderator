@@ -13,6 +13,7 @@ import { AuthenticationGuard } from './_guards/authentication-guard/authenticati
 import { NewHubComponent } from './board/new-hub/new-hub.component';
 import { HubLimitGuard } from './_guards/hub-limit-guard/hub-limit-guard.guard';
 import { HubDetailsComponent } from './board/hub-details/hub-details.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   // Authentication
@@ -28,6 +29,7 @@ const routes: Routes = [
     component: BoardComponent,
     canActivate: [ AuthenticationGuard ]
   },
+  // Hub details
   {
     path: RouteName.HUB_DETAILS,
     component: HubDetailsComponent,
@@ -38,6 +40,15 @@ const routes: Routes = [
     path: RouteName.NEW_HUB,
     component: NewHubComponent,
     canActivate: [ AuthenticationGuard, HubLimitGuard ]
+  },
+
+  // Personal
+  // ----------
+  // Profile
+  {
+    path: RouteName.PROFILE,
+    component: ProfileComponent,
+    canActivate: [AuthenticationGuard]
   },
 
   // Global
@@ -52,6 +63,9 @@ const routes: Routes = [
     redirectTo: RouteName.HOMEPAGE,
     pathMatch: 'full'
   },
+
+  // Errors
+  // ----------
   // 404 error page
   { path: '**', component: PageNotFoundComponent },
 ];
