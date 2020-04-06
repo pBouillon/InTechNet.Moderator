@@ -7,7 +7,6 @@
     <p class="ml-2 text-muted"> ({{ availableModules.length }} disponibles)</p>
 </div>
 
-
 <div *ngFor="let modulesGroup of toGroupedModules(availableModules); let lineNb = index" class="card-deck my-3 text-center">
     
     <div *ngFor="let module of modulesGroup; let colNb = index" class="card mb-3">

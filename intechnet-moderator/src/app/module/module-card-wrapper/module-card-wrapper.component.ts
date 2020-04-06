@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Module } from 'src/app/_models/entities/module/module';
 import { LightweightSubscriptionPlan } from 'src/app/_models/entities/subscription-plan/lightweight-subscription-plan';
 import { Tag } from 'src/app/_models/entities/module/tag';
 import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from 'src/app/_services/authentication/authentication.service';
+import { ModuleService } from 'src/app/_services/module/module.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-module-card-wrapper',
@@ -35,11 +37,15 @@ export class ModuleCardWrapperComponent implements OnInit {
    */
   private modulesGroupsSize = 3;
 
+  @Input()
+  public IdHub: number;
+
   /**
    * @summary default constructor
    */
   constructor(
     private authenticationService: AuthenticationService,
+    private moduleService: ModuleService,
     private toastr: ToastrService,
   ) { }
 
@@ -52,7 +58,26 @@ export class ModuleCardWrapperComponent implements OnInit {
       .subscriptionPlanDto
       .maxModulePerHub;
 
-    this.retrieveAvailableModules();
+    this.moduleService.getAvailableModulesForHub(this.IdHub)
+      .subscribe(
+        (modules: Array<Module>) => {
+          this.availableModules = modules;
+        },
+        (error: HttpErrorResponse) => {
+          let errorMessage = '';
+          switch (error.status) {
+            case 400:
+              errorMessage = 'Impossible de récupérer les modules de ce hub';
+              return;
+
+            case 401:
+              errorMessage = 'Vous devez être connecté pour effectuer cette action';
+              return;
+          }
+
+          this.toastr.error(errorMessage, 'Erreur de communication avec le serveur');
+        }
+      );
   }
 
   /**
@@ -70,7 +95,8 @@ export class ModuleCardWrapperComponent implements OnInit {
    */
   public onModuleCardClick(lineNb: number, colNb: number): void {
     // Retrieve the ID of the card from its place in the deck
-    const cardId = lineNb * this.modulesGroupsSize + colNb;
+    // Since ids in SQL starts at 1 and in arrays at 0, add one to it
+    const cardId = lineNb * this.modulesGroupsSize + colNb + 1;
 
     // Retrieve the corresponding module object
     const clickedModule = this.availableModules
@@ -97,45 +123,6 @@ export class ModuleCardWrapperComponent implements OnInit {
 
     // TODO: make the API call
   }
-
-  /**
-   * @todo TESTING METHOD - TO BE REMOVED
-   */
-  private createDummyModule(id: number): Module {
-    const dummySP = new LightweightSubscriptionPlan(
-      { idSubscriptionPlan: 1, subscriptionPlanName: 'Standard' }
-    );
-
-    return new Module(
-      {
-        description: 'A very interesting description A very interesting description A very interesting description A very interesting description',
-        id,
-        isActive: false,
-        moduleSubscriptionPlanDto: dummySP,
-        name: 'My dummy module',
-        tags: [new Tag({ id: 1, name: 'tag 1' })]
-      });
-  }
-
-  /**
-   * @summary retrieve all available modules for this hub
-   */
-  private retrieveAvailableModules(): void {
-    // TODO: replace by API call
-    let id = 0;
-    this.availableModules = [
-      this.createDummyModule(id++),
-      this.createDummyModule(id++),
-      this.createDummyModule(id++),
-      this.createDummyModule(id++),
-      this.createDummyModule(id++),
-      this.createDummyModule(id++),
-      this.createDummyModule(id++),
-      this.createDummyModule(id++),
-      this.createDummyModule(id),
-    ];
-  }
-
   /**
    * @summary Rearrange an array of module into an array of modules grouped in another array
    * @param toGroup array of modules to group
