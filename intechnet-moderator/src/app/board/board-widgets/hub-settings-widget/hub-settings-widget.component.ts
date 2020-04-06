@@ -77,11 +77,4 @@ export class HubSettingsWidgetComponent implements OnInit {
         });
   }
 
-  /**
-   * @summary Open the hub deletion confirmation modal
-   */
-  onDeleteHubRequest(): void {
-    document.getElementById('openHubDeletionModal').click();
-  }
-
 }
