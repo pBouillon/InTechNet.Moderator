@@ -38,7 +38,7 @@ export class ModuleCardWrapperComponent implements OnInit {
   private modulesGroupsSize = 3;
 
   @Input()
-  public IdHub: number;
+  public idHub: number;
 
   /**
    * @summary default constructor
@@ -58,7 +58,7 @@ export class ModuleCardWrapperComponent implements OnInit {
       .subscriptionPlanDto
       .maxModulePerHub;
 
-    this.moduleService.getAvailableModulesForHub(this.IdHub)
+    this.moduleService.getAvailableModulesForHub(this.idHub)
       .subscribe(
         (modules: Array<Module>) => {
           this.availableModules = modules;
@@ -95,12 +95,10 @@ export class ModuleCardWrapperComponent implements OnInit {
    */
   public onModuleCardClick(lineNb: number, colNb: number): void {
     // Retrieve the ID of the card from its place in the deck
-    // Since ids in SQL starts at 1 and in arrays at 0, add one to it
-    const cardId = lineNb * this.modulesGroupsSize + colNb + 1;
+    const cardId = lineNb * this.modulesGroupsSize + colNb;
 
     // Retrieve the corresponding module object
-    const clickedModule = this.availableModules
-      .filter(el => el.id === cardId)[0];
+    const clickedModule = this.availableModules[cardId];
 
     // If no objects are matching, toast the error and exit
     if (clickedModule === undefined) {
@@ -119,9 +117,24 @@ export class ModuleCardWrapperComponent implements OnInit {
     }
 
     // Toggle the card state
-    clickedModule.isActive = !clickedModule.isActive;
-
-    // TODO: make the API call
+    this.moduleService.toggleModuleAvailability(this.idHub, clickedModule.id)
+      .subscribe(
+        // On success, toggle the object status
+        () => clickedModule.isActive = !clickedModule.isActive,
+        // Show toastr on error
+        (error: HttpErrorResponse) => {
+          let errorMessage = '';
+          switch (error.status) {
+            case 400:
+              errorMessage = 'Un problème est survenu';
+              return;
+            case 401:
+              errorMessage = 'Vous devez être connecté pour effectuer cette opération';
+              return;
+          }
+          this.toastr.error(errorMessage, 'Impossible de sélectionner ce module');
+        }
+      );
   }
   /**
    * @summary Rearrange an array of module into an array of modules grouped in another array
