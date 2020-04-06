@@ -1,1 +1,30 @@
-<p>module-card-wrapper works!</p>
+<div class="d-flex mt-4 mb-2 justify-content-between">
+    <h5>
+        Sélectionnés : {{ getSelectedModulesCount() }}
+        <span class="text-success">/ {{ maxAllowedModules }}</span>
+    </h5>
+    
+    <p class="ml-2 text-muted"> ({{ availableModules.length }} disponibles)</p>
+</div>
+
+
+<div *ngFor="let modulesGroup of toGroupedModules(availableModules); let lineNb = index" class="card-deck my-3 text-center">
+    
+    <div *ngFor="let module of modulesGroup; let colNb = index" class="card mb-3">
+
+        <div (click)="onModuleCardClick(lineNb, colNb)"
+                class="card-body cursor-pointer"
+                [ngClass]="{ 'shadow border border-success': module.isActive }">
+            <h5 class="card-title text-success"
+                [ngClass]="{ 'text-muted': !module.isActive && maxAllowedModulesReached}">
+                {{ module.name }}
+            </h5>
+            <p class="card-text"
+                [ngClass]="{ 'text-muted': !module.isActive && maxAllowedModulesReached}">
+                {{ module.description }}
+            </p>
+        </div>
+
+    </div>
+
+</div>

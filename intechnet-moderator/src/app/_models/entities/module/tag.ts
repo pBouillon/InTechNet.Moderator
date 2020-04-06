@@ -11,7 +11,7 @@ export class Tag {
     /**
      * @summary tag name
      */
-    Name: string;
+    name: string;
 
     constructor(fields?: Partial<Tag>) {
         Object.assign(this, { ...fields });
