@@ -18,7 +18,7 @@ import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { BoardModule } from './board/board.module';
-import { NewHubComponent } from './board/new-hub/new-hub.component';
+import { NewHubComponent } from './hub/new-hub/new-hub.component';
 import { ProfileModule } from './profile/profile.module';
 
 @NgModule({

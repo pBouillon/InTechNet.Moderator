@@ -10,9 +10,9 @@ import { LoginComponent } from './authentication/login/login.component';
 import { BoardComponent } from './board/board/board.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { AuthenticationGuard } from './_guards/authentication-guard/authentication.guard';
-import { NewHubComponent } from './board/new-hub/new-hub.component';
+import { NewHubComponent } from './hub/new-hub/new-hub.component';
 import { HubLimitGuard } from './_guards/hub-limit-guard/hub-limit-guard.guard';
-import { HubDetailsComponent } from './board/hub-details/hub-details.component';
+import { HubDetailsComponent } from './hub/hub-details/hub-details.component';
 import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
