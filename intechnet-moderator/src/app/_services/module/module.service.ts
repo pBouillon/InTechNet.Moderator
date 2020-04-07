@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { Module } from 'src/app/_models/entities/module/module';
 import { environment } from 'src/environments/environment';
 
+/**
+ * @summary service for modules related operations and API calls
+ */
 @Injectable({
   providedIn: 'root'
 })

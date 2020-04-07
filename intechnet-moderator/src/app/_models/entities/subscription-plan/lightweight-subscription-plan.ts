@@ -1,6 +1,5 @@
 /**
- * @summary Lightweight version of the subscription plan DTO representing
- * the subscription of a moderator
+ * @summary Lightweight version of the subscription plan DTO
  */
 export class LightweightSubscriptionPlan {
 

@@ -11,7 +11,7 @@
     
     <div *ngFor="let module of modulesGroup; let colNb = index" class="card mb-3">
 
-        <div (click)="onModuleCardClick(lineNb, colNb)"
+        <div (click)="onModuleCardClick(module)"
                 class="card-body cursor-pointer"
                 [ngClass]="{ 'shadow border border-success': module.isActive }">
             <h5 class="card-title text-success"

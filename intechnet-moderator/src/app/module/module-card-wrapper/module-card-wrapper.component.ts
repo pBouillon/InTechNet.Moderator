@@ -1,12 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Module } from 'src/app/_models/entities/module/module';
-import { LightweightSubscriptionPlan } from 'src/app/_models/entities/subscription-plan/lightweight-subscription-plan';
-import { Tag } from 'src/app/_models/entities/module/tag';
 import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from 'src/app/_services/authentication/authentication.service';
 import { ModuleService } from 'src/app/_services/module/module.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
+/**
+ * @summary group and displays the list of all allowed modules for this hub
+ */
 @Component({
   selector: 'app-module-card-wrapper',
   templateUrl: './module-card-wrapper.component.html',
@@ -93,23 +94,9 @@ export class ModuleCardWrapperComponent implements OnInit {
   /**
    * @summary toggle the card status for this hub
    */
-  public onModuleCardClick(lineNb: number, colNb: number): void {
-    // Retrieve the ID of the card from its place in the deck
-    const cardId = lineNb * this.modulesGroupsSize + colNb;
-
-    // Retrieve the corresponding module object
-    const clickedModule = this.availableModules[cardId];
-
-    // If no objects are matching, toast the error and exit
-    if (clickedModule === undefined) {
-      this.toastr.error(
-        'Impossible d\'interagir avec ce module',
-        'Une erreur est survenue');
-      return;
-    }
-
+  public onModuleCardClick(module: Module): void {
     // Check if any selection is possible to activate another module
-    if (this.maxAllowedModulesReached && !clickedModule.isActive) {
+    if (this.maxAllowedModulesReached && !module.isActive) {
       this.toastr.error(
         'Vous avez atteint le nombre maximum de modules pour ce hub',
         'Impossible de sélectionner ce module');
@@ -117,10 +104,10 @@ export class ModuleCardWrapperComponent implements OnInit {
     }
 
     // Toggle the card state
-    this.moduleService.toggleModuleAvailability(this.idHub, clickedModule.id)
+    this.moduleService.toggleModuleAvailability(this.idHub, module.id)
       .subscribe(
         // On success, toggle the object status
-        () => clickedModule.isActive = !clickedModule.isActive,
+        () => module.isActive = !module.isActive,
         // Show toastr on error
         (error: HttpErrorResponse) => {
           let errorMessage = '';
