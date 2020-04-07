@@ -123,7 +123,7 @@ export class ModuleCardWrapperComponent implements OnInit {
         }
       );
   }
-
+  
   /**
    * @summary Rearrange an array of module into an array of modules grouped in another array
    * @param toGroup array of modules to group
