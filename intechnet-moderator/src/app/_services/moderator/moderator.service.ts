@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
+/**
+ * @summary service for moderator related operations and API calls
+ */
 @Injectable({
   providedIn: 'root'
 })
