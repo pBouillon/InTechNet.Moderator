@@ -12,13 +12,13 @@
         <!-- Authenticated moderator -->
         <ul *ngIf="authenticationService.isModeratorLoggedIn; else guestNavigation"
             class="navbar-nav mr-auto">
-            <li class="nav-item itn-nav-item mr-3">
+            <li class="nav-item itn-nav-item mr-3" data-toggle="collapse" data-target=".navbar-collapse.show">
                 <a class="nav-link" [routerLink]="boardLinkRoute">Tableau de bord</a>
             </li>
-            <li class="nav-item itn-nav-item mr-3">
+            <li class="nav-item itn-nav-item mr-3" data-toggle="collapse" data-target=".navbar-collapse.show">
                 <a class="nav-link" [routerLink]="profileLinkRoute">Profil</a>
             </li>
-            <li class="nav-item itn-nav-item mr-3">
+            <li class="nav-item itn-nav-item mr-3" data-toggle="collapse" data-target=".navbar-collapse.show">
                 <a class="nav-link" [routerLink]="contactLinkRoute">Contact</a>
             </li>
         </ul>
@@ -27,10 +27,10 @@
         <!-- Guest -->
         <ng-template #guestNavigation>
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item itn-nav-item mr-3">
+                <li class="nav-item itn-nav-item mr-3" data-toggle="collapse" data-target=".navbar-collapse.show">
                     <a class="nav-link" [routerLink]="homepageLinkRoute">Accueil</a>
                 </li>
-                <li class="nav-item itn-nav-item mr-3">
+                <li class="nav-item itn-nav-item mr-3" data-toggle="collapse" data-target=".navbar-collapse.show">
                     <a class="nav-link" [routerLink]="contactLinkRoute">Contact</a>
                 </li>
             </ul>
@@ -42,7 +42,7 @@
         <!-- Authenticated moderator -->
         <ul *ngIf="authenticationService.isModeratorLoggedIn; else guestAuthentication"
             class="navbar-nav mr-0">
-            <li class="nav-item itn-nav-item">
+            <li class="nav-item itn-nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
                 <a class="nav-link" [routerLink]="" (click)="disconnect()">Se déconnecter</a>
             </li>
         </ul>
@@ -51,10 +51,10 @@
         <!-- Guest -->
         <ng-template #guestAuthentication>
             <ul class="navbar-nav mr-0">
-                <li class="nav-item itn-nav-item">
+                <li class="nav-item itn-nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
                     <a class="nav-link" [routerLink]="registerLinkRoute">S'inscrire</a>
                 </li>
-                <li class="nav-item itn-nav-item">
+                <li class="nav-item itn-nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
                     <a class="nav-link" [routerLink]="loginLinkRoute">Se connecter</a>
                 </li>
             </ul>
