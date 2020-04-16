@@ -25,7 +25,75 @@
         <span class=text-success>Options</span> du hub
     </h4>
 
-    <h3 class="text-warning border border-warning p-1 text-center font-weight-bold">Work in Progress</h3>
+    <form [formGroup]="updateHubForm" (ngSubmit)="onUpdateHub()" autocomplete="off">
+
+        <!-- Hub name -->
+        <div class="form-group row justify-content-center">
+            <label for="nameField" class="col-sm-3 col-form-label"
+                [ngClass]="{'text-danger': isFieldInvalid('name')}">
+                Nom *
+            </label>
+            <div class="col-sm-5">
+                <input type="text" 
+                    class="form-control" 
+                    formControlName="name" 
+                    id="nameField"
+                    placeholder="Les dangers d'internet"
+                    [ngClass]="{'border border-danger': isFieldInvalid('name')}"
+                    max="21"
+                    required />
+                <small class="text-muted">
+                    Le nouveau nom de votre module (21 caractères maximums)
+                </small>
+
+                <small *ngIf="isFieldInvalid('name')" class="text-danger">
+                    <span *ngIf="f.name.errors && f.name.errors.required">
+                        Vous devez spécifier un nouveau nom pour votre hub
+                    </span>
+                </small>
+            </div>
+        </div>
+        <!-- /Hub name -->
+
+        <!-- Description -->
+        <div class="form-group row justify-content-center">
+            <label for="descriptionField" 
+                class="col-sm-3 col-form-label"
+                [ngClass]="{'text-danger': isFieldInvalid('description')}">
+                Description du hub *
+            </label>
+            <div class="col-sm-5">
+                <input type="text"
+                    class="form-control"
+                    formControlName="description"
+                    id="descriptionField"
+                    placeholder="Hub de la classe 4ème C de M. Martin"
+                    required/>
+                <small class="text-muted">
+                    La nouvelle description de votre module
+                </small>
+
+                <small *ngIf="isFieldInvalid('description')" class="text-danger">
+                    <span *ngIf="f.description.errors && f.description.errors.required">
+                        Vous devez spécifier une nouvelle description pour votre hub
+                    </span>
+                </small>
+            </div>
+        </div>
+        <!-- /Description -->
+
+        <!-- Form buttons -->
+        <div class="form-group">
+            <button type="submit"
+                class="btn btn-success mt-3"
+                [disabled]="!updateHubForm.valid">
+                Mettre à jour le hub
+            </button>
+        </div>
+        <!-- /Form buttons -->
+
+    </form>
+    <!-- /Form content -->
 
 </div>
 
@@ -45,7 +113,7 @@
     </p>
 
     <button id="openHubDeletionModal" 
-            class="btn btn-danger mt-3" 
+            class="btn btn-danger mt-3"
             type="button"
             data-toggle="modal"
             data-target="#hubDeletionModal">
