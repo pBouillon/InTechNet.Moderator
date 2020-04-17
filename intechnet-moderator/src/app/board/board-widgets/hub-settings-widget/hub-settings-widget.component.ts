@@ -123,7 +123,7 @@ export class HubSettingsWidgetComponent implements OnInit {
       .subscribe(
         () => {
           this.toastr.success('Le hub a bien été mis à jour',
-          'Mise à jour effectuée');
+            'Mise à jour effectuée');
           this.hub.name = hubName;
           this.hub.description = hubDescription;
         },
