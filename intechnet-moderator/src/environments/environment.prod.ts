@@ -1,6 +1,6 @@
 export const environment = {
-  apiUrl: 'http://8080/api/v1',
+  apiUrl: 'http://193.50.40.81:5000/api/v1',
   mailAddress: 'intechnet@yopmail.com',
   production: true,
-  pupilFrontUri: 'http://localhost:4201',
+  pupilFrontUri: 'http://193.50.40.81:4201',
 };
