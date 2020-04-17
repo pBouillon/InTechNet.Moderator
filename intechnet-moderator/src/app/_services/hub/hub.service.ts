@@ -67,7 +67,7 @@ export class HubService {
    * @param link link to be used in the shareable link
    */
   public getShareableLinkFor(link: string): string {
-    return `${environment.pupilFrontUri}/Hubs/join?link=${link}`;
+    return `${environment.pupilFrontUri}/hubs/join?link=${link}`;
   }
 
   /**
@@ -91,6 +91,17 @@ export class HubService {
 
     return this.http.delete<any>(
       `${environment.apiUrl}/Moderators/me/Hubs/${idHub}/Pupils/${idPupil}`, options);
+  }
+
+  /**
+   * @summary Update a hub according to the parameters
+   * @param idHub the id of the hub to update
+   * @param hubName the new name of the hub
+   * @param hubDescription the new description of the hub
+   */
+  public updateHub(idHub: number, name: string, description: string): Observable<any> {
+    return this.http.put<any>(
+      `${environment.apiUrl}/Hubs/${idHub}`, { name, description });
   }
 
 }

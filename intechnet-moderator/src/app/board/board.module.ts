@@ -7,6 +7,7 @@ import { AttendeesListWidgetComponent } from './board-widgets/attendees-list-wid
 import { HubSettingsWidgetComponent } from './board-widgets/hub-settings-widget/hub-settings-widget.component';
 import { AttendeeRowWidgetComponent } from './board-widgets/attendee-row-widget/attendee-row-widget.component';
 import { ModuleModule } from '../module/module.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,8 @@ import { ModuleModule } from '../module/module.module';
   imports: [
     CommonModule,
     ModuleModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class BoardModule { }
