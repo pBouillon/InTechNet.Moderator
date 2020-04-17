@@ -4,7 +4,6 @@ import { HubService } from './hub.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ToastrModule } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
-import { LightweightHub } from 'src/app/_models/entities/hub/lightweight-hub';
 
 describe('HubService', () => {
   let service: HubService;
@@ -29,6 +28,6 @@ describe('HubService', () => {
 
     const result = service.getShareableLinkFor(hubLink);
 
-    expect(result).toBe(`${pupilUrl}/Hubs/join?link=${hubLink}`);
+    expect(result).toBe(`${pupilUrl}/hubs/join?link=${hubLink}`);
   });
 });
