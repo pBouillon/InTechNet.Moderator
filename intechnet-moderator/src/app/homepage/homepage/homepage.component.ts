@@ -36,13 +36,15 @@ export class HomepageComponent implements OnInit {
   private _initializeSections(): void {
     this.introSections = [
       new ImageWidgetData(
-        'À travers divers modules et activités, organisez des sessions de sensibilisation ' +
-        'et de formation autour des thèmes du numérique.',
+        'Sélectionnez des activités à réaliser en toute autonomie sur les '
+        + 'principaux sujets du numérique, les bonnes pratiques et notions clefs',
+        // 'Sélectionnez des activités à réaliser en toute autonomie par les élèves. '
+        // + 'Accompagnez leurs avancées',
         '../../../assets/img/working-student.jpg'
       ),
       new ImageWidgetData(
-        'Organisez vos espaces de travail, suivez l\'avancée de vos ' +
-        'participants et gérez les modules de formation assignés.',
+        'Organisez vos espaces de travail par thématiques et gérez en quelques clics '
+        + 'les ateliers de vos classes ainsi que vos participants',
         '../../../assets/img/computer-closeup.jpg',
         true
       )
