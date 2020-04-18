@@ -1,10 +1,11 @@
+import { environment } from 'src/environments/environment';
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from 'src/app/_services/authentication/authentication.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RouteName } from 'src/app/routing/route-names';
 import { ToastrService } from 'ngx-toastr';
-import { environment } from 'src/environments/environment';
+
+import { AuthenticationService } from 'src/app/_services/authentication/authentication.service';
+import { RouteName } from 'src/app/routing/route-names';
 
 /**
  * @summary login component containing login form and actions
