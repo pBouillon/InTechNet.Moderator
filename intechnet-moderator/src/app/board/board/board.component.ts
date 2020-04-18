@@ -95,13 +95,6 @@ export class BoardComponent implements AfterViewInit, OnDestroy, OnInit {
   }
 
   /**
-   * @summary Refresh the moderator hub's data if needed
-   */
-  public refreshHubs(): void {
-
-  }
-
-  /**
    * @summary Replace the feather icons tag by svg source
    */
   private useFeatherIcons(): void {
