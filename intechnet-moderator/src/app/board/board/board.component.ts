@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, OnInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit, OnDestroy } from '@angular/core';
 import { AuthenticationService } from 'src/app/_services/authentication/authentication.service';
 
 import { Moderator } from 'src/app/_models/entities/moderator/moderator';
@@ -17,7 +17,7 @@ import * as feather from 'feather-icons';
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss']
 })
-export class BoardComponent implements AfterViewInit, OnInit {
+export class BoardComponent implements AfterViewInit, OnDestroy, OnInit {
 
   /**
    * @summary Current moderator representation
@@ -27,7 +27,17 @@ export class BoardComponent implements AfterViewInit, OnInit {
   /**
    * @summary Collection of all hubs owned by the current moderator
    */
-  public moderatorHubs: Array<LightweightHub>;
+  public moderatorHubs: Array<LightweightHub> = [];
+
+  /**
+   * @summary timeout for content refresh
+   */
+  private refreshTimeout;
+
+  /**
+   * @summary delay between each refresh in ms
+   */
+  private refreshInterval = 3_000;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -41,8 +51,23 @@ export class BoardComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit(): void {
-    this.loadModeratorHubs();
+    // Retrieve the current moderator
     this.currentModerator = this.authenticationService.currentModerator;
+
+    // Fetch its hubs
+    this.loadModeratorHubs();
+
+    // Activate the refresh timer
+    this.refreshTimeout = setInterval(() =>
+      this.loadModeratorHubs(),
+      this.refreshInterval);
+  }
+
+  /**
+   * @summary clear refresh timeout
+   */
+  ngOnDestroy(): void {
+    clearInterval(this.refreshTimeout);
   }
 
   /**
@@ -50,19 +75,12 @@ export class BoardComponent implements AfterViewInit, OnInit {
    *          current moderator
    */
   private loadModeratorHubs(): void {
-    // Initialize the collection of hubs
-    this.moderatorHubs = [];
-
     // retrieve user's hubs
     this.hubService.getHubs()
       .subscribe(
-        (data: Array<LightweightHub>) => {
-          // Convert each raw hub representation to the LightweightHub object
-          // to populate the array
-          data.map(raw =>
-            this.moderatorHubs.push(new LightweightHub(raw)));
-        },
-        (error: HttpErrorResponse) => {
+        (data: Array<LightweightHub>) =>
+          this.moderatorHubs = data,
+        (_: HttpErrorResponse) => {
           this.toastr.error(
             'Une erreur est survenue lors de la récupération de vos hubs',
             'Erreur de connexion');
@@ -74,6 +92,13 @@ export class BoardComponent implements AfterViewInit, OnInit {
    */
   public onNewHub(): void {
     this.router.navigate([RouteName.NEW_HUB]);
+  }
+
+  /**
+   * @summary Refresh the moderator hub's data if needed
+   */
+  public refreshHubs(): void {
+
   }
 
   /**
