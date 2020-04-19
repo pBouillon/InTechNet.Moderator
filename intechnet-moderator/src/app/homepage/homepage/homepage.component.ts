@@ -38,8 +38,6 @@ export class HomepageComponent implements OnInit {
       new ImageWidgetData(
         'Sélectionnez des activités à réaliser en toute autonomie sur les '
         + 'principaux sujets du numérique, les bonnes pratiques et notions clefs',
-        // 'Sélectionnez des activités à réaliser en toute autonomie par les élèves. '
-        // + 'Accompagnez leurs avancées',
         '../../../assets/img/working-student.jpg'
       ),
       new ImageWidgetData(
