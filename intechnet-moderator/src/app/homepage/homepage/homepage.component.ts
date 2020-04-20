@@ -38,12 +38,12 @@ export class HomepageComponent implements OnInit {
       new ImageWidgetData(
         'Sélectionnez des activités à réaliser en toute autonomie sur les '
         + 'principaux sujets du numérique, les bonnes pratiques et notions clefs',
-        '../../../assets/img/working-student.jpg'
+        'https://images.unsplash.com/photo-1491975474562-1f4e30bc9468?ixid=2yJhcHBfaWQiOjEyMDd9&fm=jpg&fit=crop&w=750&h=750'
       ),
       new ImageWidgetData(
         'Organisez vos espaces de travail par thématiques et gérez en quelques clics '
         + 'les ateliers de vos classes ainsi que vos participants',
-        '../../../assets/img/computer-closeup.jpg',
+        'https://images.unsplash.com/photo-1516387938699-a93567ec168e?ixid=2yJhcHBfaWQiOjEyMDd9&fm=jpg&fit=crop&w=750&h=750',
         true
       )
     ];
