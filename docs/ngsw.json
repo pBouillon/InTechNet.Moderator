@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1587390636570,
+  "timestamp": 1587392681938,
   "index": "/InTechNet.Moderator/index.html",
   "assetGroups": [
     {
@@ -10,8 +10,8 @@
       "urls": [
         "/InTechNet.Moderator/favicon.ico",
         "/InTechNet.Moderator/index.html",
-        "/InTechNet.Moderator/main-es2015.27d6176094f7c2b9b456.js",
-        "/InTechNet.Moderator/main-es5.27d6176094f7c2b9b456.js",
+        "/InTechNet.Moderator/main-es2015.136a51ae02b9a21bf7f3.js",
+        "/InTechNet.Moderator/main-es5.136a51ae02b9a21bf7f3.js",
         "/InTechNet.Moderator/manifest.webmanifest",
         "/InTechNet.Moderator/polyfills-es2015.1f913f16a2d346cc8bdc.js",
         "/InTechNet.Moderator/polyfills-es5.1a3c78b07cd6f16c6e9a.js",
@@ -33,9 +33,7 @@
         "/InTechNet.Moderator/assets/icons/icon-384x384.png",
         "/InTechNet.Moderator/assets/icons/icon-512x512.png",
         "/InTechNet.Moderator/assets/icons/icon-72x72.png",
-        "/InTechNet.Moderator/assets/icons/icon-96x96.png",
-        "/InTechNet.Moderator/assets/img/computer-closeup.jpg",
-        "/InTechNet.Moderator/assets/img/working-student.jpg"
+        "/InTechNet.Moderator/assets/icons/icon-96x96.png"
       ],
       "patterns": []
     }
@@ -50,12 +48,10 @@
     "/InTechNet.Moderator/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
     "/InTechNet.Moderator/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
     "/InTechNet.Moderator/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
-    "/InTechNet.Moderator/assets/img/computer-closeup.jpg": "fe808f84781c7455f477ea7387da070c922d5dcc",
-    "/InTechNet.Moderator/assets/img/working-student.jpg": "3266c82a69f8abc08fae1459c367b32f7e8bf195",
     "/InTechNet.Moderator/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/InTechNet.Moderator/index.html": "ed9317d53cf3bda05d6f970a3212fa2e0f7f7f95",
-    "/InTechNet.Moderator/main-es2015.27d6176094f7c2b9b456.js": "7153617eb8480560743661c763f16104d1a8b4df",
-    "/InTechNet.Moderator/main-es5.27d6176094f7c2b9b456.js": "575dbe4527b4ccd5caef27b6e895ba7cb39d40ad",
+    "/InTechNet.Moderator/index.html": "194cc3800e72a006ad096a5fe22ee84270cf6cfa",
+    "/InTechNet.Moderator/main-es2015.136a51ae02b9a21bf7f3.js": "9410e50d5563d5c154065707f0272769347bf6a7",
+    "/InTechNet.Moderator/main-es5.136a51ae02b9a21bf7f3.js": "65f59ad6a6367c026f0e7bd6b90566b451025802",
     "/InTechNet.Moderator/manifest.webmanifest": "f302058bdd4eb37b82261da2ced6ef91d6caa261",
     "/InTechNet.Moderator/polyfills-es2015.1f913f16a2d346cc8bdc.js": "72ad4ccc0a3916ae4598199447cdeadd6d380570",
     "/InTechNet.Moderator/polyfills-es5.1a3c78b07cd6f16c6e9a.js": "e5472003c8575a8fca7583648df3905038faeb18",
