@@ -4,14 +4,14 @@ import { RouterModule } from '@angular/router';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ImageWidgetComponent } from './image-widget/image-widget.component';
 import { ContactComponent } from './contact/contact.component';
-import { HowDoesItWorksComponent } from './how-does-it-works/how-does-it-works.component';
+import { HowDoesItWorkComponent } from './how-does-it-work/how-does-it-work.component';
 
 @NgModule({
   declarations: [
     HomepageComponent,
     ImageWidgetComponent,
     ContactComponent,
-    HowDoesItWorksComponent,
+    HowDoesItWorkComponent,
   ],
   imports: [
     CommonModule,

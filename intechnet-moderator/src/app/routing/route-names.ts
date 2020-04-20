@@ -16,6 +16,7 @@ export enum RouteName {
 
     // Global / Homepage
     CONTACT = 'contact',
+    HOW_DOES_IT_WORK = 'how-does-it-work',
     HOMEPAGE = 'index',
     ROOT = ''
 }
