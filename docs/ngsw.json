@@ -1,0 +1,84 @@
+{
+  "configVersion": 1,
+  "timestamp": 1587390636570,
+  "index": "/InTechNet.Moderator/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "urls": [
+        "/InTechNet.Moderator/favicon.ico",
+        "/InTechNet.Moderator/index.html",
+        "/InTechNet.Moderator/main-es2015.27d6176094f7c2b9b456.js",
+        "/InTechNet.Moderator/main-es5.27d6176094f7c2b9b456.js",
+        "/InTechNet.Moderator/manifest.webmanifest",
+        "/InTechNet.Moderator/polyfills-es2015.1f913f16a2d346cc8bdc.js",
+        "/InTechNet.Moderator/polyfills-es5.1a3c78b07cd6f16c6e9a.js",
+        "/InTechNet.Moderator/runtime-es2015.0811dcefd377500b5b1a.js",
+        "/InTechNet.Moderator/runtime-es5.0811dcefd377500b5b1a.js",
+        "/InTechNet.Moderator/styles.9b1be84be33ddc5f31a5.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "urls": [
+        "/InTechNet.Moderator/assets/icons/icon-128x128.png",
+        "/InTechNet.Moderator/assets/icons/icon-144x144.png",
+        "/InTechNet.Moderator/assets/icons/icon-152x152.png",
+        "/InTechNet.Moderator/assets/icons/icon-192x192.png",
+        "/InTechNet.Moderator/assets/icons/icon-384x384.png",
+        "/InTechNet.Moderator/assets/icons/icon-512x512.png",
+        "/InTechNet.Moderator/assets/icons/icon-72x72.png",
+        "/InTechNet.Moderator/assets/icons/icon-96x96.png",
+        "/InTechNet.Moderator/assets/img/computer-closeup.jpg",
+        "/InTechNet.Moderator/assets/img/working-student.jpg"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/InTechNet.Moderator/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
+    "/InTechNet.Moderator/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
+    "/InTechNet.Moderator/assets/icons/icon-152x152.png": "7479a9477815dfd9668d60f8b3b2fba709b91310",
+    "/InTechNet.Moderator/assets/icons/icon-192x192.png": "1abd80d431a237a853ce38147d8c63752f10933b",
+    "/InTechNet.Moderator/assets/icons/icon-384x384.png": "329749cd6393768d3131ed6304c136b1ca05f2fd",
+    "/InTechNet.Moderator/assets/icons/icon-512x512.png": "559d9c4318b45a1f2b10596bbb4c960fe521dbcc",
+    "/InTechNet.Moderator/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
+    "/InTechNet.Moderator/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
+    "/InTechNet.Moderator/assets/img/computer-closeup.jpg": "fe808f84781c7455f477ea7387da070c922d5dcc",
+    "/InTechNet.Moderator/assets/img/working-student.jpg": "3266c82a69f8abc08fae1459c367b32f7e8bf195",
+    "/InTechNet.Moderator/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
+    "/InTechNet.Moderator/index.html": "ed9317d53cf3bda05d6f970a3212fa2e0f7f7f95",
+    "/InTechNet.Moderator/main-es2015.27d6176094f7c2b9b456.js": "7153617eb8480560743661c763f16104d1a8b4df",
+    "/InTechNet.Moderator/main-es5.27d6176094f7c2b9b456.js": "575dbe4527b4ccd5caef27b6e895ba7cb39d40ad",
+    "/InTechNet.Moderator/manifest.webmanifest": "f302058bdd4eb37b82261da2ced6ef91d6caa261",
+    "/InTechNet.Moderator/polyfills-es2015.1f913f16a2d346cc8bdc.js": "72ad4ccc0a3916ae4598199447cdeadd6d380570",
+    "/InTechNet.Moderator/polyfills-es5.1a3c78b07cd6f16c6e9a.js": "e5472003c8575a8fca7583648df3905038faeb18",
+    "/InTechNet.Moderator/runtime-es2015.0811dcefd377500b5b1a.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "/InTechNet.Moderator/runtime-es5.0811dcefd377500b5b1a.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+    "/InTechNet.Moderator/styles.9b1be84be33ddc5f31a5.css": "8285f96f1925cdebe92c89228d3adb1912aa22db"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ]
+}
