@@ -88,8 +88,8 @@ export class RegisterComponent implements OnInit {
    * @summary check if any credential is in use
    * @returns true if either the email or the nickname is already taken
    */
-  areIdentifiersUnique(): boolean {
-    return !this.isEmailTaken && !this.isNicknameTaken;
+  areIdentifiersInUse(): boolean {
+    return this.isEmailTaken || this.isNicknameTaken;
   }
 
   /**
