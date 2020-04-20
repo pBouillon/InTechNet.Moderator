@@ -14,6 +14,7 @@ import { NewHubComponent } from './board/new-hub/new-hub.component';
 import { HubLimitGuard } from './_guards/hub-limit-guard/hub-limit-guard.guard';
 import { HubDetailsComponent } from './board/hub-details/hub-details.component';
 import { ProfileComponent } from './profile/profile.component';
+import { HowDoesItWorkComponent } from './homepage/how-does-it-work/how-does-it-work.component';
 
 const routes: Routes = [
   // Authentication
@@ -29,6 +30,8 @@ const routes: Routes = [
     component: BoardComponent,
     canActivate: [ AuthenticationGuard ]
   },
+  // How does it works
+  { path: RouteName.HOW_DOES_IT_WORK, component: HowDoesItWorkComponent },
   // Hub details
   {
     path: RouteName.HUB_DETAILS,
