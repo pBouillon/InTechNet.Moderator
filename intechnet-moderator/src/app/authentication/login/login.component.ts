@@ -1,6 +1,7 @@
 import { environment } from 'src/environments/environment';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -54,7 +55,7 @@ export class LoginComponent implements OnInit {
   /**
    * @summary default initialize function
    */
-  ngOnInit(): void  {
+  ngOnInit(): void {
     this.loginLink = `${environment.pupilFrontUri}/${RouteName.LOGIN}`;
 
     // If the user is already logged in, redirect it
@@ -76,10 +77,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
-/**
- * @summary check if the field given in parameter is valid
- * @param field the field to check
- */
+  /**
+   * @summary check if the field given in parameter is valid
+   * @param field the field to check
+   */
   isFieldInvalid(field: string) {
     return this.loginForm.get(field).invalid
       && (this.loginForm.get(field).dirty
@@ -100,10 +101,14 @@ export class LoginComponent implements OnInit {
         () => {
           this.router.navigate([`/${RouteName.BOARD}`]);
         },
-        (error) => {
-          this.toastr.error(
-            'Une erreur est survenue lors de la connexion au serveur',
-            'Erreur de connexion au serveur');
+        (error: HttpErrorResponse) => {
+          if (error.status === 401) {
+            this.toastr.error('Identifiants invalides');
+          } else {
+            this.toastr.error(
+              'Une erreur est survenue lors de la connexion au serveur',
+              'Erreur de connexion au serveur');
+          }
           this.loginForm.setErrors({ server: error });
         });
   }
