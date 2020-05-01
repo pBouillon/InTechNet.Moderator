@@ -87,10 +87,6 @@ export class LoginComponent implements OnInit {
         || this.loginForm.get(field).touched);
   }
 
-  OnForgottenPassword() {
-    // To be implemented
-  }
-
   /**
    * @summary form submission's logic
    */
